@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6422F54F-174A-4DFF-8FE9-E543CB4CEB19}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>EmulationCoordination</RootNamespace>
-    <AssemblyName>EmulationCoordination</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <ProjectGuid>{F3BB5A4F-8F79-4A10-8824-00D6DC032F3E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EmulationCoordination.Emulators</RootNamespace>
+    <AssemblyName>EmulationCoordination.Emulators</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,6 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DotNetZip, Version=1.10.1.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,19 +46,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="EmulatorManager.cs" />
+    <Compile Include="DataContracts\EmulatorManagerConfig.cs" />
+    <Compile Include="Emulators\BaseEmulator.cs" />
+    <Compile Include="Emulators\EmulatorRetriever.cs" />
+    <Compile Include="Emulators\Windows\VisualBoyAdvanceEmulator.cs" />
+    <Compile Include="Interfaces\EmulatorConsoles.cs" />
+    <Compile Include="Interfaces\IEmulator.cs" />
+    <Compile Include="Interfaces\IReadOnlyEmulator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EmulationCoordination.Emulators\EmulationCoordination.Emulators.csproj">
-      <Project>{f3bb5a4f-8f79-4a10-8824-00d6dc032f3e}</Project>
-      <Name>EmulationCoordination.Emulators</Name>
+    <ProjectReference Include="..\EmulationCoordination.Utilities\EmulationCoordination.Utilities.csproj">
+      <Project>{ad8d15f0-4970-41f7-aa91-61da61db4368}</Project>
+      <Name>EmulationCoordination.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
