@@ -41,6 +41,7 @@ namespace EmulationCoordination
                 {
                     HandleDeleteEmulator();
                 }
+                Console.WriteLine();
             }
         }
 
