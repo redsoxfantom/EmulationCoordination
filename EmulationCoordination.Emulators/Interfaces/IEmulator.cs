@@ -12,5 +12,6 @@ namespace EmulationCoordination.Emulators.Interfaces
         bool Delete();
         void ExecuteRom(String PathToRom);
         new bool Installed { get; set; }
+        new String InstallDirectory { get; set; }
     }
 }

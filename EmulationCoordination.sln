@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmulationCoordination.Emula
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmulationCoordination.Utilities", "EmulationCoordination.Utilities\EmulationCoordination.Utilities.csproj", "{AD8D15F0-4970-41F7-AA91-61DA61DB4368}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmulationCoordination.Roms", "EmulationCoordination.Roms\EmulationCoordination.Roms.csproj", "{DA924310-7A95-4414-84E3-552CAADD862C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{AD8D15F0-4970-41F7-AA91-61DA61DB4368}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD8D15F0-4970-41F7-AA91-61DA61DB4368}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD8D15F0-4970-41F7-AA91-61DA61DB4368}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA924310-7A95-4414-84E3-552CAADD862C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA924310-7A95-4414-84E3-552CAADD862C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA924310-7A95-4414-84E3-552CAADD862C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA924310-7A95-4414-84E3-552CAADD862C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

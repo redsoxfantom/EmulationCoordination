@@ -17,6 +17,8 @@ namespace EmulationCoordination.Emulators.Emulators
         public bool Installed { get; set; }
 
         public virtual string Version => String.Empty;
+        
+        public string InstallDirectory { get; set; }
 
         public override bool Equals(object obj)
         {

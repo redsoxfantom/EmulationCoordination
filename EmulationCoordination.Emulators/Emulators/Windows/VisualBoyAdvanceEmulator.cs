@@ -17,7 +17,7 @@ namespace EmulationCoordination.Emulators.Emulators.Windows
     {
         private String downloadUrl = "https://sourceforge.net/projects/vba/files/VisualBoyAdvance/1.7.2/VisualBoyAdvance-1.7.2-SDL-Win32.zip/download";
 
-        public List<EmulatorConsoles> ConsoleNames => new List<EmulatorConsoles>() {
+        public override List<EmulatorConsoles> ConsoleNames => new List<EmulatorConsoles>() {
             EmulatorConsoles.GAME_BOY,
             EmulatorConsoles.GAME_BOY_ADVANCE,
             EmulatorConsoles.GAME_BOY_COLOR
@@ -33,9 +33,8 @@ namespace EmulationCoordination.Emulators.Emulators.Windows
             {
                 return false;
             }
-
-            String targetLocation = Path.Combine(FileUtilities.GetRootDirectory(), EmulatorName, Version);
-            Directory.Delete(targetLocation,true);
+            
+            Directory.Delete(InstallDirectory, true);
 
             Installed = false;
 
@@ -48,17 +47,16 @@ namespace EmulationCoordination.Emulators.Emulators.Windows
             {
                 return true;
             }
-
-            String targetLocation = Path.Combine(FileUtilities.GetRootDirectory(), EmulatorName, Version);
-            Directory.CreateDirectory(targetLocation);
-            String targetFile = Path.Combine(targetLocation, "download.zip");
+            
+            Directory.CreateDirectory(InstallDirectory);
+            String targetFile = Path.Combine(InstallDirectory, "download.zip");
             using (WebClient client = new WebClient())
             {
                 client.DownloadFile(downloadUrl, targetFile);
             }
             using (ZipFile file = ZipFile.Read(targetFile))
             {
-                file.ExtractAll(targetLocation);
+                file.ExtractAll(InstallDirectory);
             }
 
             Installed = true;

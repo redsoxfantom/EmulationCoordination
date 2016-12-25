@@ -3,6 +3,7 @@ using EmulationCoordination.Emulators.Interfaces;
 using EmulationCoordination.Utilities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,8 @@ namespace EmulationCoordination.Emulators
 {
     public class EmulatorManager
     {
+        private String EmulatorInstallDir;
+
         public static EmulatorManager Instance
         {
             get
@@ -45,6 +48,8 @@ namespace EmulationCoordination.Emulators
                 availableEmulators = new Dictionary<IReadOnlyEmulator, IEmulator>();
             }
 
+            EmulatorInstallDir = Path.Combine(FileUtilities.GetRootDirectory(),"Emulators");
+
             loadedConfig = FileUtilities.LoadFile<EmulatorManagerConfigDictionary>("EmulatorManager.json");
             foreach (var configuredEmulator in loadedConfig.Keys)
             {
@@ -53,6 +58,13 @@ namespace EmulationCoordination.Emulators
                     f.Version == configuredEmulator.EmulatorVersion
                 ).First();
                 matchingEmulator.Installed = loadedConfig[configuredEmulator].Installed;
+            }
+
+            foreach(var availableEmulator in availableEmulators.Values)
+            {
+                String emulatorSpecificInstallDir = Path.Combine(EmulatorInstallDir, 
+                    availableEmulator.EmulatorName, availableEmulator.Version);
+                availableEmulator.InstallDirectory = emulatorSpecificInstallDir;
             }
         }
 
@@ -64,7 +76,7 @@ namespace EmulationCoordination.Emulators
         public bool DownloadAndInstallEmulator(IReadOnlyEmulator emulator)
         {
             bool installResult = availableEmulators[emulator].DownloadAndInstall();
-            UpdateInstalledProperty(emulator, installResult);
+            UpdateConfigProperty(emulator, installResult);
 
             return installResult;
         }
@@ -72,12 +84,12 @@ namespace EmulationCoordination.Emulators
         public bool DeleteEmulator(IReadOnlyEmulator emulator)
         {
             bool uninstallResult= availableEmulators[emulator].Delete();
-            UpdateInstalledProperty(emulator, !uninstallResult);
+            UpdateConfigProperty(emulator, !uninstallResult);
 
             return uninstallResult;
         }
 
-        private void UpdateInstalledProperty(IReadOnlyEmulator emulator, Boolean installed)
+        private void UpdateConfigProperty(IReadOnlyEmulator emulator, Boolean installed)
         {
             EmulatorManagerConfig cfg;
             var key = new EmulatorManagerConfigKey()
