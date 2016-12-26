@@ -15,11 +15,13 @@ using EmulationCoordination.Roms;
 namespace EmulationCoordination.Gui.Controls
 {
     public delegate void EmulatorUpdateHandler(IReadOnlyEmulator emulator);
+    public delegate void RomUpdateHandler(RomData rom);
 
     public partial class EmulatorTreeView : UserControl
     {
         public event EmulatorUpdateHandler DeletionRequested;
         public event EmulatorUpdateHandler InstallationRequested;
+        public event RomUpdateHandler RomSelected;
 
         public EmulatorTreeView()
         {
@@ -125,6 +127,14 @@ namespace EmulationCoordination.Gui.Controls
         {
             IReadOnlyEmulator emu = (IReadOnlyEmulator)((ToolStripMenuItem)sender).Tag;
             DeletionRequested?.Invoke(emu);
+        }
+
+        private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if(typeof(RomData).IsAssignableFrom(e.Node.Tag?.GetType()))
+            {
+                RomSelected?.Invoke((RomData)e.Node.Tag);
+            }
         }
     }
 }

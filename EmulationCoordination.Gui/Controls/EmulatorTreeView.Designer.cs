@@ -47,6 +47,7 @@
             treeNode2});
             this.treeView.Size = new System.Drawing.Size(288, 739);
             this.treeView.TabIndex = 1;
+            this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);
             this.treeView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.treeView_MouseClick);
             // 
             // EmulatorTreeView

@@ -37,7 +37,7 @@
             this.emulatorTreeView.Dock = System.Windows.Forms.DockStyle.Left;
             this.emulatorTreeView.Location = new System.Drawing.Point(0, 0);
             this.emulatorTreeView.Name = "emulatorTreeView";
-            this.emulatorTreeView.Size = new System.Drawing.Size(288, 697);
+            this.emulatorTreeView.Size = new System.Drawing.Size(363, 697);
             this.emulatorTreeView.TabIndex = 1;
             this.emulatorTreeView.DeletionRequested += new EmulationCoordination.Gui.Controls.EmulatorUpdateHandler(this.emulatorTreeView_DeletionRequested);
             this.emulatorTreeView.InstallationRequested += new EmulationCoordination.Gui.Controls.EmulatorUpdateHandler(this.emulatorTreeView_InstallationRequested);
