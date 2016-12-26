@@ -130,6 +130,20 @@ namespace EmulationCoordination.Gui.Controls
             DeletionRequested?.Invoke(emu);
         }
 
+        public IReadOnlyEmulator GetSelectedEmulator()
+        {
+            TreeNode e = treeView.SelectedNode;
+
+            if (typeof(RomData).IsAssignableFrom(e.Tag?.GetType()))
+            {
+                return (IReadOnlyEmulator)e.Parent.Tag;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if(typeof(RomData).IsAssignableFrom(e.Node.Tag?.GetType()))

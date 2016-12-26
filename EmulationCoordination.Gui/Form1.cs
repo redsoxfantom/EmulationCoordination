@@ -90,7 +90,8 @@ namespace EmulationCoordination.Gui
 
         private void PlayGameBtn_Click(object sender, EventArgs e)
         {
-
+            var emulator = emulatorTreeView.GetSelectedEmulator();
+            emuMgr.RunEmulator(emulator, selectedRom);
         }
     }
 }
