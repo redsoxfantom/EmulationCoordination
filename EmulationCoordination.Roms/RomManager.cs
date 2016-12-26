@@ -78,7 +78,7 @@ namespace EmulationCoordination.Roms
                 loadedRomData.Add(data.Path, data);
             }
 
-            FileUtilities.WriteFile(data, "RomData.json", imageConverter);
+            FileUtilities.WriteFile(loadedRomData, "RomData.json", imageConverter);
         }
 
         private RomData RetrieveRomData(String file, EmulatorConsoles ConsoleToSearch)
@@ -94,7 +94,12 @@ namespace EmulationCoordination.Roms
                     Path = file,
                     FriendlyName = Path.GetFileName(file),
                     Console = ConsoleToSearch,
-                    IsUpToDate = false
+                    IsUpToDate = false,
+                    NumPlayers = "Unknown",
+                    Description = "None",
+                    Developer = "Unknown",
+                    Publisher = "Unknown",
+                    Rating = 0.0f
                 };
             }
         }

@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace EmulationCoordination.Roms.DataContracts
 {
-    public class RomDataConfig : Dictionary<string,RomData>
+    [JsonDictionary]
+    public class RomDataConfig : Dictionary<string, RomData>
     {
     }
 }
