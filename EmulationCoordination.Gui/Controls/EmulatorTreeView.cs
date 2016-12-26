@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using EmulationCoordination.Emulators;
 using EmulationCoordination.Emulators.Interfaces;
 using EmulationCoordination.Utilities;
+using EmulationCoordination.Roms;
 
 namespace EmulationCoordination.Gui.Controls
 {
@@ -17,11 +18,6 @@ namespace EmulationCoordination.Gui.Controls
 
     public partial class EmulatorTreeView : UserControl
     {
-        private List<IReadOnlyEmulator> emulators;
-        private List<IReadOnlyEmulator> installedEmulators;
-        private List<IReadOnlyEmulator> availableEmulators;
-        private List<EmulatorConsoles> availableConsoles;
-
         public event EmulatorUpdateHandler DeletionRequested;
         public event EmulatorUpdateHandler InstallationRequested;
 
@@ -30,21 +26,20 @@ namespace EmulationCoordination.Gui.Controls
             InitializeComponent();
         }
 
-        public void ChildUpdate(List<IReadOnlyEmulator> emulators)
+        public void ChildUpdate(List<IReadOnlyEmulator> emulators, List<RomData> roms)
         {
-            this.emulators = emulators;
-            availableConsoles = emulators.SelectMany(f => f.ConsoleNames).Distinct().ToList();
-            installedEmulators = emulators.Where(f => f.Installed).ToList();
-            availableEmulators = emulators.Where(f => !f.Installed).ToList();
+            var availableConsoles = emulators.SelectMany(f => f.ConsoleNames).Distinct().ToList();
+            var installedEmulators = emulators.Where(f => f.Installed).ToList();
+            var availableEmulators = emulators.Where(f => !f.Installed).ToList();
 
-            PopulateTreeNodes(treeView.Nodes["AvailableEmulators"].Nodes, availableEmulators);
-            PopulateTreeNodes(treeView.Nodes["InstalledEmulators"].Nodes, installedEmulators);
+            PopulateTreeNodes(treeView.Nodes["AvailableEmulators"].Nodes, availableEmulators, availableConsoles);
+            PopulateTreeNodes(treeView.Nodes["InstalledEmulators"].Nodes, installedEmulators, availableConsoles);
         }
 
-        private void PopulateTreeNodes(TreeNodeCollection Nodes, List<IReadOnlyEmulator> emulators)
+        private void PopulateTreeNodes(TreeNodeCollection Nodes, List<IReadOnlyEmulator> emulators, List<EmulatorConsoles> consoles)
         {
             Nodes.Clear();
-            foreach(var console in availableConsoles)
+            foreach(var console in consoles)
             {
                 TreeNode consoleNode = new TreeNode();
                 consoleNode.Text = console.FriendlyName;
