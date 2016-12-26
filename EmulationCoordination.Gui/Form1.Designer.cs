@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.emulatorTreeView = new EmulationCoordination.Gui.Controls.EmulatorTreeView();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // emulatorTreeView
@@ -38,6 +39,8 @@
             this.emulatorTreeView.Name = "emulatorTreeView";
             this.emulatorTreeView.Size = new System.Drawing.Size(288, 697);
             this.emulatorTreeView.TabIndex = 1;
+            this.emulatorTreeView.DeletionRequested += new EmulationCoordination.Gui.Controls.EmulatorUpdateHandler(this.emulatorTreeView_DeletionRequested);
+            this.emulatorTreeView.InstallationRequested += new EmulationCoordination.Gui.Controls.EmulatorUpdateHandler(this.emulatorTreeView_InstallationRequested);
             // 
             // MainWindow
             // 
@@ -54,6 +57,7 @@
         #endregion
 
         private Controls.EmulatorTreeView emulatorTreeView;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 

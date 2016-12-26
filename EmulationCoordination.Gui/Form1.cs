@@ -28,5 +28,33 @@ namespace EmulationCoordination.Gui
         {
             emulatorTreeView.ChildUpdate(emuMgr.GetAvailableEmulators());
         }
+
+        private void emulatorTreeView_DeletionRequested(IReadOnlyEmulator emulator)
+        {
+            backgroundWorker1.DoWork += (sender, e) => 
+            {
+                IReadOnlyEmulator emu = (IReadOnlyEmulator)e.Argument;
+                emuMgr.DeleteEmulator(emu);
+            };
+            backgroundWorker1.RunWorkerCompleted += (sender, e) =>
+            {
+                UpdateChildren();
+            };
+            backgroundWorker1.RunWorkerAsync(emulator);
+        }
+
+        private void emulatorTreeView_InstallationRequested(IReadOnlyEmulator emulator)
+        {
+            backgroundWorker1.DoWork += (sender, e) =>
+            {
+                IReadOnlyEmulator emu = (IReadOnlyEmulator)e.Argument;
+                emuMgr.DownloadAndInstallEmulator(emulator);
+            };
+            backgroundWorker1.RunWorkerCompleted += (sender, e) =>
+            {
+                UpdateChildren();
+            };
+            backgroundWorker1.RunWorkerAsync(emulator);
+        }
     }
 }
