@@ -21,5 +21,10 @@ namespace EmulationCoordination.Gui
 
             emuMgr = EmulatorManager.Instance;
         }
+
+        private void UpdateEmulators()
+        {
+            emuMgr.GetAvailableEmulators();
+        }
     }
 }

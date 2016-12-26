@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Available Emulators");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Installed Emulators");
             this.EmulatorTreeView = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
@@ -36,6 +38,13 @@
             this.EmulatorTreeView.Dock = System.Windows.Forms.DockStyle.Left;
             this.EmulatorTreeView.Location = new System.Drawing.Point(0, 0);
             this.EmulatorTreeView.Name = "EmulatorTreeView";
+            treeNode1.Name = "AvailableEmulators";
+            treeNode1.Text = "Available Emulators";
+            treeNode2.Name = "InstalledEmulators";
+            treeNode2.Text = "Installed Emulators";
+            this.EmulatorTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2});
             this.EmulatorTreeView.Size = new System.Drawing.Size(272, 697);
             this.EmulatorTreeView.TabIndex = 0;
             // 
