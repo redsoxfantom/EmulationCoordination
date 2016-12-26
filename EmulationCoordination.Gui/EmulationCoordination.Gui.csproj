@@ -54,6 +54,12 @@
     <Compile Include="Controls\EmulatorTreeView.Designer.cs">
       <DependentUpon>EmulatorTreeView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\RomDataView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\RomDataView.Designer.cs">
+      <DependentUpon>RomDataView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +70,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Controls\EmulatorTreeView.resx">
       <DependentUpon>EmulatorTreeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\RomDataView.resx">
+      <DependentUpon>RomDataView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -76,6 +85,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -104,6 +114,12 @@
       <Project>{AD8D15F0-4970-41F7-AA91-61DA61DB4368}</Project>
       <Name>EmulationCoordination.Utilities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DefaultBoxart.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DefaultBanner.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

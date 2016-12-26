@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.emulatorTreeView = new EmulationCoordination.Gui.Controls.EmulatorTreeView();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.emulatorTreeView = new EmulationCoordination.Gui.Controls.EmulatorTreeView();
+            this.romDataView = new EmulationCoordination.Gui.Controls.RomDataView();
             this.SuspendLayout();
             // 
             // emulatorTreeView
@@ -42,11 +43,20 @@
             this.emulatorTreeView.DeletionRequested += new EmulationCoordination.Gui.Controls.EmulatorUpdateHandler(this.emulatorTreeView_DeletionRequested);
             this.emulatorTreeView.InstallationRequested += new EmulationCoordination.Gui.Controls.EmulatorUpdateHandler(this.emulatorTreeView_InstallationRequested);
             // 
+            // romDataView
+            // 
+            this.romDataView.Dock = System.Windows.Forms.DockStyle.Right;
+            this.romDataView.Location = new System.Drawing.Point(382, 0);
+            this.romDataView.Name = "romDataView";
+            this.romDataView.Size = new System.Drawing.Size(688, 697);
+            this.romDataView.TabIndex = 2;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1070, 697);
+            this.Controls.Add(this.romDataView);
             this.Controls.Add(this.emulatorTreeView);
             this.Name = "MainWindow";
             this.Text = "Emulator Coordinator";
@@ -58,6 +68,7 @@
 
         private Controls.EmulatorTreeView emulatorTreeView;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private Controls.RomDataView romDataView;
     }
 }
 
