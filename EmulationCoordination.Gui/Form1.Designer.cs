@@ -29,9 +29,17 @@
         private void InitializeComponent()
         {
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.emulatorTreeView = new EmulationCoordination.Gui.Controls.EmulatorTreeView();
             this.romDataView = new EmulationCoordination.Gui.Controls.RomDataView();
+            this.emulatorTreeView = new EmulationCoordination.Gui.Controls.EmulatorTreeView();
             this.SuspendLayout();
+            // 
+            // romDataView
+            // 
+            this.romDataView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.romDataView.Location = new System.Drawing.Point(363, 0);
+            this.romDataView.Name = "romDataView";
+            this.romDataView.Size = new System.Drawing.Size(707, 697);
+            this.romDataView.TabIndex = 2;
             // 
             // emulatorTreeView
             // 
@@ -43,14 +51,6 @@
             this.emulatorTreeView.DeletionRequested += new EmulationCoordination.Gui.Controls.EmulatorUpdateHandler(this.emulatorTreeView_DeletionRequested);
             this.emulatorTreeView.InstallationRequested += new EmulationCoordination.Gui.Controls.EmulatorUpdateHandler(this.emulatorTreeView_InstallationRequested);
             this.emulatorTreeView.RomSelected += new EmulationCoordination.Gui.Controls.RomUpdateHandler(this.emulatorTreeView_RomSelected);
-            // 
-            // romDataView
-            // 
-            this.romDataView.Dock = System.Windows.Forms.DockStyle.Right;
-            this.romDataView.Location = new System.Drawing.Point(382, 0);
-            this.romDataView.Name = "romDataView";
-            this.romDataView.Size = new System.Drawing.Size(688, 697);
-            this.romDataView.TabIndex = 2;
             // 
             // MainWindow
             // 
