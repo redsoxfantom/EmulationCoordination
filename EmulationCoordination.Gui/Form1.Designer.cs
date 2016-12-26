@@ -28,32 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Available Emulators");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Installed Emulators");
-            this.EmulatorTreeView = new System.Windows.Forms.TreeView();
+            this.emulatorTreeView = new EmulationCoordination.Gui.Controls.EmulatorTreeView();
             this.SuspendLayout();
             // 
-            // EmulatorTreeView
+            // emulatorTreeView
             // 
-            this.EmulatorTreeView.Dock = System.Windows.Forms.DockStyle.Left;
-            this.EmulatorTreeView.Location = new System.Drawing.Point(0, 0);
-            this.EmulatorTreeView.Name = "EmulatorTreeView";
-            treeNode1.Name = "AvailableEmulators";
-            treeNode1.Text = "Available Emulators";
-            treeNode2.Name = "InstalledEmulators";
-            treeNode2.Text = "Installed Emulators";
-            this.EmulatorTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
-            this.EmulatorTreeView.Size = new System.Drawing.Size(272, 697);
-            this.EmulatorTreeView.TabIndex = 0;
+            this.emulatorTreeView.Dock = System.Windows.Forms.DockStyle.Left;
+            this.emulatorTreeView.Location = new System.Drawing.Point(0, 0);
+            this.emulatorTreeView.Name = "emulatorTreeView";
+            this.emulatorTreeView.Size = new System.Drawing.Size(288, 697);
+            this.emulatorTreeView.TabIndex = 1;
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1070, 697);
-            this.Controls.Add(this.EmulatorTreeView);
+            this.Controls.Add(this.emulatorTreeView);
             this.Name = "MainWindow";
             this.Text = "Emulator Coordinator";
             this.ResumeLayout(false);
@@ -62,7 +53,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TreeView EmulatorTreeView;
+        private Controls.EmulatorTreeView emulatorTreeView;
     }
 }
 
