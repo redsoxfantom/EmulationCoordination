@@ -1,5 +1,6 @@
 ﻿using EmulationCoordination.Emulators;
 using EmulationCoordination.Emulators.Interfaces;
+using EmulationCoordination.Roms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +11,16 @@ namespace EmulationCoordination
 {
     public class Processor
     {
-        EmulatorManager mgr;
+        EmulatorManager emuMgr;
+        RomManager romMgr;
         List<IReadOnlyEmulator> emulators;
         List<IReadOnlyEmulator> installedEmulators;
         List<IReadOnlyEmulator> availableEmulators;
 
         public Processor()
         {
-            mgr = EmulatorManager.Instance;
+            emuMgr = EmulatorManager.Instance;
+            romMgr = RomManager.Instance;
         }
 
         public void Run()
@@ -53,7 +56,7 @@ namespace EmulationCoordination
             {
                 var emulator = installedEmulators[selectedEmulator];
                 Console.WriteLine(String.Format("Deleting {0}", emulator.EmulatorName));
-                mgr.DeleteEmulator(emulator);
+                emuMgr.DeleteEmulator(emulator);
                 Console.WriteLine("Complete");
             }
         }
@@ -66,7 +69,7 @@ namespace EmulationCoordination
             {
                 var emulator = availableEmulators[selectedEmulator];
                 Console.WriteLine(String.Format("Downloading {0}", emulator.EmulatorName));
-                mgr.DownloadAndInstallEmulator(emulator);
+                emuMgr.DownloadAndInstallEmulator(emulator);
                 Console.WriteLine("Complete");
             }
         }
@@ -94,7 +97,7 @@ namespace EmulationCoordination
 
         private void UpdateEmulatorInfo()
         {
-            emulators = mgr.GetAvailableEmulators();
+            emulators = emuMgr.GetAvailableEmulators();
             installedEmulators = emulators.Where(f => f.Installed).ToList();
             availableEmulators = emulators.Where(f => !f.Installed).ToList();
         }

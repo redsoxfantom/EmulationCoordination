@@ -1,4 +1,5 @@
 ﻿using EmulationCoordination.Emulators.Interfaces;
+using EmulationCoordination.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;

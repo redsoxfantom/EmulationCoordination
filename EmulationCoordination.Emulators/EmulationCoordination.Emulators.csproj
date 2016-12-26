@@ -51,7 +51,6 @@
     <Compile Include="Emulators\BaseEmulator.cs" />
     <Compile Include="Emulators\EmulatorRetriever.cs" />
     <Compile Include="Emulators\Windows\VisualBoyAdvanceEmulator.cs" />
-    <Compile Include="Interfaces\EmulatorConsoles.cs" />
     <Compile Include="Interfaces\IEmulator.cs" />
     <Compile Include="Interfaces\IReadOnlyEmulator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

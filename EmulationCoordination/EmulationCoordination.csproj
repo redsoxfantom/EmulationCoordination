@@ -58,6 +58,10 @@
       <Project>{f3bb5a4f-8f79-4a10-8824-00d6dc032f3e}</Project>
       <Name>EmulationCoordination.Emulators</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EmulationCoordination.Roms\EmulationCoordination.Roms.csproj">
+      <Project>{da924310-7a95-4414-84e3-552caadd862c}</Project>
+      <Name>EmulationCoordination.Roms</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

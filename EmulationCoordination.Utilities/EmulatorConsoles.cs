@@ -4,13 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EmulationCoordination.Emulators.Interfaces
+namespace EmulationCoordination.Utilities
 {
-    public sealed class EmulatorConsoles
+    public class EmulatorConsoles
     {
         public static readonly EmulatorConsoles GAME_BOY = new EmulatorConsoles("Game Boy");
         public static readonly EmulatorConsoles GAME_BOY_COLOR = new EmulatorConsoles("Game Boy Color");
         public static readonly EmulatorConsoles GAME_BOY_ADVANCE = new EmulatorConsoles("Game Boy Advance");
+
+        public static IEnumerable<EmulatorConsoles> Values
+        {
+            get
+            {
+                yield return GAME_BOY;
+                yield return GAME_BOY_COLOR;
+                yield return GAME_BOY_ADVANCE;
+            }
+        }
 
         public String FriendlyName { get; }
 
