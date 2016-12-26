@@ -11,6 +11,7 @@ namespace EmulationCoordination.Utilities
         public static readonly EmulatorConsoles GAME_BOY = new EmulatorConsoles("Game Boy");
         public static readonly EmulatorConsoles GAME_BOY_COLOR = new EmulatorConsoles("Game Boy Color");
         public static readonly EmulatorConsoles GAME_BOY_ADVANCE = new EmulatorConsoles("Game Boy Advance");
+        public static readonly EmulatorConsoles NINTENDO_64 = new EmulatorConsoles("Nintendo 64");
 
         public static IEnumerable<EmulatorConsoles> Values
         {
@@ -19,6 +20,7 @@ namespace EmulationCoordination.Utilities
                 yield return GAME_BOY;
                 yield return GAME_BOY_COLOR;
                 yield return GAME_BOY_ADVANCE;
+                yield return NINTENDO_64;
             }
         }
 

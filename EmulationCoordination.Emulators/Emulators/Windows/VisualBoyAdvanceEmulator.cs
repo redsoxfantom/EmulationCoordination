@@ -27,41 +27,14 @@ namespace EmulationCoordination.Emulators.Emulators.Windows
 
         public override string Version => "1.7.2";
 
-        public override bool Delete()
+        protected override bool ChildSpecificDelete()
         {
-            if (!Installed)
-            {
-                return false;
-            }
-            
-            Directory.Delete(InstallDirectory, true);
-
-            Installed = false;
-
-            return true;
+            return BasicDelete();
         }
-
-        public override bool DownloadAndInstall()
+        
+        protected override bool ChildSpecificInstall()
         {
-            if (Installed)
-            {
-                return true;
-            }
-            
-            Directory.CreateDirectory(InstallDirectory);
-            String targetFile = Path.Combine(InstallDirectory, "download.zip");
-            using (WebClient client = new WebClient())
-            {
-                client.DownloadFile(downloadUrl, targetFile);
-            }
-            using (ZipFile file = ZipFile.Read(targetFile))
-            {
-                file.ExtractAll(InstallDirectory);
-            }
-
-            Installed = true;
-
-            return true;
+            return BasicDownloadAndUnzip(downloadUrl);
         }
 
         public override void ExecuteRom(string PathToRom)

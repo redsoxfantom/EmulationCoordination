@@ -1,9 +1,11 @@
 ﻿using EmulationCoordination.Emulators.Interfaces;
 using EmulationCoordination.Utilities;
+using Ionic.Zip;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,10 +42,74 @@ namespace EmulationCoordination.Emulators.Emulators
             return EmulatorName.GetHashCode() ^ Version.GetHashCode();
         }
 
-        public abstract bool Delete();
+        public bool Delete()
+        {
+            if (!Installed)
+            {
+                return false;
+            }
 
-        public abstract bool DownloadAndInstall();
+            Installed = ChildSpecificDelete();
+
+            return Installed;
+        }
+
+        protected abstract bool ChildSpecificDelete();
+
+        public bool DownloadAndInstall()
+        {
+            if (Installed)
+            {
+                return true;
+            }
+
+            Directory.CreateDirectory(InstallDirectory);
+            Installed = ChildSpecificInstall();
+
+            return Installed;
+        }
+
+        protected abstract bool ChildSpecificInstall();
 
         public abstract void ExecuteRom(string PathToRom);
+
+        protected bool BasicDownloadAndUnzip(String downloadUrl)
+        {
+            try
+            {
+                String targetFile = Path.Combine(InstallDirectory, "download.zip");
+                using (WebClient client = new WebClient())
+                {
+                    client.DownloadFile(downloadUrl, targetFile);
+                }
+                using (ZipFile file = ZipFile.Read(targetFile))
+                {
+                    file.ExtractAll(InstallDirectory);
+                }
+
+                Installed = true;
+            }
+            catch (Exception)
+            {
+                Installed = false;
+            }
+
+            return Installed;
+        }
+
+        protected bool BasicDelete()
+        {
+            try
+            {
+                Directory.Delete(InstallDirectory, true);
+                Installed = false;
+            }
+            catch (Exception)
+            {
+                Installed = true;
+            }
+
+            return !Installed;
+        }
     }
 }
