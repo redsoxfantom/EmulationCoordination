@@ -1,4 +1,5 @@
-﻿using EmulationCoordination.Scrapers.Scrapers;
+﻿using EmulationCoordination.Roms;
+using EmulationCoordination.Scrapers.Scrapers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,14 +28,35 @@ namespace EmulationCoordination.Scrapers
         private ScraperManager()
         {
             availableScrapers = new Dictionary<string, IScraper>();
-
-            ManualScraper manual = new ManualScraper();
-            availableScrapers.Add(manual.FriendlyName, manual);
         }
 
         public List<String> GetAllScrapers()
         {
             return availableScrapers.Keys.ToList();
+        }
+
+        public List<RomData> Search(RomData dataToSearchFor, String ScraperToUse)
+        {
+            if(!availableScrapers.ContainsKey(ScraperToUse))
+            {
+                return new List<RomData>() { dataToSearchFor };
+            }
+            else
+            {
+                return availableScrapers[ScraperToUse].Search(dataToSearchFor);
+            }
+        }
+
+        public RomData GetAllData(RomData dataToSearchFor, String ScraperToUse)
+        {
+            if(!availableScrapers.ContainsKey(ScraperToUse))
+            {
+                return dataToSearchFor;
+            }
+            else
+            {
+                return availableScrapers[ScraperToUse].GetAllData(dataToSearchFor);
+            }
         }
     }
 }
