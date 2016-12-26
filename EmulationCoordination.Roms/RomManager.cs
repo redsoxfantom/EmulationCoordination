@@ -67,6 +67,20 @@ namespace EmulationCoordination.Roms
             return returnList;
         }
 
+        public void UpdateRomData(RomData data)
+        {
+            if(loadedRomData.ContainsKey(data.Path))
+            {
+                loadedRomData[data.Path] = data;
+            }
+            else
+            {
+                loadedRomData.Add(data.Path, data);
+            }
+
+            FileUtilities.WriteFile(data, "RomData.json", imageConverter);
+        }
+
         private RomData RetrieveRomData(String file, EmulatorConsoles ConsoleToSearch)
         {
             if(loadedRomData.ContainsKey(file))
