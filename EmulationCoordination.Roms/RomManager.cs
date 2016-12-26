@@ -99,7 +99,11 @@ namespace EmulationCoordination.Roms
                     Description = "None",
                     Developer = "Unknown",
                     Publisher = "Unknown",
-                    Rating = 0.0f
+                    Rating = 0.0f,
+                    BoxArt = Resource.DefaultBoxart,
+                    Logo = Resource.DefaultIcon,
+                    Banner = Resource.DefaultBanner,
+                    Background = Resource.DefaultBackground
                 };
             }
         }
