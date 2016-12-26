@@ -34,7 +34,12 @@ namespace EmulationCoordination.Gui
         private void UpdateChildren()
         {
             emulators = emuMgr.GetAvailableEmulators();
-
+            roms = new List<RomData>();
+            var availableConsoles = emulators.SelectMany(f => f.ConsoleNames).Distinct().ToList();
+            foreach(var console in availableConsoles)
+            {
+                roms.AddRange(romMgr.GetRoms(console));
+            }
 
             emulatorTreeView.ChildUpdate(emulators,roms);
         }

@@ -32,11 +32,14 @@ namespace EmulationCoordination.Gui.Controls
             var installedEmulators = emulators.Where(f => f.Installed).ToList();
             var availableEmulators = emulators.Where(f => !f.Installed).ToList();
 
-            PopulateTreeNodes(treeView.Nodes["AvailableEmulators"].Nodes, availableEmulators, availableConsoles);
-            PopulateTreeNodes(treeView.Nodes["InstalledEmulators"].Nodes, installedEmulators, availableConsoles);
+            PopulateTreeNodes(treeView.Nodes["AvailableEmulators"].Nodes, availableEmulators, availableConsoles, new List<RomData>());
+            PopulateTreeNodes(treeView.Nodes["InstalledEmulators"].Nodes, installedEmulators, availableConsoles, roms);
         }
 
-        private void PopulateTreeNodes(TreeNodeCollection Nodes, List<IReadOnlyEmulator> emulators, List<EmulatorConsoles> consoles)
+        private void PopulateTreeNodes(TreeNodeCollection Nodes, 
+                                       List<IReadOnlyEmulator> emulators, 
+                                       List<EmulatorConsoles> consoles, 
+                                       List<RomData> roms)
         {
             Nodes.Clear();
             foreach(var console in consoles)
@@ -51,14 +54,23 @@ namespace EmulationCoordination.Gui.Controls
             {
                 foreach(var node in Nodes)
                 {
-                    TreeNode newNode = new TreeNode();
-                    newNode.Text = String.Format("{0} ({1})", emulator.EmulatorName, emulator.Version);
-                    newNode.Tag = emulator;
+                    TreeNode emulatorNode = new TreeNode();
+                    emulatorNode.Text = String.Format("{0} ({1})", emulator.EmulatorName, emulator.Version);
+                    emulatorNode.Tag = emulator;
                     TreeNode consoleNode = (TreeNode)node;
-
+                    
                     if(emulator.ConsoleNames.Contains(consoleNode.Tag))
                     {
-                        consoleNode.Nodes.Add(newNode);
+                        consoleNode.Nodes.Add(emulatorNode);
+                    }
+
+                    var consoleSpecificRoms = roms.Where(f => { return f.Console == consoleNode.Tag; }).ToList();
+                    foreach(var consoleSpecificRom in consoleSpecificRoms)
+                    {
+                        TreeNode romNode = new TreeNode();
+                        romNode.Tag = consoleSpecificRom;
+                        romNode.Text = consoleSpecificRom.FriendlyName;
+                        emulatorNode.Nodes.Add(romNode);
                     }
                 }
             }
