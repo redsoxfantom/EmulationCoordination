@@ -17,6 +17,7 @@ namespace EmulationCoordination.Gui
     {
         private List<IReadOnlyEmulator> emulators;
         private List<RomData> roms;
+        private RomData selectedRom = null;
 
         private EmulatorManager emuMgr;
         private RomManager romMgr;
@@ -28,10 +29,10 @@ namespace EmulationCoordination.Gui
             emuMgr = EmulatorManager.Instance;
             romMgr = RomManager.Instance;
 
-            UpdateChildren();
+            UpdateEmulatorList();
         }
 
-        private void UpdateChildren()
+        private void UpdateEmulatorList()
         {
             emulators = emuMgr.GetAvailableEmulators();
             roms = new List<RomData>();
@@ -53,7 +54,7 @@ namespace EmulationCoordination.Gui
             };
             backgroundWorker1.RunWorkerCompleted += (sender, e) =>
             {
-                UpdateChildren();
+                UpdateEmulatorList();
             };
             backgroundWorker1.RunWorkerAsync(emulator);
         }
@@ -67,9 +68,15 @@ namespace EmulationCoordination.Gui
             };
             backgroundWorker1.RunWorkerCompleted += (sender, e) =>
             {
-                UpdateChildren();
+                UpdateEmulatorList();
             };
             backgroundWorker1.RunWorkerAsync(emulator);
+        }
+
+        private void emulatorTreeView_RomSelected(RomData rom)
+        {
+            selectedRom = rom;
+            romDataView.ChildUpdate(rom);
         }
     }
 }

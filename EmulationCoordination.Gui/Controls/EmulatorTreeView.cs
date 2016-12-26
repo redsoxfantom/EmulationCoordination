@@ -134,6 +134,7 @@ namespace EmulationCoordination.Gui.Controls
             if(typeof(RomData).IsAssignableFrom(e.Node.Tag?.GetType()))
             {
                 RomSelected?.Invoke((RomData)e.Node.Tag);
+                treeView.SelectedNode = e.Node;
             }
         }
     }
