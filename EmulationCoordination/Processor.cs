@@ -32,7 +32,7 @@ namespace EmulationCoordination
                 UpdateEmulatorInfo();
                 PrintEmulatorInfo();
 
-                Console.WriteLine("(Available Commands: download, delete, exit)");
+                Console.WriteLine("(Available Commands: download, delete, exit, play)");
                 Console.Write("> ");
                 input = Console.ReadLine();
 
@@ -44,8 +44,18 @@ namespace EmulationCoordination
                 {
                     HandleDeleteEmulator();
                 }
+                if(input == "play")
+                {
+                    HandlePlayEmulator();
+                }
                 Console.WriteLine();
             }
+        }
+
+        private void HandlePlayEmulator()
+        {
+            int selectedEmulator = SelectEmulator(installedEmulators);
+
         }
 
         private void HandleDeleteEmulator()

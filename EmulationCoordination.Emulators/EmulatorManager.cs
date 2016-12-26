@@ -92,7 +92,15 @@ namespace EmulationCoordination.Emulators
 
         public void RunEmulator(IReadOnlyEmulator emulator, IRomData rom)
         {
-            availableEmulators[emulator].ExecuteRom(rom);
+            IEmulator emu = availableEmulators[emulator];
+            if (emu.Installed)
+            {
+                emu.ExecuteRom(rom);
+            }
+            else
+            {
+                throw new EmulatorManagerException(String.Format("The selected emulator {0} has not been installed",emulator.EmulatorName));
+            }
         }
 
         private void UpdateConfigProperty(IReadOnlyEmulator emulator, Boolean installed)
