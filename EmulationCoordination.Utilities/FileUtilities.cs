@@ -24,25 +24,25 @@ namespace EmulationCoordination.Utilities
             return root;
         }
 
-        public static T LoadFile<T>(String pathToFile) where T:new()
+        public static T LoadFile<T>(String pathToFile, params JsonConverter[] converters) where T:new()
         {
             String fullyQualifiedPath = Path.Combine(GetRootDirectory(), pathToFile);
 
             if(!File.Exists(fullyQualifiedPath))
             {
                 T obj = new T();
-                WriteFile(obj, fullyQualifiedPath);
+                WriteFile(obj, fullyQualifiedPath, converters);
             }
 
             String fileText = File.ReadAllText(fullyQualifiedPath);
-            return JsonConvert.DeserializeObject<T>(fileText);
+            return JsonConvert.DeserializeObject<T>(fileText,converters);
         }
 
-        public static void WriteFile(Object obj, String pathToFile)
+        public static void WriteFile(Object obj, String pathToFile, params JsonConverter[] converters)
         {
             String fullyQualifiedPath = Path.Combine(GetRootDirectory(), pathToFile);
 
-            String serializedObj = JsonConvert.SerializeObject(obj, Formatting.Indented);
+            String serializedObj = JsonConvert.SerializeObject(obj, Formatting.Indented,converters);
             File.WriteAllText(fullyQualifiedPath, serializedObj);
         }
     }
