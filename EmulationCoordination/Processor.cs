@@ -55,7 +55,48 @@ namespace EmulationCoordination
         private void HandlePlayEmulator()
         {
             int selectedEmulator = SelectEmulator(installedEmulators);
+            if(selectedEmulator != -1)
+            {
+                var emulator = installedEmulators[selectedEmulator];
+                var selectedRom = SelectRom(emulator);
+                if(selectedRom != null)
+                {
+                    emuMgr.RunEmulator(emulator, selectedRom);
+                }
+            }
+        }
 
+        private IRomData SelectRom(IReadOnlyEmulator emulator)
+        {
+            List<IRomData> availableRoms = new List<IRomData>();
+            foreach(var consoleType in emulator.ConsoleNames)
+            {
+                availableRoms.AddRange(romMgr.GetRoms(consoleType));
+            }
+
+            Console.WriteLine(String.Format("The following games are available for {0}:", emulator.EmulatorName));
+            for(int i = 1; i <= availableRoms.Count; i++)
+            {
+                Console.WriteLine(String.Format("{0}) {1}",i,availableRoms[i-1].FriendlyName));
+            }
+
+            int selectedRom;
+            while(true)
+            {
+                Console.Write("Enter a game's number ('exit' to quit) > ");
+                String input = Console.ReadLine();
+                if (input == "exit")
+                {
+                    return null;
+                }
+                if (int.TryParse(input, out selectedRom))
+                {
+                    if (selectedRom > 0 && selectedRom <= availableRoms.Count)
+                    {
+                        return availableRoms[selectedRom - 1];
+                    }
+                }
+            }
         }
 
         private void HandleDeleteEmulator()

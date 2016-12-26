@@ -91,11 +91,16 @@ namespace EmulationCoordination.Emulators.Emulators
 
         public void ExecuteRom(IRomData rom)
         {
-            String commandLine = CreateCommandLine(rom);
-            Process.Start(commandLine);
+            Command cmd = CreateCommand(rom);
+            Process proc = new Process();
+            proc.StartInfo.FileName = cmd.Executable;
+            proc.StartInfo.Arguments = cmd.Arguments;
+            proc.StartInfo.UseShellExecute = false;
+            proc.Start();
+            proc.WaitForExit();
         }
 
-        protected abstract string CreateCommandLine(IRomData rom);
+        protected abstract Command CreateCommand(IRomData rom);
 
         protected bool BasicDownloadAndUnzip(String downloadUrl)
         {

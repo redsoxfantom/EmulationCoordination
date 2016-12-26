@@ -38,10 +38,15 @@ namespace EmulationCoordination.Emulators.Emulators.Windows
             return BasicDownloadAndUnzip(downloadUrl);
         }
 
-        protected override string CreateCommandLine(IRomData rom)
+        protected override Command CreateCommand(IRomData rom)
         {
-            String executable = Path.Combine(InstallDirectory, "VisualBoyAdvance - SDL.exe");
-            return String.Format("\"{0}\" \"{1}\"", executable,rom.Path);
+            String executable = Path.Combine(InstallDirectory, "VisualBoyAdvance-SDL.exe");
+            Command cmd = new Command()
+            {
+                Executable = executable,
+                Arguments = String.Format("\"{0}\"",rom.Path)
+            };
+            return cmd;
         }
     }
 }
