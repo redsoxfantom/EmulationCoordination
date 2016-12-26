@@ -78,12 +78,19 @@ namespace EmulationCoordination.Gui
             selectedRom = rom;
             romDataView.ChildUpdate(rom);
             romDataView.Visible = true;
+            PlayGameBtn.Visible = true;
         }
 
         private void emulatorTreeView_RomDeselected(object sender, EventArgs e)
         {
             selectedRom = null;
             romDataView.Visible = false;
+            PlayGameBtn.Visible = false;
+        }
+
+        private void PlayGameBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
