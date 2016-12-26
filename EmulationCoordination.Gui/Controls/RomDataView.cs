@@ -26,15 +26,10 @@ namespace EmulationCoordination.Gui.Controls
             DescriptionBox.Text = data.Description;
             DeveloperLabel.Text = data.Developer;
             PublisherLabel.Text = data.Publisher;
-            ReleaseDateLabel.Text = data.ReleaseDate.ToShortTimeString();
-            NumPlayersLabel.Text = PrettyPrintNumPlayers(data.NumPlayers);
+            ReleaseDateLabel.Text = data.ReleaseDate.ToShortDateString();
+            NumPlayersLabel.Text = data.NumPlayers;
             RatingLabel.Text = PrettyPrintRating(data.Rating);
             TimePlayedLabel.Text = PrettyPrintPlayTime(data.TimePlayed);
-        }
-
-        private string PrettyPrintNumPlayers(string numPlayers)
-        {
-            return String.Format("{0} players", numPlayers);
         }
 
         private string PrettyPrintRating(float rating)
