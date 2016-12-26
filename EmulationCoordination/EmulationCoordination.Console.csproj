@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{6422F54F-174A-4DFF-8FE9-E543CB4CEB19}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>EmulationCoordination</RootNamespace>
-    <AssemblyName>EmulationCoordination</AssemblyName>
+    <RootNamespace>EmulationCoordination.Console</RootNamespace>
+    <AssemblyName>EmulationCoordination.Console</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26014.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmulationCoordination", "EmulationCoordination\EmulationCoordination.csproj", "{6422F54F-174A-4DFF-8FE9-E543CB4CEB19}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmulationCoordination.Console", "EmulationCoordination\EmulationCoordination.Console.csproj", "{6422F54F-174A-4DFF-8FE9-E543CB4CEB19}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmulationCoordination.Emulators", "EmulationCoordination.Emulators\EmulationCoordination.Emulators.csproj", "{F3BB5A4F-8F79-4A10-8824-00D6DC032F3E}"
 EndProject
