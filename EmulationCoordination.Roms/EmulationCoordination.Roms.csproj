@@ -55,9 +55,6 @@
     </Compile>
     <Compile Include="RomData.cs" />
     <Compile Include="RomManager.cs" />
-    <Compile Include="ScraperManager.cs" />
-    <Compile Include="Scrapers\IScraper.cs" />
-    <Compile Include="Scrapers\ManualScraper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EmulationCoordination.Utilities\EmulationCoordination.Utilities.csproj">
