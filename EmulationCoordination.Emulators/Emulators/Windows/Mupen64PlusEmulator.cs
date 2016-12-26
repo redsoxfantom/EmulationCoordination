@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EmulationCoordination.Utilities;
+using EmulationCoordination.Roms;
 
 namespace EmulationCoordination.Emulators.Emulators.Windows
 {
@@ -30,7 +31,7 @@ namespace EmulationCoordination.Emulators.Emulators.Windows
             return BasicDownloadAndUnzip(downloadUrl);
         }
 
-        public override void ExecuteRom(string PathToRom)
+        protected override string CreateCommandLine(IRomData rom)
         {
             throw new NotImplementedException();
         }

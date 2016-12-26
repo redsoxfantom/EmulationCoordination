@@ -1,8 +1,10 @@
 ﻿using EmulationCoordination.Emulators.Interfaces;
+using EmulationCoordination.Roms;
 using EmulationCoordination.Utilities;
 using Ionic.Zip;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -87,7 +89,13 @@ namespace EmulationCoordination.Emulators.Emulators
 
         protected abstract bool ChildSpecificInstall();
 
-        public abstract void ExecuteRom(string PathToRom);
+        public void ExecuteRom(IRomData rom)
+        {
+            String commandLine = CreateCommandLine(rom);
+            Process.Start(commandLine);
+        }
+
+        protected abstract string CreateCommandLine(IRomData rom);
 
         protected bool BasicDownloadAndUnzip(String downloadUrl)
         {

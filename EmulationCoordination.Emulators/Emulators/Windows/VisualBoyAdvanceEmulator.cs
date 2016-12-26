@@ -10,6 +10,7 @@ using System.Security.AccessControl;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+using EmulationCoordination.Roms;
 
 namespace EmulationCoordination.Emulators.Emulators.Windows
 {
@@ -37,9 +38,10 @@ namespace EmulationCoordination.Emulators.Emulators.Windows
             return BasicDownloadAndUnzip(downloadUrl);
         }
 
-        public override void ExecuteRom(string PathToRom)
+        protected override string CreateCommandLine(IRomData rom)
         {
-            throw new NotImplementedException();
+            String executable = Path.Combine(InstallDirectory, "VisualBoyAdvance - SDL.exe");
+            return String.Format("\"{0}\" \"{1}\"", executable,rom.Path);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using EmulationCoordination.Emulators.Emulators;
 using EmulationCoordination.Emulators.Interfaces;
+using EmulationCoordination.Roms;
 using EmulationCoordination.Utilities;
 using System;
 using System.Collections.Generic;
@@ -87,6 +88,11 @@ namespace EmulationCoordination.Emulators
             UpdateConfigProperty(emulator, !uninstallResult);
 
             return uninstallResult;
+        }
+
+        public void RunEmulator(IReadOnlyEmulator emulator, IRomData rom)
+        {
+            availableEmulators[emulator].ExecuteRom(rom);
         }
 
         private void UpdateConfigProperty(IReadOnlyEmulator emulator, Boolean installed)
