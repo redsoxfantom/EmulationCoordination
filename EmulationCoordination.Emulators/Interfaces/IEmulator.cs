@@ -11,7 +11,7 @@ namespace EmulationCoordination.Emulators.Interfaces
     {
         bool DownloadAndInstall();
         bool Delete();
-        void ExecuteRom(IRomData rom);
+        void ExecuteRom(RomData rom);
         new bool Installed { get; set; }
         new String InstallDirectory { get; set; }
     }

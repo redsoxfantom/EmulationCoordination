@@ -31,7 +31,7 @@ namespace EmulationCoordination.Emulators.Emulators.Windows
             return BasicDownloadAndUnzip(downloadUrl);
         }
 
-        protected override Command CreateCommand(IRomData rom)
+        protected override Command CreateCommand(RomData rom)
         {
             throw new NotImplementedException();
         }

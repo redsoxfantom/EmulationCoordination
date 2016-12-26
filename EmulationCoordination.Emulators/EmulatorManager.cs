@@ -90,7 +90,7 @@ namespace EmulationCoordination.Emulators
             return uninstallResult;
         }
 
-        public void RunEmulator(IReadOnlyEmulator emulator, IRomData rom)
+        public void RunEmulator(IReadOnlyEmulator emulator, RomData rom)
         {
             IEmulator emu = availableEmulators[emulator];
             if (emu.Installed)

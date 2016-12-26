@@ -89,7 +89,7 @@ namespace EmulationCoordination.Emulators.Emulators
 
         protected abstract bool ChildSpecificInstall();
 
-        public void ExecuteRom(IRomData rom)
+        public void ExecuteRom(RomData rom)
         {
             Command cmd = CreateCommand(rom);
             Process proc = new Process();
@@ -100,7 +100,7 @@ namespace EmulationCoordination.Emulators.Emulators
             proc.WaitForExit();
         }
 
-        protected abstract Command CreateCommand(IRomData rom);
+        protected abstract Command CreateCommand(RomData rom);
 
         protected bool BasicDownloadAndUnzip(String downloadUrl)
         {

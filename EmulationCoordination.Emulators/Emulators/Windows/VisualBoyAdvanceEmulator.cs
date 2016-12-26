@@ -38,7 +38,7 @@ namespace EmulationCoordination.Emulators.Emulators.Windows
             return BasicDownloadAndUnzip(downloadUrl);
         }
 
-        protected override Command CreateCommand(IRomData rom)
+        protected override Command CreateCommand(RomData rom)
         {
             String executable = Path.Combine(InstallDirectory, "VisualBoyAdvance-SDL.exe");
             Command cmd = new Command()

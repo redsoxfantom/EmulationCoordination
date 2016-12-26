@@ -66,9 +66,9 @@ namespace EmulationCoordination
             }
         }
 
-        private IRomData SelectRom(IReadOnlyEmulator emulator)
+        private RomData SelectRom(IReadOnlyEmulator emulator)
         {
-            List<IRomData> availableRoms = new List<IRomData>();
+            List<RomData> availableRoms = new List<RomData>();
             foreach(var consoleType in emulator.ConsoleNames)
             {
                 availableRoms.AddRange(romMgr.GetRoms(consoleType));
