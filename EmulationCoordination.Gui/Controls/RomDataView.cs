@@ -30,10 +30,19 @@ namespace EmulationCoordination.Gui.Controls
             DescriptionBox.Text = data.Description;
             DeveloperLabel.Text = data.Developer;
             PublisherLabel.Text = data.Publisher;
-            ReleaseDateLabel.Text = data.ReleaseDate.ToShortDateString();
+            ReleaseDateLabel.Text = PrettyPrintReleaseDate(data.ReleaseDate);
             NumPlayersLabel.Text = data.NumPlayers;
             RatingLabel.Text = PrettyPrintRating(data.Rating);
             TimePlayedLabel.Text = PrettyPrintPlayTime(data.TimePlayed);
+        }
+
+        private string PrettyPrintReleaseDate(DateTime time)
+        {
+            if(time == DateTime.MinValue)
+            {
+                return "Unknown";
+            }
+            return time.ToShortDateString();
         }
 
         private string PrettyPrintRating(float rating)

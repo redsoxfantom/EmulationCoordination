@@ -379,7 +379,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(167, 20);
             this.label2.TabIndex = 2;
-            this.label2.Text = "ReleaseDate";
+            this.label2.Text = "Release Date";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ReleaseDateLabel

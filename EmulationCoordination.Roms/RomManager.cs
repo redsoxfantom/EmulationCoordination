@@ -96,7 +96,7 @@ namespace EmulationCoordination.Roms
                     Console = ConsoleToSearch,
                     IsUpToDate = false,
                     NumPlayers = "Unknown",
-                    Description = "None",
+                    Description = "No Description",
                     Developer = "Unknown",
                     Publisher = "Unknown",
                     Rating = 0.0f,
