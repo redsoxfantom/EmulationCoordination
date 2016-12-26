@@ -110,6 +110,10 @@
       <Project>{DA924310-7A95-4414-84E3-552CAADD862C}</Project>
       <Name>EmulationCoordination.Roms</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EmulationCoordination.Scrapers\EmulationCoordination.Scrapers.csproj">
+      <Project>{5620CC9D-06A0-48FA-8E5E-2C1DDC3147B0}</Project>
+      <Name>EmulationCoordination.Scrapers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EmulationCoordination.Utilities\EmulationCoordination.Utilities.csproj">
       <Project>{AD8D15F0-4970-41F7-AA91-61DA61DB4368}</Project>
       <Name>EmulationCoordination.Utilities</Name>

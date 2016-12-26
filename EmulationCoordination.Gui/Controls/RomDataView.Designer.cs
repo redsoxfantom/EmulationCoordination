@@ -36,7 +36,6 @@
             this.FriendlyNameLabel = new System.Windows.Forms.Label();
             this.DescriptionBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.RatingLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.NumPlayersLabel = new System.Windows.Forms.Label();
@@ -46,15 +45,21 @@
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.TimePlayedLabel = new System.Windows.Forms.Label();
+            this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.RatingLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.ReleaseDateLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.DeveloperLabel = new System.Windows.Forms.Label();
-            this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.BannerPanel = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.ScrapeLink = new System.Windows.Forms.LinkLabel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.ManualLink = new System.Windows.Forms.LinkLabel();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -63,9 +68,10 @@
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
+            this.tableLayoutPanel11.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
-            this.tableLayoutPanel11.SuspendLayout();
+            this.tableLayoutPanel12.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -129,6 +135,7 @@
             this.tableLayoutPanel4.Controls.Add(this.FriendlyNameLabel, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.DescriptionBox, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel5, 0, 2);
+            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel12, 0, 3);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(368, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 4;
@@ -182,19 +189,6 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(529, 94);
             this.tableLayoutPanel5.TabIndex = 2;
-            // 
-            // RatingLabel
-            // 
-            this.RatingLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.RatingLabel.AutoSize = true;
-            this.RatingLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RatingLabel.Location = new System.Drawing.Point(3, 20);
-            this.RatingLabel.Name = "RatingLabel";
-            this.RatingLabel.Size = new System.Drawing.Size(159, 21);
-            this.RatingLabel.TabIndex = 5;
-            this.RatingLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel8
             // 
@@ -319,6 +313,47 @@
             this.TimePlayedLabel.TabIndex = 4;
             this.TimePlayedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // tableLayoutPanel11
+            // 
+            this.tableLayoutPanel11.ColumnCount = 1;
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel11.Controls.Add(this.label6, 0, 0);
+            this.tableLayoutPanel11.Controls.Add(this.RatingLabel, 0, 1);
+            this.tableLayoutPanel11.Location = new System.Drawing.Point(361, 50);
+            this.tableLayoutPanel11.Name = "tableLayoutPanel11";
+            this.tableLayoutPanel11.RowCount = 2;
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(165, 41);
+            this.tableLayoutPanel11.TabIndex = 3;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(3, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(159, 20);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Rating";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // RatingLabel
+            // 
+            this.RatingLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RatingLabel.AutoSize = true;
+            this.RatingLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RatingLabel.Location = new System.Drawing.Point(3, 20);
+            this.RatingLabel.Name = "RatingLabel";
+            this.RatingLabel.Size = new System.Drawing.Size(159, 21);
+            this.RatingLabel.TabIndex = 5;
+            this.RatingLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // tableLayoutPanel7
             // 
             this.tableLayoutPanel7.ColumnCount = 1;
@@ -401,20 +436,6 @@
             this.DeveloperLabel.TabIndex = 0;
             this.DeveloperLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // tableLayoutPanel11
-            // 
-            this.tableLayoutPanel11.ColumnCount = 1;
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel11.Controls.Add(this.label6, 0, 0);
-            this.tableLayoutPanel11.Controls.Add(this.RatingLabel, 0, 1);
-            this.tableLayoutPanel11.Location = new System.Drawing.Point(361, 50);
-            this.tableLayoutPanel11.Name = "tableLayoutPanel11";
-            this.tableLayoutPanel11.RowCount = 2;
-            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel11.Size = new System.Drawing.Size(165, 41);
-            this.tableLayoutPanel11.TabIndex = 3;
-            // 
             // BannerPanel
             // 
             this.BannerPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -424,19 +445,73 @@
             this.BannerPanel.Size = new System.Drawing.Size(906, 126);
             this.BannerPanel.TabIndex = 2;
             // 
-            // label6
+            // tableLayoutPanel12
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(3, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(159, 20);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "Rating";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.tableLayoutPanel12.ColumnCount = 1;
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel12.Controls.Add(this.ManualLink, 0, 3);
+            this.tableLayoutPanel12.Controls.Add(this.label8, 0, 2);
+            this.tableLayoutPanel12.Controls.Add(this.label7, 0, 0);
+            this.tableLayoutPanel12.Controls.Add(this.ScrapeLink, 0, 1);
+            this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 368);
+            this.tableLayoutPanel12.Name = "tableLayoutPanel12";
+            this.tableLayoutPanel12.RowCount = 4;
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(529, 64);
+            this.tableLayoutPanel12.TabIndex = 3;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label7.Location = new System.Drawing.Point(3, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(523, 16);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Data Incorrect Or Missing?";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ScrapeLink
+            // 
+            this.ScrapeLink.AutoSize = true;
+            this.ScrapeLink.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ScrapeLink.Location = new System.Drawing.Point(3, 16);
+            this.ScrapeLink.Name = "ScrapeLink";
+            this.ScrapeLink.Size = new System.Drawing.Size(523, 16);
+            this.ScrapeLink.TabIndex = 1;
+            this.ScrapeLink.TabStop = true;
+            this.ScrapeLink.Text = "Update From The Internet";
+            this.ScrapeLink.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ScrapeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ScrapeLink_LinkClicked);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label8.Location = new System.Drawing.Point(3, 32);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(523, 16);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "Or";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ManualLink
+            // 
+            this.ManualLink.AutoSize = true;
+            this.ManualLink.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ManualLink.Location = new System.Drawing.Point(3, 48);
+            this.ManualLink.Name = "ManualLink";
+            this.ManualLink.Size = new System.Drawing.Size(523, 16);
+            this.ManualLink.TabIndex = 3;
+            this.ManualLink.TabStop = true;
+            this.ManualLink.Text = "Update Manually";
+            this.ManualLink.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ManualLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ManualLink_LinkClicked);
             // 
             // RomDataView
             // 
@@ -457,12 +532,14 @@
             this.tableLayoutPanel9.PerformLayout();
             this.tableLayoutPanel10.ResumeLayout(false);
             this.tableLayoutPanel10.PerformLayout();
+            this.tableLayoutPanel11.ResumeLayout(false);
+            this.tableLayoutPanel11.PerformLayout();
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel7.PerformLayout();
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
-            this.tableLayoutPanel11.ResumeLayout(false);
-            this.tableLayoutPanel11.PerformLayout();
+            this.tableLayoutPanel12.ResumeLayout(false);
+            this.tableLayoutPanel12.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -496,5 +573,10 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.LinkLabel ScrapeLink;
+        private System.Windows.Forms.LinkLabel ManualLink;
+        private System.Windows.Forms.Label label8;
     }
 }

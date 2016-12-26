@@ -13,6 +13,8 @@ namespace EmulationCoordination.Gui.Controls
 {
     public partial class RomDataView : UserControl
     {
+        private RomData selectedRom;
+
         public RomDataView()
         {
             InitializeComponent();
@@ -20,6 +22,8 @@ namespace EmulationCoordination.Gui.Controls
 
         public void ChildUpdate(RomData data)
         {
+            selectedRom = data;
+
             BannerPanel.BackgroundImage = data.Banner;
             BoxArtPanel.BackgroundImage = data.BoxArt;
             FriendlyNameLabel.Text = data.FriendlyName;
@@ -59,6 +63,16 @@ namespace EmulationCoordination.Gui.Controls
             {
                 return "Not Played";
             }
+        }
+
+        private void ScrapeLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void ManualLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
         }
     }
 }

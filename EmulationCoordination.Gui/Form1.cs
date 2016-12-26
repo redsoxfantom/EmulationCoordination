@@ -1,6 +1,7 @@
 ﻿using EmulationCoordination.Emulators;
 using EmulationCoordination.Emulators.Interfaces;
 using EmulationCoordination.Roms;
+using EmulationCoordination.Scrapers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,7 @@ namespace EmulationCoordination.Gui
 
         private EmulatorManager emuMgr;
         private RomManager romMgr;
+        private ScraperManager scrapMgr;
 
         public MainWindow()
         {
@@ -28,6 +30,7 @@ namespace EmulationCoordination.Gui
 
             emuMgr = EmulatorManager.Instance;
             romMgr = RomManager.Instance;
+            scrapMgr = ScraperManager.Instance;
 
             UpdateEmulatorList();
         }
