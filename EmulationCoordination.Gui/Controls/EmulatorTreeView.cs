@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using EmulationCoordination.Emulators;
 using EmulationCoordination.Emulators.Interfaces;
+using EmulationCoordination.Utilities;
 
 namespace EmulationCoordination.Gui.Controls
 {
@@ -18,6 +19,7 @@ namespace EmulationCoordination.Gui.Controls
         private List<IReadOnlyEmulator> emulators;
         private List<IReadOnlyEmulator> installedEmulators;
         private List<IReadOnlyEmulator> availableEmulators;
+        private List<EmulatorConsoles> availableConsoles;
 
         public EmulatorTreeView()
         {
@@ -28,6 +30,7 @@ namespace EmulationCoordination.Gui.Controls
         public void ChildUpdate()
         {
             emulators = emuMgr.GetAvailableEmulators();
+            availableConsoles = emulators.SelectMany(f => f.ConsoleNames).Distinct().ToList();
             installedEmulators = emulators.Where(f => f.Installed).ToList();
             availableEmulators = emulators.Where(f => !f.Installed).ToList();
 
@@ -38,12 +41,28 @@ namespace EmulationCoordination.Gui.Controls
         private void PopulateTreeNodes(TreeNodeCollection Nodes, List<IReadOnlyEmulator> emulators)
         {
             Nodes.Clear();
+            foreach(var console in availableConsoles)
+            {
+                TreeNode consoleNode = new TreeNode();
+                consoleNode.Text = console.FriendlyName;
+                consoleNode.Tag = console;
+                Nodes.Add(consoleNode);
+            }
+
             foreach (var emulator in emulators)
             {
-                TreeNode newNode = new TreeNode();
-                newNode.Text = String.Format("{0} ({1})", emulator.EmulatorName, emulator.Version);
-                newNode.Tag = emulator;
-                Nodes.Add(newNode);
+                foreach(var node in Nodes)
+                {
+                    TreeNode newNode = new TreeNode();
+                    newNode.Text = String.Format("{0} ({1})", emulator.EmulatorName, emulator.Version);
+                    newNode.Tag = emulator;
+                    TreeNode consoleNode = (TreeNode)node;
+
+                    if(emulator.ConsoleNames.Contains(consoleNode.Tag))
+                    {
+                        consoleNode.Nodes.Add(newNode);
+                    }
+                }
             }
         }
     }
