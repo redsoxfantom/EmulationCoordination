@@ -59,25 +59,5 @@ namespace EmulationCoordination.Gui.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap DefaultBanner {
-            get {
-                object obj = ResourceManager.GetObject("DefaultBanner", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap DefaultBoxart {
-            get {
-                object obj = ResourceManager.GetObject("DefaultBoxart", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }

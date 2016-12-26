@@ -115,11 +115,5 @@
       <Name>EmulationCoordination.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DefaultBoxart.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DefaultBanner.bmp" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
