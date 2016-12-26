@@ -48,6 +48,7 @@
             this.romDataView.Size = new System.Drawing.Size(813, 531);
             this.romDataView.TabIndex = 2;
             this.romDataView.Visible = false;
+            this.romDataView.ManualDataUpdateRequested += new EmulationCoordination.Gui.Controls.ManualUpdateHandler(this.romDataView_ManualDataUpdateRequested);
             // 
             // emulatorTreeView
             // 
@@ -111,9 +112,9 @@
             // PlayGameBtn
             // 
             this.PlayGameBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PlayGameBtn.Location = new System.Drawing.Point(273, 3);
+            this.PlayGameBtn.Location = new System.Drawing.Point(274, 3);
             this.PlayGameBtn.Name = "PlayGameBtn";
-            this.PlayGameBtn.Size = new System.Drawing.Size(264, 43);
+            this.PlayGameBtn.Size = new System.Drawing.Size(265, 43);
             this.PlayGameBtn.TabIndex = 0;
             this.PlayGameBtn.Text = "Play Game";
             this.PlayGameBtn.UseVisualStyleBackColor = true;

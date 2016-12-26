@@ -1,5 +1,6 @@
 ﻿using EmulationCoordination.Emulators;
 using EmulationCoordination.Emulators.Interfaces;
+using EmulationCoordination.Gui.Forms;
 using EmulationCoordination.Roms;
 using EmulationCoordination.Scrapers;
 using System;
@@ -95,6 +96,17 @@ namespace EmulationCoordination.Gui
         {
             var emulator = emulatorTreeView.GetSelectedEmulator();
             emuMgr.RunEmulator(emulator, selectedRom);
+        }
+
+        private void romDataView_ManualDataUpdateRequested(RomData data)
+        {
+            using (ManualUpdateForm form = new ManualUpdateForm())
+            {
+                if(form.ShowDialog(this) == DialogResult.OK)
+                {
+
+                }
+            }
         }
     }
 }

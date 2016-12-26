@@ -11,9 +11,13 @@ using EmulationCoordination.Roms;
 
 namespace EmulationCoordination.Gui.Controls
 {
+    public delegate void ManualUpdateHandler(RomData data);
+
     public partial class RomDataView : UserControl
     {
         private RomData selectedRom;
+
+        public event ManualUpdateHandler ManualDataUpdateRequested;
 
         public RomDataView()
         {
@@ -81,7 +85,7 @@ namespace EmulationCoordination.Gui.Controls
 
         private void ManualLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            ManualDataUpdateRequested?.Invoke(selectedRom);
         }
     }
 }
