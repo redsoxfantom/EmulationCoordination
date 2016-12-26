@@ -49,9 +49,17 @@ namespace EmulationCoordination.Emulators.Emulators
                 return false;
             }
 
-            Installed = ChildSpecificDelete();
+            bool deletionSuccessful = ChildSpecificDelete();
+            if(deletionSuccessful)
+            {
+                Installed = false;
+            }
+            else
+            {
+                Installed = true;
+            }
 
-            return Installed;
+            return deletionSuccessful;
         }
 
         protected abstract bool ChildSpecificDelete();
@@ -64,7 +72,15 @@ namespace EmulationCoordination.Emulators.Emulators
             }
 
             Directory.CreateDirectory(InstallDirectory);
-            Installed = ChildSpecificInstall();
+            bool installationSuccessful = ChildSpecificInstall();
+            if(installationSuccessful)
+            {
+                Installed = true;
+            }
+            else
+            {
+                Installed = false;
+            }
 
             return Installed;
         }
@@ -87,14 +103,12 @@ namespace EmulationCoordination.Emulators.Emulators
                     file.ExtractAll(InstallDirectory);
                 }
 
-                Installed = true;
+                return true;
             }
             catch (Exception)
             {
-                Installed = false;
+                return false;
             }
-
-            return Installed;
         }
 
         protected bool BasicDelete()
@@ -102,14 +116,12 @@ namespace EmulationCoordination.Emulators.Emulators
             try
             {
                 Directory.Delete(InstallDirectory, true);
-                Installed = false;
+                return true;
             }
             catch (Exception)
             {
-                Installed = true;
+                return false;
             }
-
-            return !Installed;
         }
     }
 }
