@@ -26,7 +26,7 @@ namespace EmulationCoordination.Gui
 
         private void UpdateChildren()
         {
-            emulatorTreeView.ChildUpdate();
+            emulatorTreeView.ChildUpdate(emuMgr.GetAvailableEmulators());
         }
     }
 }
