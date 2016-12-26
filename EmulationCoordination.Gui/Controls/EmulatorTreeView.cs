@@ -22,6 +22,7 @@ namespace EmulationCoordination.Gui.Controls
         public event EmulatorUpdateHandler DeletionRequested;
         public event EmulatorUpdateHandler InstallationRequested;
         public event RomUpdateHandler RomSelected;
+        public event EventHandler RomDeselected;
 
         public EmulatorTreeView()
         {
@@ -134,6 +135,11 @@ namespace EmulationCoordination.Gui.Controls
             if(typeof(RomData).IsAssignableFrom(e.Node.Tag?.GetType()))
             {
                 RomSelected?.Invoke((RomData)e.Node.Tag);
+                treeView.SelectedNode = e.Node;
+            }
+            else
+            {
+                RomDeselected?.Invoke(this, null);
                 treeView.SelectedNode = e.Node;
             }
         }

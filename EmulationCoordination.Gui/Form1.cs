@@ -77,6 +77,13 @@ namespace EmulationCoordination.Gui
         {
             selectedRom = rom;
             romDataView.ChildUpdate(rom);
+            romDataView.Visible = true;
+        }
+
+        private void emulatorTreeView_RomDeselected(object sender, EventArgs e)
+        {
+            selectedRom = null;
+            romDataView.Visible = false;
         }
     }
 }

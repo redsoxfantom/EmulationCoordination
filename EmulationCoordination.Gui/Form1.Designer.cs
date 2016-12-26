@@ -40,6 +40,7 @@
             this.romDataView.Name = "romDataView";
             this.romDataView.Size = new System.Drawing.Size(707, 697);
             this.romDataView.TabIndex = 2;
+            this.romDataView.Visible = false;
             // 
             // emulatorTreeView
             // 
@@ -51,6 +52,7 @@
             this.emulatorTreeView.DeletionRequested += new EmulationCoordination.Gui.Controls.EmulatorUpdateHandler(this.emulatorTreeView_DeletionRequested);
             this.emulatorTreeView.InstallationRequested += new EmulationCoordination.Gui.Controls.EmulatorUpdateHandler(this.emulatorTreeView_InstallationRequested);
             this.emulatorTreeView.RomSelected += new EmulationCoordination.Gui.Controls.RomUpdateHandler(this.emulatorTreeView_RomSelected);
+            this.emulatorTreeView.RomDeselected += new System.EventHandler(this.emulatorTreeView_RomDeselected);
             // 
             // MainWindow
             // 
