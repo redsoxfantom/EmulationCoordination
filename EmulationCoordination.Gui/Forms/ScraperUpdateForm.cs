@@ -64,7 +64,22 @@ namespace EmulationCoordination.Gui.Forms
 
         private void AdvanceToGettingFinalRomData(RomData finalRom)
         {
+            SubControlPanel.Controls.Remove(selectRomControl);
+            selectRomControl.Dispose();
+            InstructionsLabel.Text = String.Format("Loading {0}'s data from {1}...",finalRom.FriendlyName,selectedScraper);
+            AdvanceButton.Enabled = false;
 
+            backgroundWorker1.DoWork += (sender, e) =>
+            {
+                RomData result = scrapMgr.GetAllData(finalRom, selectedScraper);
+                e.Result = result;
+            };
+            backgroundWorker1.RunWorkerCompleted += (sender, e) =>
+            {
+                Tag = e.Result;
+                DialogResult = DialogResult.OK;
+            };
+            backgroundWorker1.RunWorkerAsync();
         }
 
         private void AdvanceToSelectingRomData()
