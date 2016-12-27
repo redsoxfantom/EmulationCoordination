@@ -13,14 +13,29 @@ namespace EmulationCoordination.Scrapers.Scrapers
     {
         private string searchRootUrl = "https://igdbcom-internet-game-database-v1.p.mashape.com/games/";
         private string searchFormat = "?fields=name%2Cid%2Crelease_dates&limit=10&offset=0&search={0}";
-        private string apiKey = "WAV35CMfrrmshHzymVUYTbw3Sz7sp1AjcD0jsnjooQzM79mbIk";
+        private string getDataFormat = "{0}?fields=storyline%2Crating%2Cdevelopers%2Cpublishers%2Cscreenshots%2Cgame_modes&limit=10&offset=0&order=release_dates.date%3Adesc";
+        private static string apiKey = "WAV35CMfrrmshHzymVUYTbw3Sz7sp1AjcD0jsnjooQzM79mbIk";
+        Dictionary<String, String> headers = new Dictionary<string, string>()
+        {
+            { "X-Mashape-Key", apiKey },
+            { "Accept", "application/json" }
+        };
         IgdbPlatformConverter platformConverter = new IgdbPlatformConverter();
         IgdbReleaseDateConverter dateConverter = new IgdbReleaseDateConverter();
+        IgdbGameModeConverter gameModeConverter = new IgdbGameModeConverter();
 
         public override string FriendlyName => "IGDB.com";
 
         protected override RomData ScraperSpecificGetAllData(RomData dataToFillOut)
         {
+            string finalUrl = String.Format(getDataFormat, dataToFillOut.ScraperUniqueKey);
+            finalUrl = String.Format("{0}{1}", searchRootUrl, finalUrl);
+            string Results = MakeTextRequest(finalUrl, headers);
+
+            if(Results != String.Empty)
+            {
+                IgdbData resultData = SerializationUtilities.DeserializeString<List<IgdbData>>(Results, DataFormat.JSON, gameModeConverter)[0];
+            }
             return dataToFillOut;
         }
 
@@ -29,11 +44,7 @@ namespace EmulationCoordination.Scrapers.Scrapers
             string nameTerm = GenerateSearchableName(dataToSearchFor);
             string searchTerm = string.Format(searchFormat, nameTerm);
             string finalUrl = String.Format("{0}{1}", searchRootUrl, searchTerm);
-            Dictionary<String, String> headers = new Dictionary<string, string>()
-            {
-                { "X-Mashape-Key", apiKey },
-                { "Accept", "application/json" }
-            };
+            
 
             List<RomData> returnData = new List<RomData>();
             String results = MakeTextRequest(finalUrl, headers);
