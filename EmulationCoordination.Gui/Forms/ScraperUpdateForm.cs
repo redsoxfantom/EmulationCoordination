@@ -89,26 +89,32 @@ namespace EmulationCoordination.Gui.Forms
             InstructionsLabel.Text = String.Format("Searching {0} for {1}...",selectedScraper,selectedRom.FriendlyName);
             AdvanceButton.Enabled = false;
 
-            backgroundWorker1.DoWork += (sender, e) =>
-            {
-                String selectedScraper = (String)((object[])e.Argument)[0];
-                RomData romToSearchFor = (RomData)((object[])e.Argument)[1];
-
-                List<RomData> foundRoms = scrapMgr.Search(romToSearchFor, selectedScraper);
-                e.Result = foundRoms;
-            };
-            backgroundWorker1.RunWorkerCompleted += (sender, e) =>
-            {
-                List<RomData> foundData = (List<RomData>)e.Result;
-                InstructionsLabel.Text = String.Format("Select a game");
-                selectRomControl.Initialize(foundData);
-                selectRomControl.Dock = DockStyle.Fill;
-                SubControlPanel.Controls.Add(selectRomControl);
-
-                AdvanceButton.Text = "Submit";
-                AdvanceButton.Enabled = true;
-            };
+            backgroundWorker1.DoWork += SearchForRomsJob;
+            backgroundWorker1.RunWorkerCompleted += SearchForRomsComplete;
             backgroundWorker1.RunWorkerAsync(new object[] { selectedScraper,selectedRom });
+        }
+
+        private void SearchForRomsComplete(object sender, RunWorkerCompletedEventArgs e)
+        {
+            List<RomData> foundData = (List<RomData>)e.Result;
+            InstructionsLabel.Text = String.Format("Select a game");
+            selectRomControl.Initialize(foundData);
+            selectRomControl.Dock = DockStyle.Fill;
+            SubControlPanel.Controls.Add(selectRomControl);
+
+            AdvanceButton.Text = "Submit";
+            AdvanceButton.Enabled = true;
+            backgroundWorker1.RunWorkerCompleted -= SearchForRomsComplete;
+        }
+
+        private void SearchForRomsJob(object sender, DoWorkEventArgs e)
+        {
+            String selectedScraper = (String)((object[])e.Argument)[0];
+            RomData romToSearchFor = (RomData)((object[])e.Argument)[1];
+
+            List<RomData> foundRoms = scrapMgr.Search(romToSearchFor, selectedScraper);
+            e.Result = foundRoms;
+            backgroundWorker1.DoWork -= SearchForRomsJob;
         }
     }
 }
