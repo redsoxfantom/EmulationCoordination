@@ -96,6 +96,7 @@ namespace EmulationCoordination.Emulators.Emulators
             proc.StartInfo.FileName = cmd.Executable;
             proc.StartInfo.Arguments = cmd.Arguments;
             proc.StartInfo.UseShellExecute = false;
+            proc.StartInfo.WorkingDirectory = InstallDirectory;
             proc.Start();
             proc.WaitForExit();
         }

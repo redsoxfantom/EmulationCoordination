@@ -44,7 +44,7 @@ namespace EmulationCoordination.Emulators.Emulators.Windows
             Command cmd = new Command()
             {
                 Executable = executable,
-                Arguments = String.Format("\"{0}\"",rom.Path)
+                Arguments = String.Format("-F -4 \"{0}\"",rom.Path)
             };
             return cmd;
         }

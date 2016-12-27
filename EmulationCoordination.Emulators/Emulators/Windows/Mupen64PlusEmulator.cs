@@ -35,10 +35,11 @@ namespace EmulationCoordination.Emulators.Emulators.Windows
         protected override Command CreateCommand(RomData rom)
         {
             String executable = Path.Combine(InstallDirectory, "mupen64plus-ui-console.exe");
+
             Command cmd = new Command()
             {
                 Executable = executable,
-                Arguments = String.Format("\"{0}\"", rom.Path)
+                Arguments = String.Format("--fullscreen \"{0}\"", rom.Path)
             };
             return cmd;
         }
