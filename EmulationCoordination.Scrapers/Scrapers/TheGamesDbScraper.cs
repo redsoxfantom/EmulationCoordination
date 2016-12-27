@@ -26,9 +26,15 @@ namespace EmulationCoordination.Scrapers.Scrapers
 
             if(results != String.Empty)
             {
-
+                Data resultsData = SerializationUtilities.DeserializeString<Data>(results, DataFormat.XML);
+                DataGame game = resultsData.Game[0];
+                dataToFillOut.Rating = String.IsNullOrEmpty(game.Rating) ? 0.0f : float.Parse(game.Rating);
+                dataToFillOut.Publisher = game.Publisher;
+                dataToFillOut.Developer = game.Developer;
+                dataToFillOut.Description = game.Overview;
+                dataToFillOut.NumPlayers = game.Players;
             }
-            return null;
+            return dataToFillOut;
         }
 
         protected override List<RomData> ScraperSpecificSearch(RomData dataToSearchFor)
@@ -48,13 +54,12 @@ namespace EmulationCoordination.Scrapers.Scrapers
                 Data resultsData = SerializationUtilities.DeserializeString<Data>(results, DataFormat.XML);
                 foreach(var resultData in resultsData.Game)
                 {
-                    RomData convertedResultData = new RomData()
-                    {
-                        FriendlyName = resultData.GameTitle,
-                        ScraperUniqueKey = resultData.id,
-                        ReleaseDate = String.IsNullOrEmpty(resultData.ReleaseDate)? DateTime.MaxValue : DateTime.Parse(resultData.ReleaseDate),
-                        Console = EmulatorConsoles.Parse(resultData.Platform)
-                    };
+                    RomData convertedResultData = dataToSearchFor.Clone();
+                    convertedResultData.FriendlyName = resultData.GameTitle;
+                    convertedResultData.ScraperUniqueKey = resultData.id;
+                    convertedResultData.ReleaseDate = String.IsNullOrEmpty(resultData.ReleaseDate) ? DateTime.MaxValue : DateTime.Parse(resultData.ReleaseDate);
+                    convertedResultData.Console = EmulatorConsoles.Parse(resultData.Platform);
+
                     data.Add(convertedResultData);
                 }
             }
