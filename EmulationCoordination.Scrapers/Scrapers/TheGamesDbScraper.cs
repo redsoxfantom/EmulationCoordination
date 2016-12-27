@@ -42,7 +42,7 @@ namespace EmulationCoordination.Scrapers.Scrapers
         private void GetImages(RomData dataToFillOut, Data resultsData, DataGame game)
         {
             String baseImgUrl = resultsData.baseImgUrl;
-            if (game.Images.Count() > 0)
+            if (game.Images?.Count() > 0)
             {
                 var images = game.Images[0];
                 GetBoxart(dataToFillOut, baseImgUrl, images);
