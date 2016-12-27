@@ -41,17 +41,17 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.41463F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.17075F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.41463F));
-            this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 1);
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.53846F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 76.92307F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 76.92308F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.53846F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(740, 535);
             this.tableLayoutPanel1.TabIndex = 0;
@@ -62,9 +62,9 @@
             this.panel1.AutoSize = true;
             this.panel1.Controls.Add(this.RadioRomGrid);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(102, 64);
+            this.panel1.Location = new System.Drawing.Point(3, 64);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(535, 405);
+            this.panel1.Size = new System.Drawing.Size(734, 405);
             this.panel1.TabIndex = 1;
             // 
             // RadioRomGrid
@@ -83,7 +83,7 @@
             this.RadioRomGrid.Name = "RadioRomGrid";
             this.RadioRomGrid.RowCount = 1;
             this.RadioRomGrid.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.RadioRomGrid.Size = new System.Drawing.Size(535, 405);
+            this.RadioRomGrid.Size = new System.Drawing.Size(734, 405);
             this.RadioRomGrid.TabIndex = 0;
             // 
             // label4
@@ -91,9 +91,9 @@
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(421, 0);
+            this.label4.Location = new System.Drawing.Point(577, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(111, 405);
+            this.label4.Size = new System.Drawing.Size(154, 405);
             this.label4.TabIndex = 3;
             this.label4.Text = "Platform";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -103,9 +103,9 @@
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(306, 0);
+            this.label3.Location = new System.Drawing.Point(419, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(109, 405);
+            this.label3.Size = new System.Drawing.Size(152, 405);
             this.label3.TabIndex = 2;
             this.label3.Text = "Release Date";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -115,9 +115,9 @@
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(47, 0);
+            this.label1.Location = new System.Drawing.Point(63, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(253, 405);
+            this.label1.Size = new System.Drawing.Size(350, 405);
             this.label1.TabIndex = 0;
             this.label1.Text = "Title";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

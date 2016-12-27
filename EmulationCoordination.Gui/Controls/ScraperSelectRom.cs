@@ -66,7 +66,7 @@ namespace EmulationCoordination.Gui.Controls
             {
                 return null;
             }
-            return (RomData)romRadios.First().Tag;
+            return (RomData)checkedButton.First().Tag;
         }
     }
 }
