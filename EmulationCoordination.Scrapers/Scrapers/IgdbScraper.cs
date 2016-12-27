@@ -7,19 +7,18 @@ using EmulationCoordination.Roms;
 
 namespace EmulationCoordination.Scrapers.Scrapers
 {
-    public class IgdbScraper : IScraper
+    public class IgdbScraper : BaseScraper
     {
-        public string FriendlyName => "IGDB.com";
+        public override string FriendlyName => "IGDB.com";
 
-        public RomData GetAllData(RomData dataToFillOut)
+        protected override RomData ScraperSpecificGetAllData(RomData dataToFillOut)
         {
-            dataToFillOut.ScrapedBy = FriendlyName;
-            return dataToFillOut;
+            throw new NotImplementedException();
         }
 
-        public List<RomData> Search(RomData dataToSearchFor)
+        protected override List<RomData> ScraperSpecificSearch(RomData dataToSearchFor)
         {
-            return new List<RomData>() { dataToSearchFor };
+            throw new NotImplementedException();
         }
     }
 }

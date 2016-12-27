@@ -78,6 +78,23 @@ namespace EmulationCoordination.Utilities
         }
 
         public String FriendlyName { get; }
+
+        public static EmulatorConsoles Parse(String consoleName)
+        {
+            switch(consoleName)
+            {
+                case "Nintendo Game Boy":
+                    return GAME_BOY;
+                case "Nintendo 64":
+                    return NINTENDO_64;
+                case "Nintendo Game Boy Advance":
+                    return GAME_BOY_ADVANCE;
+                case "Nintendo Game Boy Color":
+                    return GAME_BOY_COLOR;
+                default:
+                    throw new Exception("Could not parse " + consoleName);
+            }
+        }
         
         public EmulatorConsoles(String friendlyName)
         {

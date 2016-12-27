@@ -40,8 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataContracts\GamesDb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScraperManager.cs" />
+    <Compile Include="Scrapers\BaseScraper.cs" />
     <Compile Include="Scrapers\IgdbScraper.cs" />
     <Compile Include="Scrapers\IScraper.cs" />
     <Compile Include="Scrapers\TheGamesDbScraper.cs" />
@@ -50,6 +52,10 @@
     <ProjectReference Include="..\EmulationCoordination.Roms\EmulationCoordination.Roms.csproj">
       <Project>{da924310-7a95-4414-84e3-552caadd862c}</Project>
       <Name>EmulationCoordination.Roms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmulationCoordination.Utilities\EmulationCoordination.Utilities.csproj">
+      <Project>{AD8D15F0-4970-41F7-AA91-61DA61DB4368}</Project>
+      <Name>EmulationCoordination.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
