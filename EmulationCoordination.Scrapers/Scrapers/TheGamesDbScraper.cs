@@ -154,6 +154,10 @@ namespace EmulationCoordination.Scrapers.Scrapers
             {
                 return "Nintendo%2064";
             }
+            if(console.Equals(EmulatorConsoles.SNES))
+            {
+                return "Super%20Nintendo%20(SNES)";
+            }
             throw new Exception("Console not supported: " + console.FriendlyName);
         }
 
@@ -169,6 +173,8 @@ namespace EmulationCoordination.Scrapers.Scrapers
                     return EmulatorConsoles.GAME_BOY_ADVANCE;
                 case "Nintendo Game Boy Color":
                     return EmulatorConsoles.GAME_BOY_COLOR;
+                case "Super Nintendo (SNES)":
+                    return EmulatorConsoles.SNES;
                 default:
                     return EmulatorConsoles.UNKNOWN;
             }

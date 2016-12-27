@@ -53,6 +53,7 @@
     <Compile Include="Emulators\Command.cs" />
     <Compile Include="Emulators\EmulatorRetriever.cs" />
     <Compile Include="Emulators\Windows\Mupen64PlusEmulator.cs" />
+    <Compile Include="Emulators\Windows\Snes9xEmulator.cs" />
     <Compile Include="Emulators\Windows\VisualBoyAdvanceEmulator.cs" />
     <Compile Include="Interfaces\IEmulator.cs" />
     <Compile Include="Interfaces\IReadOnlyEmulator.cs" />

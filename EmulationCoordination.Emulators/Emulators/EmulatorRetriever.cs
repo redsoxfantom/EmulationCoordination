@@ -14,7 +14,8 @@ namespace EmulationCoordination.Emulators.Emulators
             List<IEmulator> windowsEmulators = new List<IEmulator>()
             {
                 new Windows.VisualBoyAdvanceEmulator(),
-                new Windows.Mupen64PlusEmulator()
+                new Windows.Mupen64PlusEmulator(),
+                new Windows.Snes9xEmulator()
             };
             return ConvertList(windowsEmulators);
         }
