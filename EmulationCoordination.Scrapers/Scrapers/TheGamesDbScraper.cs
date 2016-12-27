@@ -170,7 +170,7 @@ namespace EmulationCoordination.Scrapers.Scrapers
                 case "Nintendo Game Boy Color":
                     return EmulatorConsoles.GAME_BOY_COLOR;
                 default:
-                    throw new Exception("Could not parse " + consoleName);
+                    return EmulatorConsoles.UNKNOWN;
             }
         }
     }

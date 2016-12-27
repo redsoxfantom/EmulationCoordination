@@ -17,7 +17,28 @@ namespace EmulationCoordination.Scrapers.DataContracts.Igdb
     public class IgdbReleaseDate
     {
         public EmulatorConsoles platform { get; set; }
-        public long date { get; set; }
+        public DateTime date { get; set; }
+    }
+
+    public class IgdbReleaseDateConverter : JsonConverter
+    {
+        public override bool CanConvert(Type objectType)
+        {
+            return objectType.IsAssignableFrom(typeof(DateTime));
+        }
+
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            long timeMillis = (long)reader.Value;
+            var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            return epoch.AddMilliseconds(timeMillis);
+        }
+
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            // Not intended to be used to write out json
+            throw new NotImplementedException();
+        }
     }
 
     public class IgdbPlatformConverter : JsonConverter
@@ -29,7 +50,7 @@ namespace EmulationCoordination.Scrapers.DataContracts.Igdb
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            switch ((int)reader.Value)
+            switch ((long)reader.Value)
             {
                 case 33:
                     return EmulatorConsoles.GAME_BOY;
@@ -39,8 +60,9 @@ namespace EmulationCoordination.Scrapers.DataContracts.Igdb
                     return EmulatorConsoles.GAME_BOY_ADVANCE;
                 case 4:
                     return EmulatorConsoles.NINTENDO_64;
+                default:
+                    return EmulatorConsoles.UNKNOWN;
             }
-            throw new Exception("Cannot parse " + reader.Value);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

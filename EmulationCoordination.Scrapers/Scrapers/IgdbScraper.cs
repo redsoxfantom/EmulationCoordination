@@ -15,6 +15,7 @@ namespace EmulationCoordination.Scrapers.Scrapers
         private string searchFormat = "?fields=name%2Cid%2Crelease_dates&limit=10&offset=0&search={0}";
         private string apiKey = "WAV35CMfrrmshHzymVUYTbw3Sz7sp1AjcD0jsnjooQzM79mbIk";
         IgdbPlatformConverter platformConverter = new IgdbPlatformConverter();
+        IgdbReleaseDateConverter dateConverter = new IgdbReleaseDateConverter();
 
         public override string FriendlyName => "IGDB.com";
 
@@ -34,13 +35,30 @@ namespace EmulationCoordination.Scrapers.Scrapers
                 { "Accept", "application/json" }
             };
 
+            List<RomData> returnData = new List<RomData>();
             String results = MakeTextRequest(finalUrl, headers);
             if(results != String.Empty)
             {
-                List<IgdbData> resultsData = SerializationUtilities.DeserializeString<List<IgdbData>>(results, DataFormat.JSON,platformConverter);
+                List<IgdbData> resultsData = SerializationUtilities.DeserializeString<List<IgdbData>>(
+                    results, DataFormat.JSON,platformConverter,dateConverter);
+
+                foreach(var resultData in resultsData)
+                {
+                    RomData convertedData = dataToSearchFor.Clone();
+                    convertedData.FriendlyName = resultData.name;
+                    convertedData.ScraperUniqueKey = resultData.id;
+                    if(resultData.release_dates != null && resultData.release_dates.Count() > 0)
+                    {
+                        var releaseData = resultData.release_dates[0];
+                        convertedData.Console = releaseData.platform;
+                        convertedData.ReleaseDate = releaseData.date;
+                    }
+
+                    returnData.Add(convertedData);
+                }
             }
 
-            return null;
+            return returnData;
         }
     }
 }
