@@ -14,7 +14,7 @@ namespace EmulationCoordination.Roms
         private static RomManager mInstance = null;
         private String rootDirectory;
         private RomManagerConfig loadedConfig;
-        private RomDataConfig loadedRomData;
+        private Dictionary<string,RomData> loadedRomData;
         private ImageConverter imageConverter;
 
         public static RomManager Instance
@@ -41,7 +41,7 @@ namespace EmulationCoordination.Roms
             }
 
             loadedConfig = FileUtilities.LoadFile<RomManagerConfig>("RomManager.json");
-            loadedRomData = FileUtilities.LoadFile<RomDataConfig>("RomData.json", imageConverter);
+            loadedRomData = new Dictionary<string, RomData>();
         }
 
         public List<RomData> GetRoms(EmulatorConsoles ConsoleToSearch)
@@ -78,14 +78,30 @@ namespace EmulationCoordination.Roms
                 loadedRomData.Add(data.Path, data);
             }
 
-            FileUtilities.WriteFile(loadedRomData, "RomData.json", imageConverter);
+            String relativePathToConfig = Path.Combine("Games", data.Console.FriendlyName,
+                    String.Format("{0}.data.json", Path.GetFileNameWithoutExtension(data.Path)));
+            FileUtilities.WriteFile(data, relativePathToConfig, imageConverter);
         }
 
         private RomData RetrieveRomData(String file, EmulatorConsoles ConsoleToSearch)
         {
+            String possiblePathToConfig = Path.Combine(FileUtilities.GetRootDirectory(),
+                                                       "Games",
+                                                       ConsoleToSearch.FriendlyName,
+                                                       String.Format("{0}.data.json", Path.GetFileNameWithoutExtension(file)));
+
             if(loadedRomData.ContainsKey(file))
             {
                 return loadedRomData[file];
+            }
+            else if(File.Exists(possiblePathToConfig))
+            {
+                String relativePathToConfig = Path.Combine("Games", ConsoleToSearch.FriendlyName, 
+                    String.Format("{0}.data.json", Path.GetFileNameWithoutExtension(file)));
+
+                RomData loadedData = FileUtilities.LoadFile<RomData>(relativePathToConfig, imageConverter);
+                loadedRomData.Add(loadedData.Path, loadedData);
+                return loadedData;
             }
             else
             {
