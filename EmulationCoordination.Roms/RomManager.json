@@ -4,5 +4,8 @@
   ],
   "Game Boy Advance": [
     ".gba"
+  ],
+  "Nintendo 64": [
+    ".n64"
   ]
 }

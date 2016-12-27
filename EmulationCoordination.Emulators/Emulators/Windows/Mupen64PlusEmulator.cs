@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EmulationCoordination.Utilities;
 using EmulationCoordination.Roms;
+using System.IO;
 
 namespace EmulationCoordination.Emulators.Emulators.Windows
 {
@@ -33,7 +34,13 @@ namespace EmulationCoordination.Emulators.Emulators.Windows
 
         protected override Command CreateCommand(RomData rom)
         {
-            throw new NotImplementedException();
+            String executable = Path.Combine(InstallDirectory, "mupen64plus-ui-console.exe");
+            Command cmd = new Command()
+            {
+                Executable = executable,
+                Arguments = String.Format("\"{0}\"", rom.Path)
+            };
+            return cmd;
         }
     }
 }
