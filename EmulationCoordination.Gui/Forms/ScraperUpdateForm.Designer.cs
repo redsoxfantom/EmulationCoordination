@@ -51,7 +51,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(861, 614);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(656, 502);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -62,21 +62,21 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.Controls.Add(this.AdvanceButton, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 511);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 399);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(855, 100);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(650, 100);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // AdvanceButton
             // 
             this.AdvanceButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.AdvanceButton.Location = new System.Drawing.Point(287, 3);
+            this.AdvanceButton.Location = new System.Drawing.Point(219, 3);
             this.AdvanceButton.Name = "AdvanceButton";
-            this.AdvanceButton.Size = new System.Drawing.Size(278, 23);
+            this.AdvanceButton.Size = new System.Drawing.Size(210, 23);
             this.AdvanceButton.TabIndex = 0;
             this.AdvanceButton.Text = "Next";
             this.AdvanceButton.UseVisualStyleBackColor = true;
@@ -90,7 +90,7 @@
             this.InstructionsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InstructionsLabel.Location = new System.Drawing.Point(3, 0);
             this.InstructionsLabel.Name = "InstructionsLabel";
-            this.InstructionsLabel.Size = new System.Drawing.Size(855, 20);
+            this.InstructionsLabel.Size = new System.Drawing.Size(650, 20);
             this.InstructionsLabel.TabIndex = 1;
             this.InstructionsLabel.Text = "label1";
             this.InstructionsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -100,14 +100,14 @@
             this.SubControlPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SubControlPanel.Location = new System.Drawing.Point(3, 23);
             this.SubControlPanel.Name = "SubControlPanel";
-            this.SubControlPanel.Size = new System.Drawing.Size(855, 482);
+            this.SubControlPanel.Size = new System.Drawing.Size(650, 370);
             this.SubControlPanel.TabIndex = 2;
             // 
             // ScraperUpdateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(861, 614);
+            this.ClientSize = new System.Drawing.Size(656, 502);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "ScraperUpdateForm";
             this.Text = "Scraping Data For Rom";

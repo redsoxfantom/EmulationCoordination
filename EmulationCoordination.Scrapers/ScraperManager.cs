@@ -28,6 +28,11 @@ namespace EmulationCoordination.Scrapers
         private ScraperManager()
         {
             availableScrapers = new Dictionary<string, IScraper>();
+
+            TheGamesDbScraper gamesDb = new TheGamesDbScraper();
+            availableScrapers.Add(gamesDb.FriendlyName, gamesDb);
+            IgdbScraper igdb = new IgdbScraper();
+            availableScrapers.Add(igdb.FriendlyName, igdb);
         }
 
         public List<String> GetAllScrapers()

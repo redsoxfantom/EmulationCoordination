@@ -35,6 +35,7 @@ namespace EmulationCoordination.Gui.Forms
             Text = String.Format("Updating {0}",selectedRom.FriendlyName);
 
             selectControl.Initialize(scrapMgr.GetAllScrapers());
+            selectControl.Dock = DockStyle.Fill;
             InstructionsLabel.Text = "Select a Scraper to use";
             SubControlPanel.Controls.Add(selectControl);
         }

@@ -31,8 +31,11 @@ namespace EmulationCoordination.Gui.Controls
                 RadioButton scraperButton = new RadioButton();
                 scraperButton.Text = scraper;
                 scraperButton.Tag = scraper;
+                scraperButton.Dock = DockStyle.Fill;
 
-                RadioButtonPanel.Controls.Add(scraperButton);
+                RadioButtonGrid.RowCount++;
+                RadioButtonGrid.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                RadioButtonGrid.Controls.Add(scraperButton, 0, scraperRadioButtons.Count);
                 scraperRadioButtons.Add(scraperButton);
             }
         }
