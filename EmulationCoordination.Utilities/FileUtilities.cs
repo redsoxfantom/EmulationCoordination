@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace EmulationCoordination.Utilities
 {
@@ -44,6 +45,45 @@ namespace EmulationCoordination.Utilities
 
             String serializedObj = JsonConvert.SerializeObject(obj, Formatting.Indented,converters);
             File.WriteAllText(fullyQualifiedPath, serializedObj);
+        }
+
+        public static string UseFilePicker(FilePickerType type, string pickerTitle = null, string extensionFilter = null)
+        {
+            string selectedPath = null;
+            FileDialog dialog = null;
+
+            switch (type)
+            {
+                case FilePickerType.LOAD:
+                    dialog = new OpenFileDialog();
+                    break;
+                case FilePickerType.SAVE:
+                    dialog = new SaveFileDialog();
+                    break;
+            }
+
+            if (pickerTitle != null)
+            {
+                dialog.Title = pickerTitle;
+            }
+            if (extensionFilter != null)
+            {
+                dialog.Filter = extensionFilter;
+            }
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                selectedPath = dialog.FileName;
+            }
+
+            dialog.Dispose();
+
+            return selectedPath;
+        }
+
+        public enum FilePickerType
+        {
+            SAVE,
+            LOAD
         }
     }
 }
