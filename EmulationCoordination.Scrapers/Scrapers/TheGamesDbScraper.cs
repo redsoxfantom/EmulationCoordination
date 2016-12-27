@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using EmulationCoordination.Roms;
 using System.IO;
-using EmulationCoordination.Scrapers.DataContracts;
 using EmulationCoordination.Utilities;
+using EmulationCoordination.Scrapers.DataContracts.GamesDb;
 
 namespace EmulationCoordination.Scrapers.Scrapers
 {
@@ -14,12 +14,21 @@ namespace EmulationCoordination.Scrapers.Scrapers
     {
         private String rootUrl = @"http://thegamesdb.net/api/";
         private String searchPageformat = @"GetGamesList.php?name={0}&platform={1}";
+        private String getDataFormat = @"GetGame.php?id={0}";
 
         public override string FriendlyName => "TheGamesDb.net";
 
         protected override RomData ScraperSpecificGetAllData(RomData dataToFillOut)
         {
-            throw new NotImplementedException();
+            String getDataTerm = String.Format(getDataFormat, dataToFillOut.ScraperUniqueKey);
+            String finalUrl = String.Format("{0}{1}", rootUrl, getDataTerm);
+            String results = MakeWebRequest(finalUrl);
+
+            if(results != String.Empty)
+            {
+
+            }
+            return null;
         }
 
         protected override List<RomData> ScraperSpecificSearch(RomData dataToSearchFor)
@@ -37,7 +46,7 @@ namespace EmulationCoordination.Scrapers.Scrapers
             if(results != String.Empty)
             {
                 Data resultsData = SerializationUtilities.DeserializeString<Data>(results, DataFormat.XML);
-                foreach(var resultData in resultsData.Items)
+                foreach(var resultData in resultsData.Game)
                 {
                     RomData convertedResultData = new RomData()
                     {
