@@ -1,4 +1,5 @@
-﻿using EmulationCoordination.Roms;
+﻿using EmulationCoordination.Gui.Controls;
+using EmulationCoordination.Roms;
 using EmulationCoordination.Scrapers;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,14 @@ namespace EmulationCoordination.Gui.Forms
         private RomData selectedRom;
         private ScraperManager scrapMgr;
 
+        private ScraperSelectScraper selectControl;
+        private String selectedScraper = null;
+
         public ScraperUpdateForm()
         {
             InitializeComponent();
+
+            selectControl = new ScraperSelectScraper();
         }
 
         public void Initialize(RomData selectedRom)
@@ -27,6 +33,27 @@ namespace EmulationCoordination.Gui.Forms
             this.selectedRom = selectedRom;
             scrapMgr = ScraperManager.Instance;
             Text = String.Format("Updating {0}",selectedRom.FriendlyName);
+
+            selectControl.Initialize(scrapMgr.GetAllScrapers());
+            InstructionsLabel.Text = "Select a Scraper to use";
+            SubControlPanel.Controls.Add(selectControl);
+        }
+
+        private void AdvanceButton_Click(object sender, EventArgs e)
+        {
+            if(SubControlPanel.Controls[0] == selectControl)
+            {
+                selectedScraper = selectControl.GetSelectedScraper();
+                if (selectedScraper != null)
+                {
+                    AdvanceToSelectingRomData();
+                }
+            }
+        }
+
+        private void AdvanceToSelectingRomData()
+        {
+
         }
     }
 }

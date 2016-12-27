@@ -60,6 +60,12 @@
     <Compile Include="Controls\RomDataView.Designer.cs">
       <DependentUpon>RomDataView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ScraperSelectScraper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ScraperSelectScraper.Designer.cs">
+      <DependentUpon>ScraperSelectScraper.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\RomDataView.resx">
       <DependentUpon>RomDataView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ScraperSelectScraper.resx">
+      <DependentUpon>ScraperSelectScraper.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
