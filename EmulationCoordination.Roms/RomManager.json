@@ -1,5 +1,8 @@
 ﻿{
   "Game Boy": [
     ".gb"
+  ],
+  "Game Boy Advance": [
+    ".gba"
   ]
 }
