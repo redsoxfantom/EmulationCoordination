@@ -4,6 +4,7 @@ using EmulationCoordination.Roms;
 using EmulationCoordination.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -29,6 +30,7 @@ namespace EmulationCoordination.Emulators
         }
 
         private static EmulatorManager mInstance = null;
+        private static RomManager romMgr;
         private OperatingSystem currentOs;
         private Dictionary<IReadOnlyEmulator, IEmulator> availableEmulators;
         private Dictionary<EmulatorManagerConfigKey, EmulatorManagerConfig> loadedConfig;
@@ -67,6 +69,8 @@ namespace EmulationCoordination.Emulators
                     availableEmulator.EmulatorName, availableEmulator.Version);
                 availableEmulator.InstallDirectory = emulatorSpecificInstallDir;
             }
+
+            romMgr = RomManager.Instance;
         }
 
         public List<IReadOnlyEmulator> GetAvailableEmulators()
@@ -95,7 +99,12 @@ namespace EmulationCoordination.Emulators
             IEmulator emu = availableEmulators[emulator];
             if (emu.Installed)
             {
+                Stopwatch timer = new Stopwatch();
+                timer.Start();
                 emu.ExecuteRom(rom);
+                timer.Stop();
+                rom.TimePlayed += timer.Elapsed;
+                romMgr.UpdateRomData(rom);
             }
             else
             {
