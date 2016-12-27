@@ -33,12 +33,13 @@ namespace EmulationCoordination.Scrapers.Scrapers
 
         protected abstract List<RomData> ScraperSpecificSearch(RomData dataToSearchFor);
 
-        protected Image MakeImageRequest(String url)
+        protected Image MakeImageRequest(String url, Dictionary<String, String> headers = null)
         {
             using (WebClient client = new WebClient())
             {
                 try
                 {
+                    AddHeaders(headers, client);
                     MemoryStream stream = new MemoryStream(client.DownloadData(url));
                     return Image.FromStream(stream);
                 }
@@ -49,21 +50,33 @@ namespace EmulationCoordination.Scrapers.Scrapers
             }
         }
 
-        protected String MakeWebRequest(String url)
+        protected String MakeWebRequest(String url, Dictionary<String,String> headers = null)
         {
             String val = String.Empty;
             using (WebClient client = new WebClient())
             {
                 try
                 {
+                    AddHeaders(headers, client);
                     val = client.DownloadString(url);
                 }
-                catch(Exception)
+                catch (Exception)
                 {
 
                 }
             }
             return val;
+        }
+
+        private void AddHeaders(Dictionary<string, string> headers, WebClient client)
+        {
+            if (headers != null)
+            {
+                foreach (var header in headers)
+                {
+                    client.Headers.Set(header.Key, header.Value);
+                }
+            }
         }
     }
 }
