@@ -102,9 +102,13 @@ namespace EmulationCoordination.Gui
         {
             using (ManualUpdateForm form = new ManualUpdateForm())
             {
+                form.Initialize(data);
                 if(form.ShowDialog(this) == DialogResult.OK)
                 {
-
+                    selectedRom = (RomData)form.Tag;
+                    romMgr.UpdateRomData(selectedRom);
+                    UpdateEmulatorList();
+                    romDataView.ChildUpdate(data);
                 }
             }
         }
