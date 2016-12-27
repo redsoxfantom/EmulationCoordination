@@ -23,7 +23,6 @@ namespace EmulationCoordination.Gui
 
         private EmulatorManager emuMgr;
         private RomManager romMgr;
-        private ScraperManager scrapMgr;
 
         public MainWindow()
         {
@@ -31,7 +30,6 @@ namespace EmulationCoordination.Gui
 
             emuMgr = EmulatorManager.Instance;
             romMgr = RomManager.Instance;
-            scrapMgr = ScraperManager.Instance;
 
             UpdateEmulatorList();
         }
@@ -104,6 +102,21 @@ namespace EmulationCoordination.Gui
             {
                 form.Initialize(data);
                 if(form.ShowDialog(this) == DialogResult.OK)
+                {
+                    selectedRom = (RomData)form.Tag;
+                    romMgr.UpdateRomData(selectedRom);
+                    UpdateEmulatorList();
+                    romDataView.ChildUpdate(data);
+                }
+            }
+        }
+
+        private void romDataView_AutomatedDataUpdateRequested(RomData data)
+        {
+            using (ScraperUpdateForm form = new ScraperUpdateForm())
+            {
+                form.Initialize(data);
+                if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     selectedRom = (RomData)form.Tag;
                     romMgr.UpdateRomData(selectedRom);

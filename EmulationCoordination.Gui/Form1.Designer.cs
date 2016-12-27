@@ -48,7 +48,8 @@
             this.romDataView.Size = new System.Drawing.Size(813, 531);
             this.romDataView.TabIndex = 2;
             this.romDataView.Visible = false;
-            this.romDataView.ManualDataUpdateRequested += new EmulationCoordination.Gui.Controls.ManualUpdateHandler(this.romDataView_ManualDataUpdateRequested);
+            this.romDataView.ManualDataUpdateRequested += new EmulationCoordination.Gui.Controls.UpdateHandler(this.romDataView_ManualDataUpdateRequested);
+            this.romDataView.AutomatedDataUpdateRequested += new EmulationCoordination.Gui.Controls.UpdateHandler(this.romDataView_AutomatedDataUpdateRequested);
             // 
             // emulatorTreeView
             // 

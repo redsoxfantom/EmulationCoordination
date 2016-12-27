@@ -72,6 +72,12 @@
     <Compile Include="Forms\ManualUpdateForm.Designer.cs">
       <DependentUpon>ManualUpdateForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ScraperUpdateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ScraperUpdateForm.Designer.cs">
+      <DependentUpon>ScraperUpdateForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Controls\EmulatorTreeView.resx">
@@ -85,6 +91,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ManualUpdateForm.resx">
       <DependentUpon>ManualUpdateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ScraperUpdateForm.resx">
+      <DependentUpon>ScraperUpdateForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
