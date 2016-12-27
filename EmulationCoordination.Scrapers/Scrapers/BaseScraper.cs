@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using EmulationCoordination.Roms;
 using System.Net;
+using System.IO;
+using System.Drawing;
 
 namespace EmulationCoordination.Scrapers.Scrapers
 {
@@ -30,6 +32,22 @@ namespace EmulationCoordination.Scrapers.Scrapers
         }
 
         protected abstract List<RomData> ScraperSpecificSearch(RomData dataToSearchFor);
+
+        protected Image MakeImageRequest(String url)
+        {
+            using (WebClient client = new WebClient())
+            {
+                try
+                {
+                    MemoryStream stream = new MemoryStream(client.DownloadData(url));
+                    return Image.FromStream(stream);
+                }
+                catch(Exception)
+                {
+                    return null;
+                }
+            }
+        }
 
         protected String MakeWebRequest(String url)
         {

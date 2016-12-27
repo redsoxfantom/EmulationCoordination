@@ -33,8 +33,79 @@ namespace EmulationCoordination.Scrapers.Scrapers
                 dataToFillOut.Developer = game.Developer;
                 dataToFillOut.Description = game.Overview;
                 dataToFillOut.NumPlayers = game.Players;
+
+                GetImages(dataToFillOut, resultsData, game);
             }
             return dataToFillOut;
+        }
+
+        private void GetImages(RomData dataToFillOut, Data resultsData, DataGame game)
+        {
+            String baseImgUrl = resultsData.baseImgUrl;
+            if (game.Images.Count() > 0)
+            {
+                var images = game.Images[0];
+                GetBoxart(dataToFillOut, baseImgUrl, images);
+                GetBackground(dataToFillOut, baseImgUrl, images);
+                GetBanner(dataToFillOut, baseImgUrl, images);
+                GetLogo(dataToFillOut, baseImgUrl, images);
+            }
+        }
+
+        private void GetLogo(RomData dataToFillOut, string baseImgUrl, DataGameImages images)
+        {
+            if (images.clearlogo?.Count() > 0)
+            {
+                var logoUrl = images.clearlogo.First().Value;
+                logoUrl = String.Format("{0}{1}", baseImgUrl, logoUrl);
+                dataToFillOut.Logo = MakeImageRequest(logoUrl);
+            }
+            else
+            {
+                dataToFillOut.Logo = dataToFillOut.BoxArt;
+            }
+        }
+
+        private void GetBanner(RomData dataToFillOut, string baseImgUrl, DataGameImages images)
+        {
+            if (images.banner?.Count() > 0)
+            {
+                var bannerUrl = images.banner.First().Value;
+                bannerUrl = String.Format("{0}{1}", baseImgUrl, bannerUrl);
+                dataToFillOut.Banner = MakeImageRequest(bannerUrl);
+            }
+        }
+
+        private void GetBackground(RomData dataToFillOut, string baseImgUrl, DataGameImages images)
+        {
+            String backgroundUrl = String.Empty;
+            if (images.fanart?.Count() > 0)
+            {
+                backgroundUrl = images.fanart.First().original[0].Value;
+            }
+            else if (images.screenshot?.Count() > 0)
+            {
+                backgroundUrl = images.screenshot.First().original[0].Value;
+            }
+            if (backgroundUrl != null)
+            {
+                backgroundUrl = String.Format("{0}{1}", baseImgUrl, backgroundUrl);
+                dataToFillOut.Background = MakeImageRequest(backgroundUrl);
+            }
+        }
+
+        private void GetBoxart(RomData dataToFillOut, string baseImgUrl, DataGameImages images)
+        {
+            if (images.boxart?.Count() > 0)
+            {
+                var boxartList = images.boxart.Where(f => f.side == "front");
+                if (boxartList.Count() > 0)
+                {
+                    var boxartThumb = boxartList.First().thumb;
+                    String boxartUrl = string.Format("{0}{1}", baseImgUrl, boxartThumb);
+                    dataToFillOut.BoxArt = MakeImageRequest(boxartUrl);
+                }
+            }
         }
 
         protected override List<RomData> ScraperSpecificSearch(RomData dataToSearchFor)
