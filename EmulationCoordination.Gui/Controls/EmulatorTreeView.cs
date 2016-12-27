@@ -67,7 +67,7 @@ namespace EmulationCoordination.Gui.Controls
                         consoleNode.Nodes.Add(emulatorNode);
                     }
 
-                    var consoleSpecificRoms = roms.Where(f => { return f.Console == consoleNode.Tag; }).ToList();
+                    var consoleSpecificRoms = roms.Where(f => { return f.Console.Equals(consoleNode.Tag); }).ToList();
                     foreach(var consoleSpecificRom in consoleSpecificRoms)
                     {
                         TreeNode romNode = new TreeNode();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,9 +25,61 @@ namespace EmulationCoordination.Utilities
             }
         }
 
-        public String FriendlyName { get; }
+        public static bool operator ==(EmulatorConsoles a, EmulatorConsoles b)
+        {
+            bool aIsNull = object.ReferenceEquals(a, null);
+            bool bIsNull = object.ReferenceEquals(b, null);
 
-        private EmulatorConsoles(String friendlyName)
+            if((aIsNull && !bIsNull) || (!aIsNull && bIsNull))
+            {
+                return false;
+            }
+            if(aIsNull && bIsNull)
+            {
+                return true;
+            }
+
+            return a.FriendlyName == b.FriendlyName;
+        }
+
+        public static bool operator !=(EmulatorConsoles a, EmulatorConsoles b)
+        {
+            bool aIsNull = object.ReferenceEquals(a, null);
+            bool bIsNull = object.ReferenceEquals(b, null);
+
+            if ((aIsNull && !bIsNull) || (!aIsNull && bIsNull))
+            {
+                return true;
+            }
+            if (aIsNull && bIsNull)
+            {
+                return false;
+            }
+
+            return a.FriendlyName != b.FriendlyName;
+        }
+
+        public override bool Equals(object obj)
+        {
+            EmulatorConsoles other = obj as EmulatorConsoles;
+            if(other != null)
+            {
+                return other.FriendlyName == FriendlyName;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return FriendlyName.GetHashCode();
+        }
+
+        public String FriendlyName { get; }
+        
+        public EmulatorConsoles(String friendlyName)
         {
             FriendlyName = friendlyName;
         }

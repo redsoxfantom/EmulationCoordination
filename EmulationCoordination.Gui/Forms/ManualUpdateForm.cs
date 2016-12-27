@@ -1,4 +1,5 @@
 ﻿using EmulationCoordination.Roms;
+using EmulationCoordination.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -42,12 +43,40 @@ namespace EmulationCoordination.Gui.Forms
 
         private void BannerPanel_Click(object sender, EventArgs e)
         {
-
+            string imageFile = FileUtilities.UseFilePicker(FileUtilities.FilePickerType.LOAD, "Select Banner Image", "Image Files(*.BMP;*.JPG;*.PNG)|*.BMP;*.JPG;*.PNG");
+            if (!String.IsNullOrEmpty(imageFile))
+            {
+                try
+                {
+                    romToUpdate.Banner = Image.FromFile(imageFile);
+                    BannerPanel.BackgroundImage = romToUpdate.Banner;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, String.Format("Could not load image: {0}", ex.Message), "ERROR");
+                    romToUpdate.Banner = Resource.DefaultBanner;
+                    BannerPanel.BackgroundImage = Resource.DefaultBanner;
+                }
+            }
         }
 
         private void BoxartPanel_Click(object sender, EventArgs e)
         {
-
+            string imageFile = FileUtilities.UseFilePicker(FileUtilities.FilePickerType.LOAD, "Select BoxArt Image", "Image Files(*.BMP;*.JPG;*.PNG)|*.BMP;*.JPG;*.PNG");
+            if (!String.IsNullOrEmpty(imageFile))
+            {
+                try
+                {
+                    romToUpdate.BoxArt = Image.FromFile(imageFile);
+                    BoxartPanel.BackgroundImage = romToUpdate.BoxArt;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, String.Format("Could not load image: {0}", ex.Message), "ERROR");
+                    romToUpdate.BoxArt = Resource.DefaultBoxart;
+                    BoxartPanel.BackgroundImage = Resource.DefaultBoxart;
+                }
+            }
         }
 
         private void SubmitBtn_Click(object sender, EventArgs e)
