@@ -13,7 +13,6 @@ namespace EmulationCoordination.Roms
     {
         private static RomManager mInstance = null;
         private String rootDirectory;
-        private RomManagerConfig loadedConfig;
         private Dictionary<string,RomData> loadedRomData;
         private ImageConverter imageConverter;
 
@@ -39,8 +38,7 @@ namespace EmulationCoordination.Roms
             {
                 Directory.CreateDirectory(Path.Combine(rootDirectory, console.FriendlyName));
             }
-
-            loadedConfig = FileUtilities.LoadFile<RomManagerConfig>("RomManager.json");
+            
             loadedRomData = new Dictionary<string, RomData>();
         }
 
@@ -48,11 +46,7 @@ namespace EmulationCoordination.Roms
         {
             List<RomData> returnList = new List<RomData>();
             String pathToSearch = Path.Combine(rootDirectory, ConsoleToSearch.FriendlyName);
-            List<String> acceptableExtensions;
-            if(!loadedConfig.TryGetValue(ConsoleToSearch.FriendlyName,out acceptableExtensions))
-            {
-                acceptableExtensions = new List<string>();
-            }
+            List<String> acceptableExtensions = ConsoleToSearch.FileExtensions;
             
             foreach(var file in Directory.EnumerateFiles(pathToSearch))
             {

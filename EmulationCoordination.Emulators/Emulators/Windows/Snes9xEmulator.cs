@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EmulationCoordination.Roms;
 using EmulationCoordination.Utilities;
+using System.IO;
 
 namespace EmulationCoordination.Emulators.Emulators.Windows
 {
@@ -33,7 +34,13 @@ namespace EmulationCoordination.Emulators.Emulators.Windows
 
         protected override Command CreateCommand(RomData rom)
         {
-            throw new NotImplementedException();
+            String executable = Path.Combine(InstallDirectory, "snes9x.exe");
+            Command cmd = new Command()
+            {
+                Executable = executable,
+                Arguments = String.Format("-fullscreen \"{0}\"", rom.Path)
+            };
+            return cmd;
         }
     }
 }

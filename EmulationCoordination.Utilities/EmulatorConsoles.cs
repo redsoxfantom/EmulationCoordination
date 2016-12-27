@@ -9,11 +9,11 @@ namespace EmulationCoordination.Utilities
 {
     public class EmulatorConsoles
     {
-        public static readonly EmulatorConsoles GAME_BOY = new EmulatorConsoles("Game Boy");
+        public static readonly EmulatorConsoles GAME_BOY = new EmulatorConsoles("Game Boy", new List<string>() { ".gb" });
         public static readonly EmulatorConsoles GAME_BOY_COLOR = new EmulatorConsoles("Game Boy Color");
-        public static readonly EmulatorConsoles GAME_BOY_ADVANCE = new EmulatorConsoles("Game Boy Advance");
-        public static readonly EmulatorConsoles NINTENDO_64 = new EmulatorConsoles("Nintendo 64");
-        public static readonly EmulatorConsoles SNES = new EmulatorConsoles("SNES");
+        public static readonly EmulatorConsoles GAME_BOY_ADVANCE = new EmulatorConsoles("Game Boy Advance", new List<string>() { ".gba" });
+        public static readonly EmulatorConsoles NINTENDO_64 = new EmulatorConsoles("Nintendo 64", new List<string>() { ".n64" });
+        public static readonly EmulatorConsoles SNES = new EmulatorConsoles("SNES", new List<string>() { ".sfc" });
         public static readonly EmulatorConsoles UNKNOWN = new EmulatorConsoles("Unknown Console Type");
 
         public static IEnumerable<EmulatorConsoles> Values
@@ -81,9 +81,18 @@ namespace EmulationCoordination.Utilities
         }
 
         public String FriendlyName { get; }
+        public List<String> FileExtensions { get; }
         
-        public EmulatorConsoles(String friendlyName)
+        public EmulatorConsoles(String friendlyName, List<String> acceptableExtensions = null)
         {
+            if(acceptableExtensions == null)
+            {
+                FileExtensions = new List<string>();
+            }
+            else
+            {
+                FileExtensions = acceptableExtensions;
+            }
             FriendlyName = friendlyName;
         }
     }

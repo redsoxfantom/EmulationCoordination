@@ -108,6 +108,8 @@ namespace EmulationCoordination.Scrapers.DataContracts.Igdb
                     return EmulatorConsoles.GAME_BOY_ADVANCE;
                 case 4:
                     return EmulatorConsoles.NINTENDO_64;
+                case 19:
+                    return EmulatorConsoles.SNES;
                 default:
                     return EmulatorConsoles.UNKNOWN;
             }
