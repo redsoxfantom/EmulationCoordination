@@ -1,7 +1,7 @@
 ﻿using EmulationCoordination.Emulators.Interfaces;
 using EmulationCoordination.Roms;
 using EmulationCoordination.Utilities;
-using Ionic.Zip;
+using SharpCompress.Readers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -112,9 +112,10 @@ namespace EmulationCoordination.Emulators.Emulators
                 {
                     client.DownloadFile(downloadUrl, targetFile);
                 }
-                using (ZipFile file = ZipFile.Read(targetFile))
+                using(Stream str = File.OpenRead(targetFile))
+                using (var reader = ReaderFactory.Open(str))
                 {
-                    file.ExtractAll(InstallDirectory);
+                    reader.WriteAllToDirectory(InstallDirectory);
                 }
 
                 return true;

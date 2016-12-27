@@ -10,6 +10,8 @@ namespace EmulationCoordination.Emulators.Emulators.Windows
 {
     public class Snes9xEmulator : BaseEmulator
     {
+        private string downloadUrl = "http://www.emuparadise.me/emulators/files/user/SNES9x%20v1.53-1240.rar";
+
         public override List<EmulatorConsoles> ConsoleNames => new List<EmulatorConsoles>()
         {
             EmulatorConsoles.SNES
@@ -21,12 +23,12 @@ namespace EmulationCoordination.Emulators.Emulators.Windows
 
         protected override bool ChildSpecificDelete()
         {
-            throw new NotImplementedException();
+            return BasicDelete();
         }
 
         protected override bool ChildSpecificInstall()
         {
-            throw new NotImplementedException();
+            return BasicDownloadAndUnzip(downloadUrl);
         }
 
         protected override Command CreateCommand(RomData rom)

@@ -1,6 +1,5 @@
 ﻿using EmulationCoordination.Emulators.Interfaces;
 using EmulationCoordination.Utilities;
-using Ionic.Zip;
 using System;
 using System.Collections.Generic;
 using System.IO;
