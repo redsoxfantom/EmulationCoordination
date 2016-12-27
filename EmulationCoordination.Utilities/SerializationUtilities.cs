@@ -12,7 +12,7 @@ namespace EmulationCoordination.Utilities
 {
     public class SerializationUtilities
     {
-        public static T DeserializeString<T>(String stringToDeserialize, DataFormat stringFormat)
+        public static T DeserializeString<T>(String stringToDeserialize, DataFormat stringFormat, params object[] converters)
         {
             if(stringFormat == DataFormat.XML)
             {
@@ -20,7 +20,12 @@ namespace EmulationCoordination.Utilities
             }
             else
             {
-                return DeserializeJsonString<T>(stringToDeserialize);
+                List<JsonConverter> jsonConverters = new List<JsonConverter>();
+                foreach(var converter in converters)
+                {
+                    jsonConverters.Add((JsonConverter)converter);
+                }
+                return DeserializeJsonString<T>(stringToDeserialize,jsonConverters.ToArray());
             }
         }
 
@@ -36,9 +41,9 @@ namespace EmulationCoordination.Utilities
             }
         }
 
-        private static T DeserializeJsonString<T>(string stringToDeserialize)
+        private static T DeserializeJsonString<T>(string stringToDeserialize, params JsonConverter[] converters)
         {
-            return JsonConvert.DeserializeObject<T>(stringToDeserialize);
+            return JsonConvert.DeserializeObject<T>(stringToDeserialize,converters);
         }
     }
 

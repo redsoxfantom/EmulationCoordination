@@ -50,7 +50,7 @@ namespace EmulationCoordination.Scrapers.Scrapers
             }
         }
 
-        protected String MakeWebRequest(String url, Dictionary<String,String> headers = null)
+        protected String MakeTextRequest(String url, Dictionary<String,String> headers = null)
         {
             String val = String.Empty;
             using (WebClient client = new WebClient())
@@ -66,6 +66,15 @@ namespace EmulationCoordination.Scrapers.Scrapers
                 }
             }
             return val;
+        }
+
+        protected String GenerateSearchableName(RomData data)
+        {
+            String nameTerm = Path.GetFileNameWithoutExtension(data.Path);
+            nameTerm = nameTerm.Replace('_', ' '); // Seems to have more success without underscores
+            nameTerm = Uri.EscapeDataString(nameTerm);
+
+            return nameTerm;
         }
 
         private void AddHeaders(Dictionary<string, string> headers, WebClient client)

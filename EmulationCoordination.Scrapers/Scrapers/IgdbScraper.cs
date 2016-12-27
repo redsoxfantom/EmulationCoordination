@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EmulationCoordination.Roms;
+using EmulationCoordination.Scrapers.DataContracts.Igdb;
+using EmulationCoordination.Utilities;
 
 namespace EmulationCoordination.Scrapers.Scrapers
 {
@@ -12,6 +14,7 @@ namespace EmulationCoordination.Scrapers.Scrapers
         private string searchRootUrl = "https://igdbcom-internet-game-database-v1.p.mashape.com/games/";
         private string searchFormat = "?fields=name%2Cid%2Crelease_dates&limit=10&offset=0&search={0}";
         private string apiKey = "WAV35CMfrrmshHzymVUYTbw3Sz7sp1AjcD0jsnjooQzM79mbIk";
+        IgdbPlatformConverter platformConverter = new IgdbPlatformConverter();
 
         public override string FriendlyName => "IGDB.com";
 
@@ -22,6 +25,21 @@ namespace EmulationCoordination.Scrapers.Scrapers
 
         protected override List<RomData> ScraperSpecificSearch(RomData dataToSearchFor)
         {
+            string nameTerm = GenerateSearchableName(dataToSearchFor);
+            string searchTerm = string.Format(searchFormat, nameTerm);
+            string finalUrl = String.Format("{0}{1}", searchRootUrl, searchTerm);
+            Dictionary<String, String> headers = new Dictionary<string, string>()
+            {
+                { "X-Mashape-Key", apiKey },
+                { "Accept", "application/json" }
+            };
+
+            String results = MakeTextRequest(finalUrl, headers);
+            if(results != String.Empty)
+            {
+                List<IgdbData> resultsData = SerializationUtilities.DeserializeString<List<IgdbData>>(results, DataFormat.JSON,platformConverter);
+            }
+
             return null;
         }
     }

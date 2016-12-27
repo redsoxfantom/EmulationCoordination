@@ -22,7 +22,7 @@ namespace EmulationCoordination.Scrapers.Scrapers
         {
             String getDataTerm = String.Format(getDataFormat, dataToFillOut.ScraperUniqueKey);
             String finalUrl = String.Format("{0}{1}", rootUrl, getDataTerm);
-            String results = MakeWebRequest(finalUrl);
+            String results = MakeTextRequest(finalUrl);
 
             if(results != String.Empty)
             {
@@ -111,15 +111,13 @@ namespace EmulationCoordination.Scrapers.Scrapers
         protected override List<RomData> ScraperSpecificSearch(RomData dataToSearchFor)
         {
             List<RomData> data = new List<RomData>();
-            
-            String nameTerm = Path.GetFileNameWithoutExtension(dataToSearchFor.Path);
-            nameTerm = nameTerm.Replace('_', ' '); // Seems to have more success without underscores
-            nameTerm = Uri.EscapeDataString(nameTerm);
+
+            String nameTerm = GenerateSearchableName(dataToSearchFor);
             String platformTerm = ConvertConsole(dataToSearchFor.Console);
             String searchPage = String.Format(searchPageformat, nameTerm, platformTerm);
             String finalUrl = String.Format("{0}{1}", rootUrl, searchPage);
 
-            String results = MakeWebRequest(finalUrl);
+            String results = MakeTextRequest(finalUrl);
             if(results != String.Empty)
             {
                 Data resultsData = SerializationUtilities.DeserializeString<Data>(results, DataFormat.XML);
@@ -129,7 +127,7 @@ namespace EmulationCoordination.Scrapers.Scrapers
                     convertedResultData.FriendlyName = resultData.GameTitle;
                     convertedResultData.ScraperUniqueKey = resultData.id;
                     convertedResultData.ReleaseDate = String.IsNullOrEmpty(resultData.ReleaseDate) ? DateTime.MaxValue : DateTime.Parse(resultData.ReleaseDate);
-                    convertedResultData.Console = EmulatorConsoles.Parse(resultData.Platform);
+                    convertedResultData.Console = ConvertConsole(resultData.Platform);
 
                     data.Add(convertedResultData);
                 }
@@ -157,6 +155,23 @@ namespace EmulationCoordination.Scrapers.Scrapers
                 return "Nintendo%2064";
             }
             throw new Exception("Console not supported: " + console.FriendlyName);
+        }
+
+        private EmulatorConsoles ConvertConsole(String consoleName)
+        {
+            switch (consoleName)
+            {
+                case "Nintendo Game Boy":
+                    return EmulatorConsoles.GAME_BOY;
+                case "Nintendo 64":
+                    return EmulatorConsoles.NINTENDO_64;
+                case "Nintendo Game Boy Advance":
+                    return EmulatorConsoles.GAME_BOY_ADVANCE;
+                case "Nintendo Game Boy Color":
+                    return EmulatorConsoles.GAME_BOY_COLOR;
+                default:
+                    throw new Exception("Could not parse " + consoleName);
+            }
         }
     }
 }
