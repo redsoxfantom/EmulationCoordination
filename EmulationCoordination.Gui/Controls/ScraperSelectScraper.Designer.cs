@@ -55,11 +55,11 @@
             this.RadioButtonGrid.ColumnCount = 1;
             this.RadioButtonGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.RadioButtonGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RadioButtonGrid.Location = new System.Drawing.Point(148, 134);
+            this.RadioButtonGrid.Location = new System.Drawing.Point(149, 134);
             this.RadioButtonGrid.Name = "RadioButtonGrid";
             this.RadioButtonGrid.RowCount = 1;
             this.RadioButtonGrid.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.RadioButtonGrid.Size = new System.Drawing.Size(139, 125);
+            this.RadioButtonGrid.Size = new System.Drawing.Size(140, 125);
             this.RadioButtonGrid.TabIndex = 0;
             // 
             // ScraperSelectScraper

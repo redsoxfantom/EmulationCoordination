@@ -33,6 +33,7 @@
             this.AdvanceButton = new System.Windows.Forms.Button();
             this.InstructionsLabel = new System.Windows.Forms.Label();
             this.SubControlPanel = new System.Windows.Forms.Panel();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -125,5 +126,6 @@
         private System.Windows.Forms.Button AdvanceButton;
         private System.Windows.Forms.Label InstructionsLabel;
         private System.Windows.Forms.Panel SubControlPanel;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

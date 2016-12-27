@@ -19,6 +19,7 @@ namespace EmulationCoordination.Gui.Forms
         private ScraperManager scrapMgr;
 
         private ScraperSelectScraper selectControl;
+        private ScraperSelectRom selectRomControl;
         private String selectedScraper = null;
 
         public ScraperUpdateForm()
@@ -26,6 +27,7 @@ namespace EmulationCoordination.Gui.Forms
             InitializeComponent();
 
             selectControl = new ScraperSelectScraper();
+            selectRomControl = new ScraperSelectRom();
         }
 
         public void Initialize(RomData selectedRom)
@@ -50,11 +52,48 @@ namespace EmulationCoordination.Gui.Forms
                     AdvanceToSelectingRomData();
                 }
             }
+            else if(SubControlPanel.Controls[0] == selectRomControl)
+            {
+                RomData finalRom = selectRomControl.GetSelectedData();
+                if(finalRom != null)
+                {
+                    AdvanceToGettingFinalRomData(finalRom);
+                }
+            }
+        }
+
+        private void AdvanceToGettingFinalRomData(RomData finalRom)
+        {
+
         }
 
         private void AdvanceToSelectingRomData()
         {
+            SubControlPanel.Controls.Remove(selectControl);
+            selectControl.Dispose();
+            InstructionsLabel.Text = String.Format("Searching {0} for {1}...",selectedScraper,selectedRom.FriendlyName);
+            AdvanceButton.Enabled = false;
 
+            backgroundWorker1.DoWork += (sender, e) =>
+            {
+                String selectedScraper = (String)((object[])e.Argument)[0];
+                RomData romToSearchFor = (RomData)((object[])e.Argument)[1];
+
+                List<RomData> foundRoms = scrapMgr.Search(romToSearchFor, selectedScraper);
+                e.Result = foundRoms;
+            };
+            backgroundWorker1.RunWorkerCompleted += (sender, e) =>
+            {
+                List<RomData> foundData = (List<RomData>)e.Result;
+                InstructionsLabel.Text = String.Format("Select a game");
+                selectRomControl.Initialize(foundData);
+                selectRomControl.Dock = DockStyle.Fill;
+                SubControlPanel.Controls.Add(selectRomControl);
+
+                AdvanceButton.Text = "Submit";
+                AdvanceButton.Enabled = true;
+            };
+            backgroundWorker1.RunWorkerAsync(new object[] { selectedScraper,selectedRom });
         }
     }
 }
