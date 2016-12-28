@@ -45,10 +45,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContracts\GamesDb.cs" />
+    <Compile Include="DataContracts\GiantBomb.cs" />
     <Compile Include="DataContracts\Igdb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScraperManager.cs" />
     <Compile Include="Scrapers\BaseScraper.cs" />
+    <Compile Include="Scrapers\GiantBombScraper.cs" />
     <Compile Include="Scrapers\IgdbScraper.cs" />
     <Compile Include="Scrapers\IScraper.cs" />
     <Compile Include="Scrapers\TheGamesDbScraper.cs" />

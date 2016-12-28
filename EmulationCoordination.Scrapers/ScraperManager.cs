@@ -33,6 +33,8 @@ namespace EmulationCoordination.Scrapers
             availableScrapers.Add(gamesDb.FriendlyName, gamesDb);
             IgdbScraper igdb = new IgdbScraper();
             availableScrapers.Add(igdb.FriendlyName, igdb);
+            GiantBombScraper gBomb = new GiantBombScraper();
+            availableScrapers.Add(gBomb.FriendlyName, gBomb);
         }
 
         public List<String> GetAllScrapers()
