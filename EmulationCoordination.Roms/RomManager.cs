@@ -9,12 +9,17 @@ using System.Threading.Tasks;
 
 namespace EmulationCoordination.Roms
 {
+    public delegate void RomUpdateHandler(RomData oldData, RomData newData);
+
     public class RomManager
     {
         private static RomManager mInstance = null;
         private String rootDirectory;
         private Dictionary<string,RomData> loadedRomData;
+        private List<RomFileSystemWatcher> romWatchers;
         private ImageConverter imageConverter;
+
+        public event RomUpdateHandler NewRomAdded;
 
         public static RomManager Instance
         {
@@ -33,13 +38,31 @@ namespace EmulationCoordination.Roms
         {
             rootDirectory = Path.Combine(FileUtilities.GetRootDirectory(), "Games");
             imageConverter = new ImageConverter();
+            romWatchers = new List<RomFileSystemWatcher>();
             
             foreach(var console in EmulatorConsoles.Values)
             {
-                Directory.CreateDirectory(Path.Combine(rootDirectory, console.FriendlyName));
+                String pathToRomDirectory = Path.Combine(rootDirectory, console.FriendlyName);
+                Directory.CreateDirectory(pathToRomDirectory);
+
+                foreach (var extension in console.FileExtensions)
+                {
+                    String extensionFilter = String.Format("*{0}", extension);
+                    RomFileSystemWatcher watcher = new RomFileSystemWatcher(pathToRomDirectory,extensionFilter);
+                    watcher.associatedConsole = console;
+                    watcher.Created += NewRomFound;
+                    watcher.EnableRaisingEvents = true;
+                    romWatchers.Add(watcher);
+                }
             }
             
             loadedRomData = new Dictionary<string, RomData>();
+        }
+
+        private void NewRomFound(object sender, FileSystemEventArgs e)
+        {
+            RomData romData = RetrieveRomData(e.FullPath, ((RomFileSystemWatcher)sender).associatedConsole);
+            NewRomAdded?.Invoke(null, romData);
         }
 
         public List<RomData> GetRoms(EmulatorConsoles ConsoleToSearch)
@@ -117,5 +140,22 @@ namespace EmulationCoordination.Roms
                 };
             }
         }
+    }
+
+    class RomFileSystemWatcher : FileSystemWatcher
+    {
+        public RomFileSystemWatcher()
+        {
+        }
+
+        public RomFileSystemWatcher(string path) : base(path)
+        {
+        }
+
+        public RomFileSystemWatcher(string path, string filter) : base(path, filter)
+        {
+        }
+
+        public EmulatorConsoles associatedConsole { get; set; }
     }
 }
