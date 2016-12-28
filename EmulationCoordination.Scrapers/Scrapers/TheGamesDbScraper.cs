@@ -158,6 +158,10 @@ namespace EmulationCoordination.Scrapers.Scrapers
             {
                 return "Super%20Nintendo%20(SNES)";
             }
+            if(console.Equals(EmulatorConsoles.GAMECUBE))
+            {
+                return "Nintendo%20GameCube";
+            }
             throw new Exception("Console not supported: " + console.FriendlyName);
         }
 
@@ -175,6 +179,8 @@ namespace EmulationCoordination.Scrapers.Scrapers
                     return EmulatorConsoles.GAME_BOY_COLOR;
                 case "Super Nintendo (SNES)":
                     return EmulatorConsoles.SNES;
+                case "Nintendo GameCube":
+                    return EmulatorConsoles.GAMECUBE;
                 default:
                     return EmulatorConsoles.UNKNOWN;
             }

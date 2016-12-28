@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenTK.Input;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,12 @@ namespace EmulationCoordination.Controllers
 
         private ControllerManager()
         {
-
+            var state = GamePad.GetState(0);
+            if(state.IsConnected)
+            {
+                string name = GamePad.GetName(0);
+                var capabilities = GamePad.GetCapabilities(0);
+            }
         }
     }
 }

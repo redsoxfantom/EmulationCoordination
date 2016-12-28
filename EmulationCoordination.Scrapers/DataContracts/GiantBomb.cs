@@ -86,6 +86,8 @@ namespace EmulationCoordination.Scrapers.DataContracts.GiantBomb
                     return EmulatorConsoles.NINTENDO_64;
                 case "SNES":
                     return EmulatorConsoles.SNES;
+                case "GCN":
+                    return EmulatorConsoles.GAMECUBE;
                 default:
                     return EmulatorConsoles.UNKNOWN;
             }

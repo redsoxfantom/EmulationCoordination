@@ -14,6 +14,7 @@ namespace EmulationCoordination.Utilities
         public static readonly EmulatorConsoles GAME_BOY_ADVANCE = new EmulatorConsoles("Game Boy Advance", new List<string>() { ".gba" });
         public static readonly EmulatorConsoles NINTENDO_64 = new EmulatorConsoles("Nintendo 64", new List<string>() { ".n64" });
         public static readonly EmulatorConsoles SNES = new EmulatorConsoles("SNES", new List<string>() { ".sfc" });
+        public static readonly EmulatorConsoles GAMECUBE = new EmulatorConsoles("GameCube", new List<string>() { ".iso" });
         public static readonly EmulatorConsoles UNKNOWN = new EmulatorConsoles("Unknown Console Type");
 
         public static IEnumerable<EmulatorConsoles> Values
@@ -25,6 +26,7 @@ namespace EmulationCoordination.Utilities
                 yield return GAME_BOY_ADVANCE;
                 yield return NINTENDO_64;
                 yield return SNES;
+                yield return GAMECUBE;
             }
         }
 

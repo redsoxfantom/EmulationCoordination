@@ -138,6 +138,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EmulationCoordination.Controllers\EmulationCoordination.Controllers.csproj">
+      <Project>{60D63A4A-2528-4F51-AD47-EFC647C3EE9D}</Project>
+      <Name>EmulationCoordination.Controllers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EmulationCoordination.Emulators\EmulationCoordination.Emulators.csproj">
       <Project>{f3bb5a4f-8f79-4a10-8824-00d6dc032f3e}</Project>
       <Name>EmulationCoordination.Emulators</Name>

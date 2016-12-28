@@ -110,6 +110,8 @@ namespace EmulationCoordination.Scrapers.DataContracts.Igdb
                     return EmulatorConsoles.NINTENDO_64;
                 case 19:
                     return EmulatorConsoles.SNES;
+                case 21:
+                    return EmulatorConsoles.GAMECUBE;
                 default:
                     return EmulatorConsoles.UNKNOWN;
             }
