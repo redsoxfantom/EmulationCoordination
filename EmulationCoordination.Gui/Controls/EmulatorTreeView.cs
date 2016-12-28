@@ -31,12 +31,16 @@ namespace EmulationCoordination.Gui.Controls
 
         public void ChildUpdate(List<IReadOnlyEmulator> emulators, List<RomData> roms)
         {
+            var oldSelectedNode = treeView.SelectedNode;
+
             var availableConsoles = emulators.SelectMany(f => f.ConsoleNames).Distinct().ToList();
             var installedEmulators = emulators.Where(f => f.Installed).ToList();
             var availableEmulators = emulators.Where(f => !f.Installed).ToList();
 
             PopulateTreeNodes(treeView.Nodes["AvailableEmulators"].Nodes, availableEmulators, availableConsoles, new List<RomData>());
             PopulateTreeNodes(treeView.Nodes["InstalledEmulators"].Nodes, installedEmulators, availableConsoles, roms);
+
+            treeView.SelectedNode = oldSelectedNode;
         }
 
         private void PopulateTreeNodes(TreeNodeCollection Nodes, 

@@ -30,8 +30,15 @@ namespace EmulationCoordination.Gui
 
             emuMgr = EmulatorManager.Instance;
             romMgr = RomManager.Instance;
+            romMgr.NewRomAdded += RomMgr_NewRomAdded;
 
             UpdateEmulatorList();
+        }
+
+        private void RomMgr_NewRomAdded(RomData oldData, RomData newData)
+        {
+            roms.Add(newData);
+            this.Invoke(new Action(()=> { emulatorTreeView.ChildUpdate(emulators, roms); }));
         }
 
         private void UpdateEmulatorList()
