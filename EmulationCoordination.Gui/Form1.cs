@@ -35,7 +35,7 @@ namespace EmulationCoordination.Gui
             UpdateEmulatorList();
         }
 
-        private void RomMgr_NewRomAdded(RomData oldData, RomData newData)
+        private void RomMgr_NewRomAdded(RomData newData)
         {
             roms.Add(newData);
             this.Invoke(new Action(()=> { emulatorTreeView.ChildUpdate(emulators, roms); }));

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace EmulationCoordination.Roms
 {
-    public delegate void RomUpdateHandler(RomData oldData, RomData newData);
+    public delegate void NewRomHandler(RomData newData);
 
     public class RomManager
     {
@@ -19,7 +19,7 @@ namespace EmulationCoordination.Roms
         private List<RomFileSystemWatcher> romWatchers;
         private ImageConverter imageConverter;
 
-        public event RomUpdateHandler NewRomAdded;
+        public event NewRomHandler NewRomAdded;
 
         public static RomManager Instance
         {
@@ -62,7 +62,7 @@ namespace EmulationCoordination.Roms
         private void NewRomFound(object sender, FileSystemEventArgs e)
         {
             RomData romData = RetrieveRomData(e.FullPath, ((RomFileSystemWatcher)sender).associatedConsole);
-            NewRomAdded?.Invoke(null, romData);
+            NewRomAdded?.Invoke(romData);
         }
 
         public List<RomData> GetRoms(EmulatorConsoles ConsoleToSearch)
