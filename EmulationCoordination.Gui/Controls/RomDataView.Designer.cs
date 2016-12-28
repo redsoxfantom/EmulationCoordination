@@ -54,12 +54,12 @@
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.DeveloperLabel = new System.Windows.Forms.Label();
-            this.BannerPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
+            this.ManualLink = new System.Windows.Forms.LinkLabel();
+            this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.ScrapeLink = new System.Windows.Forms.LinkLabel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.ManualLink = new System.Windows.Forms.LinkLabel();
+            this.BannerPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -121,7 +121,7 @@
             // 
             // BoxArtPanel
             // 
-            this.BoxArtPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.BoxArtPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BoxArtPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BoxArtPanel.Location = new System.Drawing.Point(3, 3);
             this.BoxArtPanel.Name = "BoxArtPanel";
@@ -436,15 +436,6 @@
             this.DeveloperLabel.TabIndex = 0;
             this.DeveloperLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // BannerPanel
-            // 
-            this.BannerPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.BannerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BannerPanel.Location = new System.Drawing.Point(3, 3);
-            this.BannerPanel.Name = "BannerPanel";
-            this.BannerPanel.Size = new System.Drawing.Size(906, 126);
-            this.BannerPanel.TabIndex = 2;
-            // 
             // tableLayoutPanel12
             // 
             this.tableLayoutPanel12.ColumnCount = 1;
@@ -464,6 +455,30 @@
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel12.Size = new System.Drawing.Size(529, 64);
             this.tableLayoutPanel12.TabIndex = 3;
+            // 
+            // ManualLink
+            // 
+            this.ManualLink.AutoSize = true;
+            this.ManualLink.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ManualLink.Location = new System.Drawing.Point(3, 48);
+            this.ManualLink.Name = "ManualLink";
+            this.ManualLink.Size = new System.Drawing.Size(523, 16);
+            this.ManualLink.TabIndex = 3;
+            this.ManualLink.TabStop = true;
+            this.ManualLink.Text = "Update Manually";
+            this.ManualLink.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ManualLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ManualLink_LinkClicked);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label8.Location = new System.Drawing.Point(3, 32);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(523, 16);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "Or";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label7
             // 
@@ -489,29 +504,14 @@
             this.ScrapeLink.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ScrapeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ScrapeLink_LinkClicked);
             // 
-            // label8
+            // BannerPanel
             // 
-            this.label8.AutoSize = true;
-            this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label8.Location = new System.Drawing.Point(3, 32);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(523, 16);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "Or";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // ManualLink
-            // 
-            this.ManualLink.AutoSize = true;
-            this.ManualLink.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ManualLink.Location = new System.Drawing.Point(3, 48);
-            this.ManualLink.Name = "ManualLink";
-            this.ManualLink.Size = new System.Drawing.Size(523, 16);
-            this.ManualLink.TabIndex = 3;
-            this.ManualLink.TabStop = true;
-            this.ManualLink.Text = "Update Manually";
-            this.ManualLink.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ManualLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ManualLink_LinkClicked);
+            this.BannerPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BannerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BannerPanel.Location = new System.Drawing.Point(3, 3);
+            this.BannerPanel.Name = "BannerPanel";
+            this.BannerPanel.Size = new System.Drawing.Size(906, 126);
+            this.BannerPanel.TabIndex = 2;
             // 
             // RomDataView
             // 
