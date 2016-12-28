@@ -107,17 +107,49 @@ namespace EmulationCoordination.Emulators.Emulators
         {
             try
             {
-                String targetFile = Path.Combine(InstallDirectory, "download.zip");
-                using (WebClient client = new WebClient())
+                if (BasicDownload(downloadUrl) && BasicUnzip())
                 {
-                    client.DownloadFile(downloadUrl, targetFile);
+                    return true;
                 }
-                using(Stream str = File.OpenRead(targetFile))
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        protected bool BasicUnzip()
+        {
+            try
+            {
+                String targetFile = Path.Combine(InstallDirectory, "download.zip");
+                using (Stream str = File.OpenRead(targetFile))
                 using (var reader = ReaderFactory.Open(str))
                 {
                     reader.WriteAllToDirectory(InstallDirectory);
                 }
 
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        protected bool BasicDownload(string downloadUrl)
+        {
+            try
+            {
+                String targetFile = Path.Combine(InstallDirectory, "download.zip");
+                using (WebClient client = new WebClient())
+                {
+                    client.DownloadFile(downloadUrl, targetFile);
+                }
                 return true;
             }
             catch (Exception)
