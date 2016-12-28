@@ -16,10 +16,11 @@ namespace EmulationCoordination.Scrapers.Scrapers
 
         public RomData GetAllData(RomData dataToFillOut)
         {
-            dataToFillOut.ScrapedBy = FriendlyName;
-            dataToFillOut.IsUpToDate = true;
+            RomData foundData = dataToFillOut.Clone();
+            foundData.ScrapedBy = FriendlyName;
+            foundData.IsUpToDate = true;
 
-            return ScraperSpecificGetAllData(dataToFillOut);
+            return ScraperSpecificGetAllData(foundData);
         }
 
         protected abstract RomData ScraperSpecificGetAllData(RomData dataToFillOut);
