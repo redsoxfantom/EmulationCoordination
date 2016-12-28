@@ -42,7 +42,6 @@
             // 
             // romDataView
             // 
-            this.romDataView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.romDataView.Location = new System.Drawing.Point(3, 3);
             this.romDataView.Name = "romDataView";
             this.romDataView.Size = new System.Drawing.Size(813, 531);
@@ -53,7 +52,8 @@
             // 
             // emulatorTreeView
             // 
-            this.emulatorTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.emulatorTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.emulatorTreeView.Location = new System.Drawing.Point(3, 3);
             this.emulatorTreeView.Name = "emulatorTreeView";
             this.emulatorTreeView.Size = new System.Drawing.Size(239, 691);
@@ -90,6 +90,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 77.73585F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.26415F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(819, 691);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
@@ -100,7 +101,6 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel3.Controls.Add(this.PlayGameBtn, 1, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 540);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 3;
