@@ -106,7 +106,7 @@ namespace EmulationCoordination.Gui
                     selectedRom = (RomData)form.Tag;
                     romMgr.UpdateRomData(selectedRom);
                     UpdateEmulatorList();
-                    romDataView.ChildUpdate(data);
+                    romDataView.ChildUpdate(selectedRom);
                 }
             }
         }
@@ -121,7 +121,7 @@ namespace EmulationCoordination.Gui
                     selectedRom = (RomData)form.Tag;
                     romMgr.UpdateRomData(selectedRom);
                     UpdateEmulatorList();
-                    romDataView.ChildUpdate(data);
+                    romDataView.ChildUpdate(selectedRom);
                 }
             }
         }
