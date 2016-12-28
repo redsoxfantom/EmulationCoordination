@@ -30,7 +30,7 @@ namespace EmulationCoordination.Gui.Forms
             PublisherBox.Text = rom.Publisher;
             DeveloperBox.Text = rom.Developer;
             DescriptionBox.Text = rom.Description;
-            NumPlayersBox.SelectedText = rom.NumPlayers;
+            NumPlayersBox.SelectedItem = rom.NumPlayers;
             if(rom.ReleaseDate == DateTime.MinValue)
             {
                 rom.ReleaseDate = ReleaseDateBox.MinDate;
