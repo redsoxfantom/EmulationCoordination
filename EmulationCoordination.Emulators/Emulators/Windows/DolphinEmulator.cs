@@ -12,7 +12,6 @@ namespace EmulationCoordination.Emulators.Emulators.Windows
 {
     public class DolphinEmulator : BaseEmulator
     {
-        private string vcppredist = "https://www.microsoft.com/en-us/download/confirmation.aspx?id=48145&6B49FDFB-8E5B-4B07-BC31-15695C5A2143=1";
         private string downloadUrl = "http://dl-mirror.dolphin-emu.org/5.0/dolphin-x64-5.0.exe";
 
         public override List<EmulatorConsoles> ConsoleNames => new List<EmulatorConsoles>()
@@ -29,22 +28,7 @@ namespace EmulationCoordination.Emulators.Emulators.Windows
 
         protected override bool ChildSpecificInstall()
         {
-            string targetDir = Path.Combine(InstallDirectory, "download.zip");
-            if (BasicDownload(vcppredist))
-            {
-                string vcc_renamed_file = Path.Combine(InstallDirectory, "vcc_redist.exe");
-                File.Move(targetDir, vcc_renamed_file);
-                Process vccInstallProc = new Process();
-                vccInstallProc.StartInfo.FileName = vcc_renamed_file;
-                vccInstallProc.Start();
-                vccInstallProc.WaitForExit();
-
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return BasicDownload(downloadUrl,"dolphin.exe");
         }
 
         protected override Command CreateCommand(RomData rom)

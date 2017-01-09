@@ -141,11 +141,11 @@ namespace EmulationCoordination.Emulators.Emulators
             }
         }
 
-        protected bool BasicDownload(string downloadUrl)
+        protected bool BasicDownload(string downloadUrl, string filename="download.zip")
         {
             try
             {
-                String targetFile = Path.Combine(InstallDirectory, "download.zip");
+                String targetFile = Path.Combine(InstallDirectory, filename);
                 using (WebClient client = new WebClient())
                 {
                     client.DownloadFile(downloadUrl, targetFile);
