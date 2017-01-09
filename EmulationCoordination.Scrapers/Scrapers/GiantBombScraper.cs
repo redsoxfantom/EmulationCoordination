@@ -188,7 +188,14 @@ namespace EmulationCoordination.Scrapers.Scrapers
                         convertedData.Console = EmulatorConsoles.UNKNOWN;
                         if(res.platforms?.Length > 0)
                         {
-                            convertedData.Console = res.platforms[0].platform;
+                            foreach (var platform in res.platforms)
+                            {
+                                convertedData.Console = platform.platform;
+                                if(!convertedData.Console.Equals(EmulatorConsoles.UNKNOWN))
+                                {
+                                    break;
+                                }
+                            }
                         }
                         returnList.Add(convertedData);
                     }
