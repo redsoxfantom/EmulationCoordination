@@ -162,6 +162,10 @@ namespace EmulationCoordination.Scrapers.Scrapers
             {
                 return "Nintendo%20GameCube";
             }
+            if(console.Equals(EmulatorConsoles.MASTER_SYSTEM))
+            {
+                return "Sega%20Master%20System";
+            }
             throw new Exception("Console not supported: " + console.FriendlyName);
         }
 
@@ -181,6 +185,8 @@ namespace EmulationCoordination.Scrapers.Scrapers
                     return EmulatorConsoles.SNES;
                 case "Nintendo GameCube":
                     return EmulatorConsoles.GAMECUBE;
+                case "Sega Master System":
+                    return EmulatorConsoles.MASTER_SYSTEM;
                 default:
                     return EmulatorConsoles.UNKNOWN;
             }
