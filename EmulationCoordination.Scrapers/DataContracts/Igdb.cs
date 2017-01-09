@@ -112,6 +112,8 @@ namespace EmulationCoordination.Scrapers.DataContracts.Igdb
                     return EmulatorConsoles.SNES;
                 case 21:
                     return EmulatorConsoles.GAMECUBE;
+                case 64:
+                    return EmulatorConsoles.MASTER_SYSTEM;
                 default:
                     return EmulatorConsoles.UNKNOWN;
             }

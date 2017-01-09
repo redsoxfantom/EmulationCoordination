@@ -88,6 +88,8 @@ namespace EmulationCoordination.Scrapers.DataContracts.GiantBomb
                     return EmulatorConsoles.SNES;
                 case "GCN":
                     return EmulatorConsoles.GAMECUBE;
+                case "SMS":
+                    return EmulatorConsoles.MASTER_SYSTEM;
                 default:
                     return EmulatorConsoles.UNKNOWN;
             }
