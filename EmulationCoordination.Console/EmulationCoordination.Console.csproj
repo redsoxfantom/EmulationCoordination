@@ -8,7 +8,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>EmulationCoordination.Console</RootNamespace>
     <AssemblyName>EmulationCoordination.Console</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -52,6 +52,20 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EmulationCoordination.Emulators\EmulationCoordination.Emulators.csproj">
+      <Project>{f3bb5a4f-8f79-4a10-8824-00d6dc032f3e}</Project>
+      <Name>EmulationCoordination.Emulators</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmulationCoordination.Roms\EmulationCoordination.Roms.csproj">
+      <Project>{da924310-7a95-4414-84e3-552caadd862c}</Project>
+      <Name>EmulationCoordination.Roms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmulationCoordination.Utilities\EmulationCoordination.Utilities.csproj">
+      <Project>{ad8d15f0-4970-41f7-aa91-61da61db4368}</Project>
+      <Name>EmulationCoordination.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
