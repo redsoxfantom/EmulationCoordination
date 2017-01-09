@@ -16,7 +16,8 @@ namespace EmulationCoordination.Emulators.Emulators
                 new Windows.VisualBoyAdvanceEmulator(),
                 new Windows.Mupen64PlusEmulator(),
                 new Windows.Snes9xEmulator(),
-                new Windows.DolphinEmulator()
+                new Windows.DolphinEmulator(),
+                new Windows.FusionEmulator()
             };
             return ConvertList(windowsEmulators);
         }
