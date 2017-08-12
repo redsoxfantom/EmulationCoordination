@@ -159,7 +159,7 @@ namespace EmulationCoordination
             for (int i = 1; i <= installedEmulators.Count; i++)
             {
                 var emulator = installedEmulators[i - 1];
-                Console.WriteLine(String.Format("{0}) {1} ({2})", i, emulator.EmulatorName, emulator.Version));
+                Console.WriteLine(String.Format("{0}) {1} ({2}) ({3})", i, emulator.EmulatorName, emulator.Version, string.Join(",",emulator.ConsoleNames)));
             }
             Console.WriteLine();
 
@@ -167,7 +167,7 @@ namespace EmulationCoordination
             for (int i = 1; i <= availableEmulators.Count; i++)
             {
                 var emulator = availableEmulators[i - 1];
-                Console.WriteLine(String.Format("{0}) {1} ({2})", i, emulator.EmulatorName, emulator.Version));
+                Console.WriteLine(String.Format("{0}) {1} ({2}) ({3})", i, emulator.EmulatorName, emulator.Version, string.Join(",", emulator.ConsoleNames)));
             }
             Console.WriteLine();
         }
