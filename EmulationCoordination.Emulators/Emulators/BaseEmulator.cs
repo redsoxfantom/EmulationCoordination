@@ -1,6 +1,7 @@
 ﻿using EmulationCoordination.Emulators.Interfaces;
 using EmulationCoordination.Roms;
 using EmulationCoordination.Utilities;
+using SharpCompress.Archives.SevenZip;
 using SharpCompress.Readers;
 using System;
 using System.Collections.Generic;
@@ -122,17 +123,27 @@ namespace EmulationCoordination.Emulators.Emulators
             }
         }
 
-        protected bool BasicUnzip()
+        protected bool BasicUnzip(string filename = "download.zip")
         {
             try
             {
-                String targetFile = Path.Combine(InstallDirectory, "download.zip");
-                using (Stream str = File.OpenRead(targetFile))
-                using (var reader = ReaderFactory.Open(str))
+                String targetFile = Path.Combine(InstallDirectory, filename);
+                if (SevenZipArchive.IsSevenZipFile(targetFile))
                 {
-                    reader.WriteAllToDirectory(InstallDirectory);
+                    using (var archive = SevenZipArchive.Open(targetFile))
+                    using(var reader = archive.ExtractAllEntries())
+                    {
+                        reader.WriteAllToDirectory(InstallDirectory);
+                    }
                 }
-
+                else
+                {
+                    using (Stream str = File.OpenRead(targetFile))
+                    using (var reader = ReaderFactory.Open(str))
+                    {
+                        reader.WriteAllToDirectory(InstallDirectory);
+                    }
+                }
                 return true;
             }
             catch (Exception)

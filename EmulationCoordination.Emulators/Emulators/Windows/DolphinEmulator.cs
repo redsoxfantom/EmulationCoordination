@@ -12,7 +12,7 @@ namespace EmulationCoordination.Emulators.Emulators.Windows
 {
     public class DolphinEmulator : BaseEmulator
     {
-        private string downloadUrl = "http://dl-mirror.dolphin-emu.org/5.0/dolphin-x64-5.0.exe";
+        private string downloadUrl = "https://dl.dolphin-emu.org/builds/dolphin-master-5.0-5132-x64.7z";
 
         public override List<EmulatorConsoles> ConsoleNames => new List<EmulatorConsoles>()
         {
@@ -28,7 +28,11 @@ namespace EmulationCoordination.Emulators.Emulators.Windows
 
         protected override bool ChildSpecificInstall()
         {
-            return BasicDownload(downloadUrl,"dolphin.exe");
+            if(!BasicDownload(downloadUrl,"download.7z"))
+            {
+                return false;
+            }
+            return BasicUnzip("download.7z");
         }
 
         protected override Command CreateCommand(RomData rom)
