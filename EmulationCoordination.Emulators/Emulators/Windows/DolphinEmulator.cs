@@ -37,7 +37,11 @@ namespace EmulationCoordination.Emulators.Emulators.Windows
 
         protected override Command CreateCommand(RomData rom)
         {
-            return null;
+            Command cmd = new Command();
+            cmd.Executable = Path.Combine(InstallDirectory, "Dolphin.exe");
+            cmd.Arguments = String.Format("-c -b -e \"{0}\"",rom.Path);
+
+            return cmd;
         }
     }
 }
