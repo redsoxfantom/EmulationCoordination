@@ -114,6 +114,8 @@ namespace EmulationCoordination.Scrapers.DataContracts.Igdb
                     return EmulatorConsoles.GAMECUBE;
                 case 64:
                     return EmulatorConsoles.MASTER_SYSTEM;
+                case 8:
+                    return EmulatorConsoles.PLAYSTATION_2;
                 default:
                     return EmulatorConsoles.UNKNOWN;
             }

@@ -90,6 +90,8 @@ namespace EmulationCoordination.Scrapers.DataContracts.GiantBomb
                     return EmulatorConsoles.GAMECUBE;
                 case "SMS":
                     return EmulatorConsoles.MASTER_SYSTEM;
+                case "PS2":
+                    return EmulatorConsoles.PLAYSTATION_2;
                 default:
                     return EmulatorConsoles.UNKNOWN;
             }

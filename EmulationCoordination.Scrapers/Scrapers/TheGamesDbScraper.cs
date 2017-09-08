@@ -166,6 +166,10 @@ namespace EmulationCoordination.Scrapers.Scrapers
             {
                 return "Sega%20Master%20System";
             }
+            if(console.Equals(EmulatorConsoles.PLAYSTATION_2))
+            {
+                return "Sony%20Playstation%202";
+            }
             throw new Exception("Console not supported: " + console.FriendlyName);
         }
 
@@ -187,6 +191,8 @@ namespace EmulationCoordination.Scrapers.Scrapers
                     return EmulatorConsoles.GAMECUBE;
                 case "Sega Master System":
                     return EmulatorConsoles.MASTER_SYSTEM;
+                case "Sony Playstation 2":
+                    return EmulatorConsoles.PLAYSTATION_2;
                 default:
                     return EmulatorConsoles.UNKNOWN;
             }

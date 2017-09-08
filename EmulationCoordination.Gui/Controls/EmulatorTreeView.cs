@@ -36,7 +36,7 @@ namespace EmulationCoordination.Gui.Controls
         {
             var oldSelectedNode = treeView.SelectedNode;
 
-            var availableConsoles = emulators.SelectMany(f => f.ConsoleNames).Distinct().ToList();
+            var availableConsoles = EmulatorConsoles.Values.ToList();
             var installedEmulators = emulators.Where(f => f.Installed && f.EmulatorType == EmulatorType.BUILTIN).ToList();
             var availableEmulators = emulators.Where(f => !f.Installed && f.EmulatorType == EmulatorType.BUILTIN).ToList();
             var customEmulators = emulators.Where(f => f.Installed && f.EmulatorType == EmulatorType.CUSTOM).ToList();

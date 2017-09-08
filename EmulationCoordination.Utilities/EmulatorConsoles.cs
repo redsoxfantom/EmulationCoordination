@@ -16,6 +16,7 @@ namespace EmulationCoordination.Utilities
         public static readonly EmulatorConsoles SNES = new EmulatorConsoles("SNES", new List<string>() { ".sfc" });
         public static readonly EmulatorConsoles GAMECUBE = new EmulatorConsoles("GameCube", new List<string>() { ".iso" });
         public static readonly EmulatorConsoles MASTER_SYSTEM = new EmulatorConsoles("Sega Master System", new List<string>() { ".sms" });
+        public static readonly EmulatorConsoles PLAYSTATION_2 = new EmulatorConsoles("Playstation 2", new List<string>() { ".iso" });
         public static readonly EmulatorConsoles UNKNOWN = new EmulatorConsoles("Unknown Console Type");
 
         public static IEnumerable<EmulatorConsoles> Values
@@ -29,6 +30,7 @@ namespace EmulationCoordination.Utilities
                 yield return SNES;
                 yield return GAMECUBE;
                 yield return MASTER_SYSTEM;
+                yield return PLAYSTATION_2;
             }
         }
 
