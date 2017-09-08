@@ -16,11 +16,14 @@ namespace EmulationCoordination.Gui.Controls
 {
     public delegate void EmulatorUpdateHandler(IReadOnlyEmulator emulator);
     public delegate void RomUpdateHandler(RomData rom);
+    public delegate void CreateCustomEmulatorHandler(EmulatorConsoles console);
 
     public partial class EmulatorTreeView : UserControl
     {
         public event EmulatorUpdateHandler DeletionRequested;
         public event EmulatorUpdateHandler InstallationRequested;
+        public event EmulatorUpdateHandler CustomRemovalRequested;
+        public event CreateCustomEmulatorHandler CreateCustomRom;
         public event RomUpdateHandler RomSelected;
         public event EventHandler RomDeselected;
 
@@ -34,11 +37,13 @@ namespace EmulationCoordination.Gui.Controls
             var oldSelectedNode = treeView.SelectedNode;
 
             var availableConsoles = emulators.SelectMany(f => f.ConsoleNames).Distinct().ToList();
-            var installedEmulators = emulators.Where(f => f.Installed).ToList();
-            var availableEmulators = emulators.Where(f => !f.Installed).ToList();
+            var installedEmulators = emulators.Where(f => f.Installed && f.EmulatorType == EmulatorType.BUILTIN).ToList();
+            var availableEmulators = emulators.Where(f => !f.Installed && f.EmulatorType == EmulatorType.BUILTIN).ToList();
+            var customEmulators = emulators.Where(f => f.Installed && f.EmulatorType == EmulatorType.CUSTOM).ToList();
 
             PopulateTreeNodes(treeView.Nodes["AvailableEmulators"].Nodes, availableEmulators, availableConsoles, new List<RomData>());
             PopulateTreeNodes(treeView.Nodes["InstalledEmulators"].Nodes, installedEmulators, availableConsoles, roms);
+            PopulateTreeNodes(treeView.Nodes["CustomEmulators"].Nodes, customEmulators, availableConsoles, roms);
 
             treeView.SelectedNode = oldSelectedNode;
         }
@@ -94,11 +99,25 @@ namespace EmulationCoordination.Gui.Controls
                 {
                     HandleRightClickEmulator((IReadOnlyEmulator)node.Tag);
                 }
+                else if(node.Parent == treeView.Nodes["CustomEmulators"])
+                {
+                    HandleRightClickCustomEmulator((EmulatorConsoles)node.Tag);
+                }
                 else
                 {
                     treeView.ContextMenuStrip = null;
                 }
             }
+        }
+
+        private void HandleRightClickCustomEmulator(EmulatorConsoles tag)
+        {
+            ContextMenuStrip ctxMenu = new ContextMenuStrip();
+            ToolStripMenuItem menuItem = new ToolStripMenuItem(String.Format("Add Custom {0} Emulator",tag.FriendlyName));
+            menuItem.Tag = tag;
+            menuItem.Click += (sender,args) => CreateCustomRom?.Invoke(tag);
+            ctxMenu.Items.Add(menuItem);
+            treeView.ContextMenuStrip = ctxMenu;
         }
 
         private void HandleRightClickEmulator(IReadOnlyEmulator tag)
@@ -107,10 +126,15 @@ namespace EmulationCoordination.Gui.Controls
 
             ToolStripMenuItem menuItem = new ToolStripMenuItem();
             menuItem.Tag = tag;
-            if(tag.Installed)
+            if(tag.Installed && tag.EmulatorType == EmulatorType.BUILTIN)
             {
                 menuItem.Text = "Delete Emulator";
                 menuItem.Click += Delete_Selected;
+            }
+            else if(tag.EmulatorType == EmulatorType.CUSTOM)
+            {
+                menuItem.Text = "Remove Custom Emulator";
+                menuItem.Click += RemoveCustomEmulator_Selected;
             }
             else
             {
@@ -120,6 +144,12 @@ namespace EmulationCoordination.Gui.Controls
             ctxMenu.Items.Add(menuItem);
 
             treeView.ContextMenuStrip = ctxMenu;
+        }
+
+        private void RemoveCustomEmulator_Selected(object sender, EventArgs e)
+        {
+            IReadOnlyEmulator emu = (IReadOnlyEmulator)((ToolStripMenuItem)sender).Tag;
+            CustomRemovalRequested?.Invoke(emu);
         }
 
         private void Install_Selected(object sender, EventArgs e)

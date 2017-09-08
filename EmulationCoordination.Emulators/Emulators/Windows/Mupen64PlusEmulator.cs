@@ -9,7 +9,7 @@ using System.IO;
 
 namespace EmulationCoordination.Emulators.Emulators.Windows
 {
-    public class Mupen64PlusEmulator : BaseEmulator
+    public class Mupen64PlusEmulator : BaseBuiltinEmulator
     {
         private String downloadUrl = "https://github.com/mupen64plus/mupen64plus-core/releases/download/2.5/mupen64plus-bundle-win32-2.5.zip";
 

@@ -30,6 +30,7 @@
         {
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Available Emulators");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Installed Emulators");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Custom Emulators");
             this.treeView = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
@@ -42,9 +43,12 @@
             treeNode1.Text = "Available Emulators";
             treeNode2.Name = "InstalledEmulators";
             treeNode2.Text = "Installed Emulators";
+            treeNode3.Name = "CustomEmulators";
+            treeNode3.Text = "Custom Emulators";
             this.treeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
-            treeNode2});
+            treeNode2,
+            treeNode3});
             this.treeView.Size = new System.Drawing.Size(288, 739);
             this.treeView.TabIndex = 1;
             this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);

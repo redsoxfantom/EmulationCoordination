@@ -10,7 +10,7 @@ using System.Diagnostics;
 
 namespace EmulationCoordination.Emulators.Emulators.Windows
 {
-    public class DolphinEmulator : BaseEmulator
+    public class DolphinEmulator : BaseBuiltinEmulator
     {
         private string downloadUrl = "https://dl.dolphin-emu.org/builds/dolphin-master-5.0-5132-x64.7z";
 

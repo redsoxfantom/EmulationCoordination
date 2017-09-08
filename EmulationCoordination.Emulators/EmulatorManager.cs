@@ -56,14 +56,31 @@ namespace EmulationCoordination.Emulators
             loadedConfig = FileUtilities.LoadFile<EmulatorManagerConfigDictionary>("EmulatorManager.json");
             foreach (var configuredEmulator in loadedConfig.Keys)
             {
-                var matchingEmulator = availableEmulators.Values.Where(f => 
-                    f.EmulatorName == configuredEmulator.EmulatorName && 
-                    f.Version == configuredEmulator.EmulatorVersion
-                ).First();
-                matchingEmulator.Installed = loadedConfig[configuredEmulator].Installed;
+                if (configuredEmulator.EmulatorType == EmulatorType.BUILTIN)
+                {
+                    var matchingEmulator = availableEmulators.Values.Where(f =>
+                        f.EmulatorName == configuredEmulator.EmulatorName &&
+                        f.Version == configuredEmulator.EmulatorVersion
+                    ).First();
+                    matchingEmulator.Installed = loadedConfig[configuredEmulator].Installed;
+                }
+                if(configuredEmulator.EmulatorType == EmulatorType.CUSTOM)
+                {
+                    var emuCfg = loadedConfig[configuredEmulator].CustomConfig;
+                    CustomEmulator emu = new CustomEmulator()
+                    {
+                        CommandLineArguments = emuCfg.CommandLineArgs,
+                        ConsoleNames = emuCfg.Consoles,
+                        EmulatorName = configuredEmulator.EmulatorName,
+                        PathToExecutable = emuCfg.PathToExecutable,
+                        Installed = true,
+                        Version = configuredEmulator.EmulatorVersion
+                    };
+                    availableEmulators.Add(emu,emu);
+                }
             }
-
-            foreach(var availableEmulator in availableEmulators.Values)
+            
+            foreach(var availableEmulator in availableEmulators.Values.Where(f=>f.EmulatorType == EmulatorType.BUILTIN))
             {
                 String emulatorSpecificInstallDir = Path.Combine(EmulatorInstallDir, 
                     availableEmulator.EmulatorName, availableEmulator.Version);
@@ -76,6 +93,61 @@ namespace EmulationCoordination.Emulators
         public List<IReadOnlyEmulator> GetAvailableEmulators()
         {
             return availableEmulators.Keys.ToList();
+        }
+
+        public void RemoveCustomEmulator(IReadOnlyEmulator emulator)
+        {
+            EmulatorManagerConfigKey key = new EmulatorManagerConfigKey()
+            {
+                EmulatorName = emulator.EmulatorName,
+                EmulatorVersion = emulator.Version,
+                EmulatorType = emulator.EmulatorType
+            };
+            if(loadedConfig.ContainsKey(key))
+            {
+                loadedConfig.Remove(key);
+            }
+            if(availableEmulators.ContainsKey(emulator))
+            {
+                availableEmulators.Remove(emulator);
+            }
+            UpdateConfiguration();
+        }
+
+        public void AddCustomEmulator(CustomEmulator emulator)
+        {
+            EmulatorManagerConfigKey key = new EmulatorManagerConfigKey()
+            {
+                EmulatorName = emulator.EmulatorName,
+                EmulatorVersion = emulator.Version,
+                EmulatorType = emulator.EmulatorType
+            };
+            EmulatorManagerConfig cfg;
+            if(!loadedConfig.TryGetValue(key, out cfg))
+            {
+                cfg = new EmulatorManagerConfig()
+                {
+                    Installed = true,
+                    CustomConfig = new CustomEmulatorConfig()
+                    {
+                        PathToExecutable = emulator.PathToExecutable,
+                        CommandLineArgs = emulator.CommandLineArguments,
+                        Consoles = emulator.ConsoleNames
+                    }
+                };
+                loadedConfig.Add(key, cfg);
+            }
+
+            if(!availableEmulators.ContainsKey(emulator))
+            {
+                availableEmulators.Add(emulator, emulator);
+            }
+            else
+            {
+                availableEmulators[emulator] = emulator;
+            }
+
+            UpdateConfiguration();
         }
 
         public bool DownloadAndInstallEmulator(IReadOnlyEmulator emulator)
@@ -118,7 +190,8 @@ namespace EmulationCoordination.Emulators
             var key = new EmulatorManagerConfigKey()
             {
                 EmulatorName = emulator.EmulatorName,
-                EmulatorVersion = emulator.Version
+                EmulatorVersion = emulator.Version,
+                EmulatorType = emulator.EmulatorType
             };
             if (!loadedConfig.TryGetValue(key, out cfg))
             {

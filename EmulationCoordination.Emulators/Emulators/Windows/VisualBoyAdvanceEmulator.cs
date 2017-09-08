@@ -13,7 +13,7 @@ using EmulationCoordination.Roms;
 
 namespace EmulationCoordination.Emulators.Emulators.Windows
 {
-    public class VisualBoyAdvanceEmulator : BaseEmulator
+    public class VisualBoyAdvanceEmulator : BaseBuiltinEmulator
     {
         private String downloadUrl = "https://sourceforge.net/projects/vba/files/VisualBoyAdvance/1.7.2/VisualBoyAdvance-1.7.2-SDL-Win32.zip/download";
 

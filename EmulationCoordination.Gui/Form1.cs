@@ -57,6 +57,20 @@ namespace EmulationCoordination.Gui
             emulatorTreeView.ChildUpdate(emulators,roms);
         }
 
+        private void EmulatorTreeView_CustomRemovalRequested(Emulators.Interfaces.IReadOnlyEmulator emulator)
+        {
+            backgroundWorker1.DoWork += (sender, e) =>
+            {
+                IReadOnlyEmulator emu = (IReadOnlyEmulator)e.Argument;
+                emuMgr.RemoveCustomEmulator(emu);
+            };
+            backgroundWorker1.RunWorkerCompleted += (sender, e) =>
+            {
+                UpdateEmulatorList();
+            };
+            backgroundWorker1.RunWorkerAsync(emulator);
+        }
+
         private void emulatorTreeView_DeletionRequested(IReadOnlyEmulator emulator)
         {
             backgroundWorker1.DoWork += (sender, e) => 
@@ -132,6 +146,20 @@ namespace EmulationCoordination.Gui
                     romMgr.UpdateRomData(selectedRom);
                     UpdateEmulatorList();
                     romDataView.ChildUpdate(selectedRom);
+                }
+            }
+        }
+
+        private void emulatorTreeView_CreateCustomRom(Utilities.EmulatorConsoles console)
+        {
+            using (CustomEmulatorForm form = new CustomEmulatorForm())
+            {
+                form.Initialize(console);
+                if(form.ShowDialog(this) == DialogResult.OK)
+                {
+                    var emulator = form.Emulator;
+                    emuMgr.AddCustomEmulator(emulator);
+                    UpdateEmulatorList();
                 }
             }
         }

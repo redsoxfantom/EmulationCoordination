@@ -49,8 +49,9 @@
     <Compile Include="EmulatorManager.cs" />
     <Compile Include="DataContracts\EmulatorManagerConfig.cs" />
     <Compile Include="EmulatorManagerException.cs" />
-    <Compile Include="Emulators\BaseEmulator.cs" />
+    <Compile Include="Emulators\BaseBuiltinEmulator.cs" />
     <Compile Include="Emulators\Command.cs" />
+    <Compile Include="Emulators\CustomEmulator.cs" />
     <Compile Include="Emulators\EmulatorRetriever.cs" />
     <Compile Include="Emulators\Windows\DolphinEmulator.cs" />
     <Compile Include="Emulators\Windows\FusionEmulator.cs" />

@@ -1,4 +1,5 @@
 ﻿using EmulationCoordination.Emulators.Interfaces;
+using EmulationCoordination.Utilities;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -8,15 +9,25 @@ using System.Threading.Tasks;
 
 namespace EmulationCoordination.Emulators
 {
+    public class CustomEmulatorConfig
+    {
+        public String PathToExecutable { get; set; }
+        public String CommandLineArgs { get; set; }
+        public List<EmulatorConsoles> Consoles { get; set; }
+    }
+
     public class EmulatorManagerConfig
     {
         public bool Installed { get; set; }
+
+        public CustomEmulatorConfig CustomConfig { get; set; }
     }
 
     public class EmulatorManagerConfigKey
     {
         public String EmulatorName { get; set; }
         public String EmulatorVersion { get; set; }
+        public EmulatorType EmulatorType { get; set; }
 
         public override bool Equals(object obj)
         {
@@ -24,7 +35,8 @@ namespace EmulationCoordination.Emulators
             if (other != null)
             {
                 return (other.EmulatorName == EmulatorName &&
-                        other.EmulatorVersion == EmulatorVersion);
+                        other.EmulatorVersion == EmulatorVersion &&
+                        other.EmulatorType == EmulatorType);
             }
             else
             {
@@ -34,8 +46,14 @@ namespace EmulationCoordination.Emulators
 
         public override int GetHashCode()
         {
-            return EmulatorName.GetHashCode() ^ EmulatorVersion.GetHashCode();
+            return EmulatorName.GetHashCode() ^ EmulatorVersion.GetHashCode() ^ EmulatorType.GetHashCode();
         }
+    }
+
+    public enum EmulatorType
+    {
+        BUILTIN,
+        CUSTOM
     }
 
     [JsonArray]

@@ -9,7 +9,7 @@ using System.IO;
 
 namespace EmulationCoordination.Emulators.Emulators.Windows
 {
-    public class FusionEmulator : BaseEmulator
+    public class FusionEmulator : BaseBuiltinEmulator
     {
         public override List<EmulatorConsoles> ConsoleNames => new List<EmulatorConsoles>(){EmulatorConsoles.MASTER_SYSTEM};
         public override string EmulatorName => "Fusion";

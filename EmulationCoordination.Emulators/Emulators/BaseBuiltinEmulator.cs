@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace EmulationCoordination.Emulators.Emulators
 {
-    public abstract class BaseEmulator : IEmulator
+    public abstract class BaseBuiltinEmulator : IEmulator
     {
         public virtual List<EmulatorConsoles> ConsoleNames => new List<EmulatorConsoles>();
 
@@ -23,8 +23,13 @@ namespace EmulationCoordination.Emulators.Emulators
         public bool Installed { get; set; }
 
         public virtual string Version => String.Empty;
-        
+
         public string InstallDirectory { get; set; }
+
+        public EmulatorType EmulatorType
+        {
+            get { return EmulatorType.BUILTIN; }
+        }
 
         public override bool Equals(object obj)
         {
@@ -32,7 +37,8 @@ namespace EmulationCoordination.Emulators.Emulators
             if(other != null)
             {
                 return (other.EmulatorName == EmulatorName &&
-                        other.Version == Version);
+                        other.Version == Version &&
+                        other.EmulatorType == EmulatorType);
             }
             else
             {

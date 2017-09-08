@@ -9,7 +9,7 @@ using System.IO;
 
 namespace EmulationCoordination.Emulators.Emulators.Windows
 {
-    public class Snes9xEmulator : BaseEmulator
+    public class Snes9xEmulator : BaseBuiltinEmulator
     {
         private string downloadUrl = "http://www.emuparadise.me/emulators/files/user/SNES9x%20v1.53-1240.rar";
 
