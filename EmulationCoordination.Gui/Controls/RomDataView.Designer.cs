@@ -163,10 +163,11 @@
             // 
             this.DescriptionBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DescriptionBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DescriptionBox.Enabled = false;
             this.DescriptionBox.Location = new System.Drawing.Point(3, 76);
             this.DescriptionBox.Multiline = true;
             this.DescriptionBox.Name = "DescriptionBox";
+            this.DescriptionBox.ReadOnly = true;
+            this.DescriptionBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.DescriptionBox.Size = new System.Drawing.Size(529, 186);
             this.DescriptionBox.TabIndex = 1;
             // 

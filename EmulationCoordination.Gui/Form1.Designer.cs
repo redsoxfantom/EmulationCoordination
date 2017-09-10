@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.romDataView = new EmulationCoordination.Gui.Controls.RomDataView();
             this.emulatorTreeView = new EmulationCoordination.Gui.Controls.EmulatorTreeView();
@@ -63,7 +64,6 @@
             this.emulatorTreeView.CreateCustomRom += new EmulationCoordination.Gui.Controls.CreateCustomEmulatorHandler(this.emulatorTreeView_CreateCustomRom);
             this.emulatorTreeView.RomSelected += new EmulationCoordination.Gui.Controls.RomUpdateHandler(this.emulatorTreeView_RomSelected);
             this.emulatorTreeView.RomDeselected += new System.EventHandler(this.emulatorTreeView_RomDeselected);
-            this.emulatorTreeView.CustomRemovalRequested += EmulatorTreeView_CustomRemovalRequested;
             // 
             // tableLayoutPanel1
             // 
@@ -130,6 +130,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1070, 697);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainWindow";
             this.Text = "Emulator Coordinator";
             this.tableLayoutPanel1.ResumeLayout(false);

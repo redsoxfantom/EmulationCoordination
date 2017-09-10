@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManualUpdateForm));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.BannerPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -189,6 +190,7 @@
             this.DescriptionBox.Location = new System.Drawing.Point(138, 31);
             this.DescriptionBox.Multiline = true;
             this.DescriptionBox.Name = "DescriptionBox";
+            this.DescriptionBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.DescriptionBox.Size = new System.Drawing.Size(389, 84);
             this.DescriptionBox.TabIndex = 14;
             // 
@@ -327,6 +329,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(754, 608);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ManualUpdateForm";
             this.Text = "Updating Rom Data";
             this.tableLayoutPanel1.ResumeLayout(false);
