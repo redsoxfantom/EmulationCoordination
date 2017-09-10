@@ -86,6 +86,11 @@ namespace EmulationCoordination.Utilities
             return FriendlyName.GetHashCode();
         }
 
+        public override string ToString()
+        {
+            return FriendlyName;
+        }
+
         public String FriendlyName { get; }
         public List<String> FileExtensions { get; }
         

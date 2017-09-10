@@ -21,17 +21,31 @@ namespace EmulationCoordination.Gui.Forms
         public CustomEmulatorForm()
         {
             InitializeComponent();
+            UpdateSupportedConsoles();
+        }
+
+        private void UpdateSupportedConsoles()
+        {
+            mConsolesTextBox.Items.Clear();
+            foreach(var console in EmulatorConsoles.Values)
+            {
+                mConsolesTextBox.Items.Add(console);
+            }
         }
 
         public void Initialize(EmulatorConsoles console)
         {
             DialogResult = DialogResult.Cancel;
-            Emulator = new CustomEmulator()
-            {
-                ConsoleNames = new List<EmulatorConsoles>() { console },
-            };
+            Emulator = new CustomEmulator();
             Console = console;
-            Text = String.Format("Add Custom {0} Emulator",console.FriendlyName);
+            for(int i = 0; i < mConsolesTextBox.Items.Count; i++)
+            {
+                if((EmulatorConsoles)mConsolesTextBox.Items[i] == console)
+                {
+                    mConsolesTextBox.SetItemChecked(i, true);
+                }
+            }
+            Text = String.Format("Add Custom Emulator");
         }
 
         private void mBrowseButton_Click(object sender, EventArgs e)
@@ -58,7 +72,8 @@ namespace EmulationCoordination.Gui.Forms
             if(String.IsNullOrEmpty(mPathToExecutableTextBox.Text) ||
                String.IsNullOrEmpty(mEmulatorNameTextBox.Text) ||
                String.IsNullOrEmpty(mEmulatorVersionTextBox.Text) ||
-               String.IsNullOrEmpty(mEmulatorArgs.Text))
+               String.IsNullOrEmpty(mEmulatorArgs.Text) ||
+               mConsolesTextBox.SelectedItems.Count == 0)
             {
                 MessageBox.Show("All fields must be filled out", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -68,6 +83,7 @@ namespace EmulationCoordination.Gui.Forms
                 Emulator.EmulatorName = mEmulatorNameTextBox.Text;
                 Emulator.PathToExecutable = mPathToExecutableTextBox.Text;
                 Emulator.Version = mEmulatorVersionTextBox.Text;
+                Emulator.ConsoleNames = mConsolesTextBox.CheckedItems.OfType<EmulatorConsoles>().ToList();
                 DialogResult = DialogResult.OK;
             }
         }
