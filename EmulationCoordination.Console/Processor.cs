@@ -16,6 +16,7 @@ namespace EmulationCoordination
         List<IReadOnlyEmulator> emulators;
         List<IReadOnlyEmulator> installedEmulators;
         List<IReadOnlyEmulator> availableEmulators;
+        List<IReadOnlyEmulator> customEmulators;
 
         public Processor()
         {
@@ -54,14 +55,13 @@ namespace EmulationCoordination
 
         private void HandlePlayEmulator()
         {
-            int selectedEmulator = SelectEmulator(installedEmulators);
-            if(selectedEmulator != -1)
+            var selectedEmulator = SelectEmulator(installedEmulators.Concat(customEmulators).ToList());
+            if(selectedEmulator != null)
             {
-                var emulator = installedEmulators[selectedEmulator];
-                var selectedRom = SelectRom(emulator);
+                var selectedRom = SelectRom(selectedEmulator);
                 if(selectedRom != null)
                 {
-                    emuMgr.RunEmulator(emulator, selectedRom);
+                    emuMgr.RunEmulator(selectedEmulator, selectedRom);
                 }
             }
         }
@@ -101,46 +101,48 @@ namespace EmulationCoordination
 
         private void HandleDeleteEmulator()
         {
-            int selectedEmulator = SelectEmulator(installedEmulators);
+            var selectedEmulator = SelectEmulator(installedEmulators);
 
-            if (selectedEmulator != -1)
+            if (selectedEmulator != null)
             {
-                var emulator = installedEmulators[selectedEmulator];
-                Console.WriteLine(String.Format("Deleting {0}", emulator.EmulatorName));
-                emuMgr.DeleteEmulator(emulator);
+                Console.WriteLine(String.Format("Deleting {0}", selectedEmulator.EmulatorName));
+                emuMgr.DeleteEmulator(selectedEmulator);
                 Console.WriteLine("Complete");
             }
         }
 
         private void HandleDownloadEmulator()
         {
-            int selectedEmulator = SelectEmulator(availableEmulators);
+            var selectedEmulator = SelectEmulator(availableEmulators);
 
-            if(selectedEmulator!= -1)
+            if(selectedEmulator!= null)
             {
-                var emulator = availableEmulators[selectedEmulator];
-                Console.WriteLine(String.Format("Downloading {0}", emulator.EmulatorName));
-                emuMgr.DownloadAndInstallEmulator(emulator);
+                Console.WriteLine(String.Format("Downloading {0}", selectedEmulator.EmulatorName));
+                emuMgr.DownloadAndInstallEmulator(selectedEmulator);
                 Console.WriteLine("Complete");
             }
         }
 
-        private int SelectEmulator(List<IReadOnlyEmulator> emulatorList)
+        private IReadOnlyEmulator SelectEmulator(List<IReadOnlyEmulator> emulatorList)
         {
             int selectedEmulator;
+            for (int i = 1; i < emulatorList.Count + 1; i++)
+            {
+                Console.WriteLine(String.Format("{0}: {1}",i,emulatorList[i-1].EmulatorName));
+            }
             while (true)
             {
                 Console.Write("Enter Emulator Number ('exit' to quit) > ");
                 String input = Console.ReadLine();
                 if(input == "exit")
                 {
-                    return -1;
+                    return null;
                 }
                 if (int.TryParse(input, out selectedEmulator))
                 {
                     if (selectedEmulator > 0 && selectedEmulator <= emulatorList.Count)
                     {
-                        return selectedEmulator-1;
+                        return emulatorList[selectedEmulator];
                     }
                 }
             }
@@ -149,8 +151,9 @@ namespace EmulationCoordination
         private void UpdateEmulatorInfo()
         {
             emulators = emuMgr.GetAvailableEmulators();
-            installedEmulators = emulators.Where(f => f.Installed).ToList();
-            availableEmulators = emulators.Where(f => !f.Installed).ToList();
+            installedEmulators = emulators.Where(f => f.Installed && f.EmulatorType == EmulatorType.BUILTIN).ToList();
+            availableEmulators = emulators.Where(f => !f.Installed && f.EmulatorType == EmulatorType.BUILTIN).ToList();
+            customEmulators = emulators.Where(f => f.EmulatorType == EmulatorType.CUSTOM).ToList();
         }
 
         private void PrintEmulatorInfo()
@@ -169,7 +172,15 @@ namespace EmulationCoordination
                 var emulator = availableEmulators[i - 1];
                 Console.WriteLine(String.Format("{0}) {1} ({2}) ({3})", i, emulator.EmulatorName, emulator.Version, string.Join(",", emulator.ConsoleNames)));
             }
-            Console.WriteLine();
+			Console.WriteLine();
+
+			Console.WriteLine("The Following Custom Emulators Have Been Defined:");
+            for (int i = 1; i <= customEmulators.Count; i++)
+			{
+				var emulator = customEmulators[i - 1];
+				Console.WriteLine(String.Format("{0}) {1} ({2}) ({3})", i, emulator.EmulatorName, emulator.Version, string.Join(",", emulator.ConsoleNames)));
+			}
+			Console.WriteLine();
         }
     }
 }
