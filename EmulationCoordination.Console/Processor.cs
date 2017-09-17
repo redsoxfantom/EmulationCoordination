@@ -78,7 +78,7 @@ namespace EmulationCoordination
             for(int i = 1; i <= availableRoms.Count; i++)
             {
                 var rom = availableRoms[i - 1];
-                Console.WriteLine(String.Format("{0}) {1}",i,rom.FriendlyName));
+                Console.WriteLine(String.Format("{0}) {1} (Time Played: {2})",i,rom.FriendlyName,rom.PrettyPrintPlayTime()));
             }
 
             int selectedRom;
