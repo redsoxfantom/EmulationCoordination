@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using EmulationCoordination.Emulators;
+using EmulationCoordination.Emulators.Interfaces;
+using System.Collections.Generic;
 
 namespace EmulationCoordination
 {
@@ -40,5 +42,30 @@ namespace EmulationCoordination
 			}
 			Console.WriteLine();
 		}
+
+        public static IReadOnlyEmulator SelectEmulator(List<IReadOnlyEmulator> emulatorList)
+        {
+            int selectedEmulator;
+            for (int i = 1; i < emulatorList.Count + 1; i++)
+            {
+                Console.WriteLine(String.Format("{0}: {1}", i, emulatorList[i - 1].EmulatorName));
+            }
+            while (true)
+            {
+                Console.Write("Enter Emulator Number ('exit' to quit) > ");
+                String input = Console.ReadLine();
+                if (input == "exit")
+                {
+                    return null;
+                }
+                if (int.TryParse(input, out selectedEmulator))
+                {
+                    if (selectedEmulator > 0 && selectedEmulator <= emulatorList.Count)
+                    {
+                        return emulatorList[selectedEmulator - 1];
+                    }
+                }
+            }
+        }
     }
 }
