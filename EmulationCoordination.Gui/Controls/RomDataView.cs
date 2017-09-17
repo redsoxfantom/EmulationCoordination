@@ -35,48 +35,10 @@ namespace EmulationCoordination.Gui.Controls
             DescriptionBox.Text = data.Description;
             DeveloperLabel.Text = data.Developer;
             PublisherLabel.Text = data.Publisher;
-            ReleaseDateLabel.Text = PrettyPrintReleaseDate(data.ReleaseDate);
+            ReleaseDateLabel.Text = data.PrettyPrintReleaseDate();
             NumPlayersLabel.Text = data.NumPlayers;
-            RatingLabel.Text = PrettyPrintRating(data.Rating);
-            TimePlayedLabel.Text = PrettyPrintPlayTime(data.TimePlayed);
-        }
-
-        private string PrettyPrintReleaseDate(DateTime time)
-        {
-            if(time == DateTime.MinValue)
-            {
-                return "Unknown";
-            }
-            return time.ToShortDateString();
-        }
-
-        private string PrettyPrintRating(float rating)
-        {
-            return String.Format("{0}/10",(int)rating);
-        }
-
-        private string PrettyPrintPlayTime(TimeSpan span)
-        {
-            if (span.TotalDays >= 2)
-            {
-                return String.Format("{0} Days", (int)span.TotalDays);
-            }
-            else if (span.TotalHours >= 2)
-            {
-                return String.Format("{0} Hours", (int)span.TotalHours);
-            }
-            else if (span.TotalMinutes >= 2)
-            {
-                return String.Format("{0} Minutes", (int)span.TotalMinutes);
-            }
-            else if (span.TotalSeconds >= 2)
-            {
-                return String.Format("{0} Seconds", (int)span.TotalSeconds);
-            }
-            else
-            {
-                return "Not Played";
-            }
+            RatingLabel.Text = data.PrettyPrintRating();
+            TimePlayedLabel.Text = data.PrettyPrintPlayTime();
         }
 
         private void ScrapeLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

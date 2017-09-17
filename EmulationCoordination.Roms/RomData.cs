@@ -69,5 +69,42 @@ namespace EmulationCoordination.Roms
 
             return data;
         }
+        public string PrettyPrintPlayTime()
+        {
+            if (TimePlayed.TotalDays >= 2)
+            {
+                return String.Format("{0} Days", (int)TimePlayed.TotalDays);
+            }
+            else if (TimePlayed.TotalHours >= 2)
+            {
+                return String.Format("{0} Hours", (int)TimePlayed.TotalHours);
+            }
+            else if (TimePlayed.TotalMinutes >= 2)
+            {
+                return String.Format("{0} Minutes", (int)TimePlayed.TotalMinutes);
+            }
+            else if (TimePlayed.TotalSeconds >= 2)
+            {
+                return String.Format("{0} Seconds", (int)TimePlayed.TotalSeconds);
+            }
+            else
+            {
+                return "Not Played";
+            }
+        }
+
+        public string PrettyPrintReleaseDate()
+        {
+            if (ReleaseDate == DateTime.MinValue)
+            {
+                return "Unknown";
+            }
+            return ReleaseDate.ToShortDateString();
+        }
+
+        public string PrettyPrintRating()
+        {
+            return String.Format("{0}/10", (int)Rating);
+        }
     }
 }
