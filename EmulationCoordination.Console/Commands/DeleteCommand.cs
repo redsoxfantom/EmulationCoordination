@@ -20,7 +20,8 @@ namespace EmulationCoordination.Commands
 
         public void Execute()
         {
-            var installedEmulators = mgr.GetAvailableEmulators().Where(f => f.Installed && f.EmulatorType == EmulatorType.BUILTIN).ToList();
+            var installedEmulators = mgr.GetAvailableEmulators().Where(f => f.Installed && f.EmulatorType == EmulatorType.BUILTIN 
+                || f.EmulatorType == EmulatorType.CUSTOM).ToList();
             var selectedEmulator = ConsoleUtilities.SelectEmulator(installedEmulators);
 
             if (selectedEmulator != null)

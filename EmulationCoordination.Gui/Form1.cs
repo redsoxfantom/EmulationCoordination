@@ -62,7 +62,7 @@ namespace EmulationCoordination.Gui
             backgroundWorker1.DoWork += (sender, e) =>
             {
                 IReadOnlyEmulator emu = (IReadOnlyEmulator)e.Argument;
-                emuMgr.RemoveCustomEmulator(emu);
+                emuMgr.DeleteEmulator(emu);
             };
             backgroundWorker1.RunWorkerCompleted += (sender, e) =>
             {

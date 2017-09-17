@@ -88,7 +88,7 @@ namespace EmulationCoordination.Emulators
             return availableEmulators.Keys.ToList();
         }
 
-        public void RemoveCustomEmulator(IReadOnlyEmulator emulator)
+        private void RemoveCustomEmulator(IReadOnlyEmulator emulator)
         {
             EmulatorManagerConfigKey key = new EmulatorManagerConfigKey()
             {
@@ -153,9 +153,17 @@ namespace EmulationCoordination.Emulators
 
         public bool DeleteEmulator(IReadOnlyEmulator emulator)
         {
-            bool uninstallResult= availableEmulators[emulator].Delete();
-            UpdateConfigProperty(emulator, !uninstallResult);
-
+            bool uninstallResult = false;
+            if (emulator.EmulatorType == EmulatorType.BUILTIN)
+            {
+                uninstallResult = availableEmulators[emulator].Delete();
+                UpdateConfigProperty(emulator, !uninstallResult);
+            }
+            else
+            {
+                RemoveCustomEmulator(emulator);
+                uninstallResult = true;
+            }
             return uninstallResult;
         }
 

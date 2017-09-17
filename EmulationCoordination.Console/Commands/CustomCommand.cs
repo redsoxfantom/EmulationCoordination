@@ -71,6 +71,7 @@ namespace EmulationCoordination.Commands
                 {
                     Console.WriteLine(String.Format("{0}) {1}", i, EmulatorConsoles.Values.ToArray()[i - 1]));
                 }
+                Console.Write("> ");
                 string emulatorConsoleInput = Console.ReadLine();
 
                 inputAccepted = tryParseEmulatorConsoles(emulatorConsoleInput, out emulatorConsoles);
