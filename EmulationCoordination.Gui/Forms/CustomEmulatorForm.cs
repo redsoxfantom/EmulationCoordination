@@ -36,7 +36,6 @@ namespace EmulationCoordination.Gui.Forms
         public void Initialize(EmulatorConsoles console)
         {
             DialogResult = DialogResult.Cancel;
-            Emulator = new CustomEmulator();
             Console = console;
             for(int i = 0; i < mConsolesTextBox.Items.Count; i++)
             {
@@ -79,11 +78,8 @@ namespace EmulationCoordination.Gui.Forms
             }
             else
             {
-                Emulator.CommandLineArguments = mEmulatorArgs.Text;
-                Emulator.EmulatorName = mEmulatorNameTextBox.Text;
-                Emulator.PathToExecutable = mPathToExecutableTextBox.Text;
-                Emulator.Version = mEmulatorVersionTextBox.Text;
-                Emulator.ConsoleNames = mConsolesTextBox.CheckedItems.OfType<EmulatorConsoles>().ToList();
+                Emulator = new CustomEmulator(mPathToExecutableTextBox.Text, mEmulatorArgs.Text, mEmulatorVersionTextBox.Text, 
+                    mEmulatorNameTextBox.Text, mConsolesTextBox.CheckedItems.OfType<EmulatorConsoles>().ToList());
                 DialogResult = DialogResult.OK;
             }
         }

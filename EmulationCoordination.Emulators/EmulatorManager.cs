@@ -67,15 +67,8 @@ namespace EmulationCoordination.Emulators
                 if(configuredEmulator.EmulatorType == EmulatorType.CUSTOM)
                 {
                     var emuCfg = loadedConfig[configuredEmulator].CustomConfig;
-                    CustomEmulator emu = new CustomEmulator()
-                    {
-                        CommandLineArguments = emuCfg.CommandLineArgs,
-                        ConsoleNames = emuCfg.Consoles,
-                        EmulatorName = configuredEmulator.EmulatorName,
-                        PathToExecutable = emuCfg.PathToExecutable,
-                        Installed = true,
-                        Version = configuredEmulator.EmulatorVersion
-                    };
+                    CustomEmulator emu = new CustomEmulator(emuCfg.PathToExecutable, emuCfg.CommandLineArgs, 
+                        configuredEmulator.EmulatorVersion, configuredEmulator.EmulatorName, emuCfg.Consoles);
                     availableEmulators.Add(emu,emu);
                 }
             }

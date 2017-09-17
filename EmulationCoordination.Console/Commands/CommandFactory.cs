@@ -17,6 +17,7 @@ namespace EmulationCoordination.Commands
                 new DeleteCommand(),
                 new PlayCommand(),
                 new DownloadCommand(),
+                new CustomCommand(),
                 new ExitCommand()
             };
         }

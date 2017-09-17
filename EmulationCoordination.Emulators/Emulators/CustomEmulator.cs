@@ -64,9 +64,15 @@ namespace EmulationCoordination.Emulators.Emulators
             proc.WaitForExit();
         }
 
-        public CustomEmulator()
+        public CustomEmulator(String PathToExecutable, String CommandLineArguments, 
+            String Version, String EmulatorName, List<EmulatorConsoles> EmulatorConsoles)
         {
             Installed = true;
+            this.PathToExecutable = PathToExecutable;
+            this.CommandLineArguments = CommandLineArguments;
+            this.Version = Version;
+            this.EmulatorName = EmulatorName;
+            ConsoleNames = EmulatorConsoles;
         }
     }
 }
