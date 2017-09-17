@@ -77,7 +77,8 @@ namespace EmulationCoordination
             Console.WriteLine(String.Format("The following games are available for {0}:", emulator.EmulatorName));
             for(int i = 1; i <= availableRoms.Count; i++)
             {
-                Console.WriteLine(String.Format("{0}) {1}",i,availableRoms[i-1].FriendlyName));
+                var rom = availableRoms[i - 1];
+                Console.WriteLine(String.Format("{0}) {1}",i,rom.FriendlyName));
             }
 
             int selectedRom;
@@ -142,7 +143,7 @@ namespace EmulationCoordination
                 {
                     if (selectedEmulator > 0 && selectedEmulator <= emulatorList.Count)
                     {
-                        return emulatorList[selectedEmulator];
+                        return emulatorList[selectedEmulator-1];
                     }
                 }
             }
