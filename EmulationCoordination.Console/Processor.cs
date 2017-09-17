@@ -12,14 +12,10 @@ namespace EmulationCoordination
 {
     public class Processor
     {
-        EmulatorManager emuMgr;
-        RomManager romMgr;
         CommandFactory factory;
 
         public Processor()
         {
-            emuMgr = EmulatorManager.Instance;
-            romMgr = RomManager.Instance;
             factory = new CommandFactory();
         }
 
