@@ -67,5 +67,8 @@
   <ItemGroup>
     <None Include="Resources\UnknownConsole.bmp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gamecube.jpeg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
