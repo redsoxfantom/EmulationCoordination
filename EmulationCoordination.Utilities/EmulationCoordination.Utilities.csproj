@@ -70,5 +70,26 @@
   <ItemGroup>
     <None Include="Resources\gamecube.jpeg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PS2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SegaMasterSystem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SNES.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\N64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GameBoyColor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GameBoyAdvance.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GameBoy.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -10,14 +10,14 @@ namespace EmulationCoordination.Utilities
 {
     public class EmulatorConsoles
     {
-        public static readonly EmulatorConsoles GAME_BOY = new EmulatorConsoles("Game Boy", ConsoleImages.UnknownConsole, new List<string>() { ".gb" });
-        public static readonly EmulatorConsoles GAME_BOY_COLOR = new EmulatorConsoles("Game Boy Color", ConsoleImages.UnknownConsole, new List<string>() { ".gbc" });
-        public static readonly EmulatorConsoles GAME_BOY_ADVANCE = new EmulatorConsoles("Game Boy Advance", ConsoleImages.UnknownConsole, new List<string>() { ".gba" });
-        public static readonly EmulatorConsoles NINTENDO_64 = new EmulatorConsoles("Nintendo 64", ConsoleImages.UnknownConsole, new List<string>() { ".n64" });
-        public static readonly EmulatorConsoles SNES = new EmulatorConsoles("SNES", ConsoleImages.UnknownConsole, new List<string>() { ".sfc" });
+        public static readonly EmulatorConsoles GAME_BOY = new EmulatorConsoles("Game Boy", ConsoleImages.GameBoy, new List<string>() { ".gb" });
+        public static readonly EmulatorConsoles GAME_BOY_COLOR = new EmulatorConsoles("Game Boy Color", ConsoleImages.GameBoyColor, new List<string>() { ".gbc" });
+        public static readonly EmulatorConsoles GAME_BOY_ADVANCE = new EmulatorConsoles("Game Boy Advance", ConsoleImages.GameBoyAdvance, new List<string>() { ".gba" });
+        public static readonly EmulatorConsoles NINTENDO_64 = new EmulatorConsoles("Nintendo 64", ConsoleImages.N64, new List<string>() { ".n64" });
+        public static readonly EmulatorConsoles SNES = new EmulatorConsoles("SNES", ConsoleImages.SNES, new List<string>() { ".sfc" });
         public static readonly EmulatorConsoles GAMECUBE = new EmulatorConsoles("GameCube", ConsoleImages.Gamecube, new List<string>() { ".iso" });
-        public static readonly EmulatorConsoles MASTER_SYSTEM = new EmulatorConsoles("Sega Master System", ConsoleImages.UnknownConsole, new List<string>() { ".sms" });
-        public static readonly EmulatorConsoles PLAYSTATION_2 = new EmulatorConsoles("Playstation 2", ConsoleImages.UnknownConsole, new List<string>() { ".iso" });
+        public static readonly EmulatorConsoles MASTER_SYSTEM = new EmulatorConsoles("Sega Master System", ConsoleImages.SegaMasterSystem, new List<string>() { ".sms" });
+        public static readonly EmulatorConsoles PLAYSTATION_2 = new EmulatorConsoles("Playstation 2", ConsoleImages.PS2, new List<string>() { ".iso" });
         public static readonly EmulatorConsoles UNKNOWN = new EmulatorConsoles("Unknown Console Type", ConsoleImages.UnknownConsole);
 
         public static IEnumerable<EmulatorConsoles> Values
