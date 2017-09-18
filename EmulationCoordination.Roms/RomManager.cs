@@ -18,6 +18,7 @@ namespace EmulationCoordination.Roms
         private Dictionary<string,RomData> loadedRomData;
         private List<RomFileSystemWatcher> romWatchers;
         private ImageConverter imageConverter;
+        private ConsoleConverter consoleConverter;
 
         public event NewRomHandler NewRomAdded;
 
@@ -38,6 +39,7 @@ namespace EmulationCoordination.Roms
         {
             rootDirectory = Path.Combine(FileUtilities.GetRootDirectory(), "Games");
             imageConverter = new ImageConverter();
+            consoleConverter = new ConsoleConverter();
             romWatchers = new List<RomFileSystemWatcher>();
             
             foreach(var console in EmulatorConsoles.Values)
@@ -116,7 +118,7 @@ namespace EmulationCoordination.Roms
                 String relativePathToConfig = Path.Combine("Games", ConsoleToSearch.FriendlyName, 
                     String.Format("{0}.data.json", Path.GetFileNameWithoutExtension(file)));
 
-                RomData loadedData = FileUtilities.LoadFile<RomData>(relativePathToConfig, imageConverter);
+                RomData loadedData = FileUtilities.LoadFile<RomData>(relativePathToConfig, imageConverter,consoleConverter);
                 loadedRomData.Add(loadedData.Path, loadedData);
                 return loadedData;
             }

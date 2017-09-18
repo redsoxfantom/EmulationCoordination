@@ -59,7 +59,10 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.ScrapeLink = new System.Windows.Forms.LinkLabel();
+            this.BannerAndConsolePanel = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
             this.BannerPanel = new System.Windows.Forms.Panel();
+            this.ConsolePanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -72,6 +75,8 @@
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel12.SuspendLayout();
+            this.BannerAndConsolePanel.SuspendLayout();
+            this.tableLayoutPanel13.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -83,7 +88,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.BannerPanel, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.BannerAndConsolePanel, 0, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
@@ -505,14 +510,48 @@
             this.ScrapeLink.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ScrapeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ScrapeLink_LinkClicked);
             // 
+            // BannerAndConsolePanel
+            // 
+            this.BannerAndConsolePanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BannerAndConsolePanel.Controls.Add(this.tableLayoutPanel13);
+            this.BannerAndConsolePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BannerAndConsolePanel.Location = new System.Drawing.Point(3, 3);
+            this.BannerAndConsolePanel.Name = "BannerAndConsolePanel";
+            this.BannerAndConsolePanel.Size = new System.Drawing.Size(906, 126);
+            this.BannerAndConsolePanel.TabIndex = 2;
+            // 
+            // tableLayoutPanel13
+            // 
+            this.tableLayoutPanel13.ColumnCount = 2;
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.tableLayoutPanel13.Controls.Add(this.BannerPanel, 1, 0);
+            this.tableLayoutPanel13.Controls.Add(this.ConsolePanel, 0, 0);
+            this.tableLayoutPanel13.Location = new System.Drawing.Point(6, 3);
+            this.tableLayoutPanel13.Name = "tableLayoutPanel13";
+            this.tableLayoutPanel13.RowCount = 1;
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(894, 120);
+            this.tableLayoutPanel13.TabIndex = 0;
+            // 
             // BannerPanel
             // 
             this.BannerPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BannerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BannerPanel.Location = new System.Drawing.Point(3, 3);
+            this.BannerPanel.Location = new System.Drawing.Point(181, 3);
             this.BannerPanel.Name = "BannerPanel";
-            this.BannerPanel.Size = new System.Drawing.Size(906, 126);
-            this.BannerPanel.TabIndex = 2;
+            this.BannerPanel.Size = new System.Drawing.Size(710, 114);
+            this.BannerPanel.TabIndex = 0;
+            // 
+            // ConsolePanel
+            // 
+            this.ConsolePanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ConsolePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ConsolePanel.Location = new System.Drawing.Point(3, 3);
+            this.ConsolePanel.Name = "ConsolePanel";
+            this.ConsolePanel.Size = new System.Drawing.Size(172, 114);
+            this.ConsolePanel.TabIndex = 1;
             // 
             // RomDataView
             // 
@@ -541,6 +580,8 @@
             this.tableLayoutPanel6.PerformLayout();
             this.tableLayoutPanel12.ResumeLayout(false);
             this.tableLayoutPanel12.PerformLayout();
+            this.BannerAndConsolePanel.ResumeLayout(false);
+            this.tableLayoutPanel13.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -548,7 +589,7 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel BannerPanel;
+        private System.Windows.Forms.Panel BannerAndConsolePanel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Panel BoxArtPanel;
@@ -579,5 +620,8 @@
         private System.Windows.Forms.LinkLabel ScrapeLink;
         private System.Windows.Forms.LinkLabel ManualLink;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel13;
+        private System.Windows.Forms.Panel BannerPanel;
+        private System.Windows.Forms.Panel ConsolePanel;
     }
 }

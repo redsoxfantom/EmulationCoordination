@@ -53,7 +53,7 @@ namespace EmulationCoordination.Emulators
 
             EmulatorInstallDir = Path.Combine(FileUtilities.GetRootDirectory(),"Emulators");
 
-            loadedConfig = FileUtilities.LoadFile<EmulatorManagerConfigDictionary>("EmulatorManager.json");
+            loadedConfig = FileUtilities.LoadFile<EmulatorManagerConfigDictionary>("EmulatorManager.json",new ConsoleConverter());
             foreach (var configuredEmulator in loadedConfig.Keys)
             {
                 if (configuredEmulator.EmulatorType == EmulatorType.BUILTIN)

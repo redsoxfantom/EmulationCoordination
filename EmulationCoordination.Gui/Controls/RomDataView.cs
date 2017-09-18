@@ -39,6 +39,7 @@ namespace EmulationCoordination.Gui.Controls
             NumPlayersLabel.Text = data.NumPlayers;
             RatingLabel.Text = data.PrettyPrintRating();
             TimePlayedLabel.Text = data.PrettyPrintPlayTime();
+            ConsolePanel.BackgroundImage = data.Console.ConsoleImage;
         }
 
         private void ScrapeLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
