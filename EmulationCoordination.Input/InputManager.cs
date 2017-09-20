@@ -1,4 +1,5 @@
-﻿using OpenTK.Input;
+﻿using OpenTK;
+using OpenTK.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,12 @@ namespace EmulationCoordination.Input
     public class InputManager
     {
         private bool mExitRequested = false;
+
+        public GameWindow GameWindow
+        {
+            set;
+            private get;
+        }
 
         public bool ExitRequested
         {
@@ -33,6 +40,7 @@ namespace EmulationCoordination.Input
         
         private InputManager()
         {
+            GameWindow = null;
             Task.Factory.StartNew(() => {
                 while(true)
                 {
@@ -56,6 +64,11 @@ namespace EmulationCoordination.Input
 
         private void UpdateInputState()
         {
+            if(GameWindow == null || !GameWindow.Focused)
+            {
+                return;
+            }
+
             var keyboard = Keyboard.GetState();
             if(keyboard[Key.Escape])
             {
