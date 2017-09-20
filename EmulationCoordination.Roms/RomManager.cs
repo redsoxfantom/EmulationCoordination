@@ -86,6 +86,22 @@ namespace EmulationCoordination.Roms
             return returnList;
         }
 
+        public Dictionary<EmulatorConsoles,List<RomData>> GetAllRoms()
+        {
+            Dictionary<EmulatorConsoles, List<RomData>> returnVal = new Dictionary<EmulatorConsoles, List<RomData>>();
+
+            foreach(var console in EmulatorConsoles.Values)
+            {
+                var consoleData = GetRoms(console);
+                if(consoleData.Count > 0)
+                {
+                    returnVal.Add(console, consoleData);
+                }
+            }
+
+            return returnVal;
+        }
+
         public void UpdateRomData(RomData data)
         {
             if(loadedRomData.ContainsKey(data.Path))

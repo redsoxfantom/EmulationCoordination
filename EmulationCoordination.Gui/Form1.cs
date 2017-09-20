@@ -1,5 +1,4 @@
-﻿using EmulationCoordination.Controllers;
-using EmulationCoordination.Emulators;
+﻿using EmulationCoordination.Emulators;
 using EmulationCoordination.Emulators.Interfaces;
 using EmulationCoordination.Gui.Forms;
 using EmulationCoordination.Roms;
@@ -24,15 +23,13 @@ namespace EmulationCoordination.Gui
 
         private EmulatorManager emuMgr;
         private RomManager romMgr;
-        private ControllerManager ctrlMgr;
-
+        
         public MainWindow()
         {
             InitializeComponent();
 
             emuMgr = EmulatorManager.Instance;
             romMgr = RomManager.Instance;
-            ctrlMgr = ControllerManager.Instance;
             romMgr.NewRomAdded += RomMgr_NewRomAdded;
 
             UpdateEmulatorList();

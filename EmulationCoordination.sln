@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmulationCoordination.Scrap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmulationCoordination.Gui", "EmulationCoordination.Gui\EmulationCoordination.Gui.csproj", "{36A5ED1E-0B59-4C04-8144-91201241758A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmulationCoordination.Controllers", "EmulationCoordination.Controllers\EmulationCoordination.Controllers.csproj", "{60D63A4A-2528-4F51-AD47-EFC647C3EE9D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmulationCoordination.Fullscreen.Gui", "EmulationCoordination.Fullscreen.Gui\EmulationCoordination.Fullscreen.Gui.csproj", "{672A6455-F90E-4B65-9B5D-2BA50C0DD9B7}"
 EndProject
 Global
@@ -49,10 +47,6 @@ Global
 		{36A5ED1E-0B59-4C04-8144-91201241758A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36A5ED1E-0B59-4C04-8144-91201241758A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36A5ED1E-0B59-4C04-8144-91201241758A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{60D63A4A-2528-4F51-AD47-EFC647C3EE9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{60D63A4A-2528-4F51-AD47-EFC647C3EE9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{60D63A4A-2528-4F51-AD47-EFC647C3EE9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{60D63A4A-2528-4F51-AD47-EFC647C3EE9D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{672A6455-F90E-4B65-9B5D-2BA50C0DD9B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{672A6455-F90E-4B65-9B5D-2BA50C0DD9B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{672A6455-F90E-4B65-9B5D-2BA50C0DD9B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
