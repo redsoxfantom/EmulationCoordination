@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmulationCoordination.Gui",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmulationCoordination.Fullscreen.Gui", "EmulationCoordination.Fullscreen.Gui\EmulationCoordination.Fullscreen.Gui.csproj", "{672A6455-F90E-4B65-9B5D-2BA50C0DD9B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmulationCoordination.Input", "EmulationCoordination.Input\EmulationCoordination.Input.csproj", "{2B7E5AFE-1743-48BD-9696-C9F911CCC097}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{672A6455-F90E-4B65-9B5D-2BA50C0DD9B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{672A6455-F90E-4B65-9B5D-2BA50C0DD9B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{672A6455-F90E-4B65-9B5D-2BA50C0DD9B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B7E5AFE-1743-48BD-9696-C9F911CCC097}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B7E5AFE-1743-48BD-9696-C9F911CCC097}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B7E5AFE-1743-48BD-9696-C9F911CCC097}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B7E5AFE-1743-48BD-9696-C9F911CCC097}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
