@@ -11,8 +11,6 @@ namespace EmulationCoordination.Input
 {
     public class InputManager
     {
-        private bool mExitRequested = false;
-
         public GameWindow GameWindow
         {
             set;
@@ -21,19 +19,8 @@ namespace EmulationCoordination.Input
 
         public bool ExitRequested
         {
-            private set
-            {
-                mExitRequested = value;
-            }
-            get
-            {
-                if(mExitRequested)
-                {
-                    mExitRequested = false;
-                    return true;
-                }
-                return false;
-            }
+            private set;
+            get;
         }
 
         private static InputManager mInstance = null;
@@ -72,7 +59,11 @@ namespace EmulationCoordination.Input
             var keyboard = Keyboard.GetState();
             if(keyboard[Key.Escape])
             {
-                mExitRequested = true;
+                ExitRequested = true;
+            }
+            else
+            {
+                ExitRequested = false;
             }
         }
     }
