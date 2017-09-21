@@ -1,6 +1,7 @@
 ﻿using EmulationCoordination.Roms.DataContracts;
 using EmulationCoordination.Utilities;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace EmulationCoordination.Roms
     {
         private static RomManager mInstance = null;
         private String rootDirectory;
-        private Dictionary<string,RomData> loadedRomData;
+        private ConcurrentDictionary<string,RomData> loadedRomData;
         private List<RomFileSystemWatcher> romWatchers;
         private ImageConverter imageConverter;
         private ConsoleConverter consoleConverter;
@@ -58,7 +59,7 @@ namespace EmulationCoordination.Roms
                 }
             }
             
-            loadedRomData = new Dictionary<string, RomData>();
+            loadedRomData = new ConcurrentDictionary<string, RomData>();
         }
 
         private void NewRomFound(object sender, FileSystemEventArgs e)
@@ -90,14 +91,13 @@ namespace EmulationCoordination.Roms
         {
             Dictionary<EmulatorConsoles, List<RomData>> returnVal = new Dictionary<EmulatorConsoles, List<RomData>>();
 
-            foreach(var console in EmulatorConsoles.Values)
-            {
+            Parallel.ForEach(EmulatorConsoles.Values, (console => {
                 var consoleData = GetRoms(console);
-                if(consoleData.Count > 0)
+                if (consoleData.Count > 0)
                 {
                     returnVal.Add(console, consoleData);
                 }
-            }
+            }));
 
             return returnVal;
         }
@@ -110,7 +110,7 @@ namespace EmulationCoordination.Roms
             }
             else
             {
-                loadedRomData.Add(data.Path, data);
+                loadedRomData.TryAdd(data.Path, data);
             }
 
             String relativePathToConfig = Path.Combine("Games", data.Console.FriendlyName,
@@ -135,7 +135,7 @@ namespace EmulationCoordination.Roms
                     String.Format("{0}.data.json", Path.GetFileNameWithoutExtension(file)));
 
                 RomData loadedData = FileUtilities.LoadFile<RomData>(relativePathToConfig, imageConverter,consoleConverter);
-                loadedRomData.Add(loadedData.Path, loadedData);
+                loadedRomData.TryAdd(loadedData.Path, loadedData);
                 return loadedData;
             }
             else
