@@ -12,6 +12,7 @@ using System.Drawing.Imaging;
 using System.Drawing;
 using QuickFont;
 using QuickFont.Configuration;
+using EmulationCoordination.Input;
 
 namespace EmulationCoordination.Fullscreen.Gui.WindowStates
 {
@@ -19,11 +20,15 @@ namespace EmulationCoordination.Fullscreen.Gui.WindowStates
     {
         private List<EmulatorSelection> consoles;
         private EmulatorSelection selectedConsole;
+        private int selectedConsoleIndex;
         private QFont font;
         private QFontDrawing fontDrawing;
+        private InputManager inputMgr;
 
         public EmulatorSelectionWindowState()
         {
+            inputMgr = InputManager.Instance;
+
             font = new QFont("Fonts/times.ttf", 72, new QFontBuilderConfiguration());
             fontDrawing = new QFontDrawing();
 
@@ -49,6 +54,7 @@ namespace EmulationCoordination.Fullscreen.Gui.WindowStates
             }
 
             selectedConsole = consoles[0];
+            selectedConsoleIndex = 0;
         }
 
         public void Render()
@@ -89,7 +95,15 @@ namespace EmulationCoordination.Fullscreen.Gui.WindowStates
 
         public void Update()
         {
-
+            if(inputMgr.LeftRequested && selectedConsoleIndex < consoles.Count-1)
+            {
+                selectedConsoleIndex++;
+            }
+            if(inputMgr.RightRequested && selectedConsoleIndex > 0)
+            {
+                selectedConsoleIndex--;
+            }
+            selectedConsole = consoles[selectedConsoleIndex];
         }
 
         private class EmulatorSelection

@@ -30,7 +30,7 @@ namespace EmulationCoordination.Fullscreen.Gui
             GL.MatrixMode(MatrixMode.Projection);
             GL.LoadMatrix(ref projection);
 
-            Matrix4 modelview = Matrix4.LookAt(new Vector3(0,0,-10), new Vector3(0,0,0), Vector3.UnitY);
+            Matrix4 modelview = Matrix4.LookAt(new Vector3(0,0,-40), new Vector3(0,0,0), Vector3.UnitY);
             GL.MatrixMode(MatrixMode.Modelview);
             GL.LoadMatrix(ref modelview);
         }
