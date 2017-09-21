@@ -62,6 +62,8 @@ namespace EmulationCoordination.Fullscreen.Gui.WindowStates
             //fontDrawing.DrawingPrimitives.Clear();
             //fontDrawing.Print(font, "TEST", new Vector3(0.0f, 1.25f, 5.0f), QFontAlignment.Left);
 
+            GL.PushMatrix();
+            GL.Translate((-3 * selectedConsoleIndex), 0, 0);
             for(int x = 0; x < consoles.Count; x++)
             {
                 int z = 0;
@@ -72,6 +74,7 @@ namespace EmulationCoordination.Fullscreen.Gui.WindowStates
                 }
                 DrawConsole(x*3, z, console.textureId);
             }
+            GL.PopMatrix();
             
             //fontDrawing.RefreshBuffers();
             //fontDrawing.ProjectionMatrix = Matrix4.CreatePerspectiveFieldOfView((float)Math.PI / 4, 800 / (float)600, 1.0f, 64.0f);
