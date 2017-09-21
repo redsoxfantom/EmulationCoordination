@@ -11,17 +11,11 @@ namespace EmulationCoordination.Input
 {
     public class InputManager
     {
-        public GameWindow GameWindow
-        {
-            set;
-            private get;
-        }
+        public GameWindow GameWindow { set; private get;}
 
-        public bool ExitRequested
-        {
-            private set;
-            get;
-        }
+        public bool ExitRequested { private set; get; }
+        public bool LeftRequested { private set; get; }
+        public bool RightRequested { private set; get; }
 
         private static InputManager mInstance = null;
         
@@ -64,6 +58,24 @@ namespace EmulationCoordination.Input
             else
             {
                 ExitRequested = false;
+            }
+
+            if(keyboard[Key.Left])
+            {
+                LeftRequested = true;
+            }
+            else
+            {
+                LeftRequested = false;
+            }
+
+            if (keyboard[Key.Right])
+            {
+                RightRequested = true;
+            }
+            else
+            {
+                RightRequested = false;
             }
         }
     }
