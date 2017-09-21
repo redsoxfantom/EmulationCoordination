@@ -1,4 +1,5 @@
-﻿using OpenTK;
+﻿using EmulationCoordination.Input.InputMethods;
+using OpenTK;
 using OpenTK.Input;
 using System;
 using System.Collections.Generic;
@@ -11,24 +12,27 @@ namespace EmulationCoordination.Input
 {
     public class InputManager
     {
-        public GameWindow GameWindow { set; private get;}
+        public event InputReceivedEvent InputReceived;
+        private GameWindow mGameWindow = null;
+        public GameWindow GameWindow {
+            set
+            {
+                mGameWindow = value;
+                keyboard = new KeyboardMethod(mGameWindow);
+                keyboard.InputReceived += PeripheralInputReceived;
+            }
+            private get
+            {
+                return mGameWindow;
+            }
+        }
 
-        public bool ExitRequested { private set; get; }
-        public bool LeftRequested { private set; get; }
-        public bool RightRequested { private set; get; }
+        private IInputMethod keyboard;
 
         private static InputManager mInstance = null;
         
         private InputManager()
         {
-            GameWindow = null;
-            Task.Factory.StartNew(() => {
-                while(true)
-                {
-                    UpdateInputState();
-                    Thread.Sleep(16);
-                }
-            });
         }
 
         public static InputManager Instance
@@ -43,40 +47,9 @@ namespace EmulationCoordination.Input
             }
         }
 
-        private void UpdateInputState()
+        private void PeripheralInputReceived(InputType type)
         {
-            if(GameWindow == null || !GameWindow.Focused)
-            {
-                return;
-            }
-
-            var keyboard = Keyboard.GetState();
-            if(keyboard[Key.Escape])
-            {
-                ExitRequested = true;
-            }
-            else
-            {
-                ExitRequested = false;
-            }
-
-            if(keyboard[Key.Left])
-            {
-                LeftRequested = true;
-            }
-            else
-            {
-                LeftRequested = false;
-            }
-
-            if (keyboard[Key.Right])
-            {
-                RightRequested = true;
-            }
-            else
-            {
-                RightRequested = false;
-            }
+            InputReceived?.Invoke(type);
         }
     }
 }

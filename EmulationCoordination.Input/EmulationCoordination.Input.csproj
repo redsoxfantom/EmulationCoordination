@@ -43,7 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InputEventData.cs" />
     <Compile Include="InputManager.cs" />
+    <Compile Include="InputMethods\IInputMethod.cs" />
+    <Compile Include="InputMethods\KeyboardMethod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

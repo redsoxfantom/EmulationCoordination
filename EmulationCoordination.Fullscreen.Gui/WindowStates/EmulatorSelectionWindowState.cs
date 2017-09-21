@@ -23,11 +23,12 @@ namespace EmulationCoordination.Fullscreen.Gui.WindowStates
         private int selectedConsoleIndex;
         private QFont font;
         private QFontDrawing fontDrawing;
-        private InputManager inputMgr;
+        private bool leftRequested = false, rightRequested = false;
 
         public EmulatorSelectionWindowState()
         {
-            inputMgr = InputManager.Instance;
+            var inputMgr = InputManager.Instance;
+            inputMgr.InputReceived += InputMgr_InputReceived;
 
             font = new QFont("Fonts/times.ttf", 72, new QFontBuilderConfiguration());
             fontDrawing = new QFontDrawing();
@@ -55,6 +56,19 @@ namespace EmulationCoordination.Fullscreen.Gui.WindowStates
 
             selectedConsole = consoles[0];
             selectedConsoleIndex = 0;
+        }
+
+        private void InputMgr_InputReceived(InputType type)
+        {
+            switch(type)
+            {
+                case InputType.LEFT:
+                    leftRequested = true;
+                    break;
+                case InputType.RIGHT:
+                    rightRequested = true;
+                    break;
+            }
         }
 
         public void Render()
@@ -98,13 +112,15 @@ namespace EmulationCoordination.Fullscreen.Gui.WindowStates
 
         public void Update()
         {
-            if(inputMgr.LeftRequested && selectedConsoleIndex < consoles.Count-1)
+            if(leftRequested && selectedConsoleIndex < consoles.Count-1)
             {
                 selectedConsoleIndex++;
+                leftRequested = false;
             }
-            if(inputMgr.RightRequested && selectedConsoleIndex > 0)
+            if(rightRequested && selectedConsoleIndex > 0)
             {
                 selectedConsoleIndex--;
+                rightRequested = false;
             }
             selectedConsole = consoles[selectedConsoleIndex];
         }

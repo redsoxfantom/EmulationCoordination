@@ -14,6 +14,7 @@ namespace EmulationCoordination.Fullscreen.Gui
     {
         private WindowManager winMgr;
         private InputManager inputManager;
+        private bool exitRequested = false;
 
         public MainWindow()
             :base(800,600,GraphicsMode.Default,"EmulationCoordination.Fullscreen.GUI",GameWindowFlags.Default,
@@ -21,6 +22,15 @@ namespace EmulationCoordination.Fullscreen.Gui
         {
             inputManager = InputManager.Instance;
             inputManager.GameWindow = this;
+            inputManager.InputReceived += InputManager_InputReceived;
+        }
+
+        private void InputManager_InputReceived(InputType type)
+        {
+            if(type == InputType.EXIT)
+            {
+                exitRequested = true;
+            }
         }
 
         protected override void OnResize(EventArgs e)
@@ -46,7 +56,7 @@ namespace EmulationCoordination.Fullscreen.Gui
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
             winMgr.Update();
-            if(inputManager.ExitRequested)
+            if(exitRequested)
             {
                 Close();
             }
