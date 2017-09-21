@@ -21,7 +21,7 @@ namespace EmulationCoordination.Fullscreen.Gui.WindowStates
         private EmulatorSelection selectedConsole;
         private QFont font;
         private QFontDrawing fontDrawing;
-        
+
         public EmulatorSelectionWindowState()
         {
             font = new QFont("Fonts/times.ttf", 72, new QFontBuilderConfiguration());
@@ -48,36 +48,41 @@ namespace EmulationCoordination.Fullscreen.Gui.WindowStates
                 consoles.Add(selection);
             }
 
-            selectedConsole = consoles[consoles.Count / 2];
+            selectedConsole = consoles[0];
         }
 
         public void Render()
         {
-            fontDrawing.DrawingPrimitives.Clear();
-            fontDrawing.Print(font, "TEST", new Vector3(0.0f, 1.25f, 5.0f), QFontAlignment.Left);
+            //fontDrawing.DrawingPrimitives.Clear();
+            //fontDrawing.Print(font, "TEST", new Vector3(0.0f, 1.25f, 5.0f), QFontAlignment.Left);
 
-            DrawConsole(0, 1, selectedConsole.textureId);
-            DrawConsole(0.5f, 0.5f, selectedConsole.textureId);
-            DrawConsole(1, 0, selectedConsole.textureId);
-            DrawConsole(-0.5f, 0.5f, selectedConsole.textureId);
-            DrawConsole(-1, 0, selectedConsole.textureId);
-
+            for(int x = 0; x < consoles.Count; x++)
+            {
+                int z = 0;
+                var console = consoles[x];
+                if(console == selectedConsole)
+                {
+                    z = -4;
+                }
+                DrawConsole(x*3, z, console.textureId);
+            }
+            
             //fontDrawing.RefreshBuffers();
             //fontDrawing.ProjectionMatrix = Matrix4.CreatePerspectiveFieldOfView((float)Math.PI / 4, 800 / (float)600, 1.0f, 64.0f);
             //fontDrawing.Draw();
         }
 
-        private void DrawConsole(float x, float z, int textureId)
+        private void DrawConsole(double x, double z, int textureId)
         {
             GL.BindTexture(TextureTarget.Texture2D, textureId);
             GL.PushMatrix();
-            GL.Translate(x, 0, z);
+            GL.Translate(new Vector3((float)x, 0, (float)z));
             GL.Begin(PrimitiveType.Quads);
-            GL.Color4(Color4.White);
-            GL.TexCoord2(1, 1); GL.Vertex3(-1.0f, -1.0f, 0.0f);
-            GL.TexCoord2(0, 1); GL.Vertex3(1.0f, -1.0f, 0.0f);
-            GL.TexCoord2(0, 0); GL.Vertex3(1.0f, 1.0f, 0.0f);
-            GL.TexCoord2(1, 0); GL.Vertex3(-1.0f, 1.0f, 0.0f);
+                GL.Color4(Color4.White);
+                GL.TexCoord2(1, 1); GL.Vertex3(-1.0f, -1.0f, 0.0f);
+                GL.TexCoord2(0, 1); GL.Vertex3(1.0f, -1.0f, 0.0f);
+                GL.TexCoord2(0, 0); GL.Vertex3(1.0f, 1.0f, 0.0f);
+                GL.TexCoord2(1, 0); GL.Vertex3(-1.0f, 1.0f, 0.0f);
             GL.End();
             GL.PopMatrix();
         }
