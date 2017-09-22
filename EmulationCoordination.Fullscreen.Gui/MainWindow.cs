@@ -50,7 +50,7 @@ namespace EmulationCoordination.Fullscreen.Gui
 
         protected override void OnLoad(EventArgs e)
         {
-            GL.ClearColor(Color4.Blue);
+            GL.ClearColor(Color4.Red);
             GL.Enable(EnableCap.DepthTest);
             GL.Enable(EnableCap.Texture2D);
 
