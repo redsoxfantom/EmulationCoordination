@@ -50,13 +50,13 @@ namespace EmulationCoordination.Fullscreen.Gui
 
         protected override void OnLoad(EventArgs e)
         {
-            winMgr = new WindowManager();
             GL.ClearColor(Color4.Blue);
             GL.Enable(EnableCap.DepthTest);
             GL.Enable(EnableCap.Texture2D);
 
             textRenderer.Clear(System.Drawing.Color.Blue);
-            textRenderer.DrawString("TEST");
+            winMgr = new WindowManager(textRenderer);
+            winMgr.Initialize();
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)

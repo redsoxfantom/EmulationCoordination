@@ -11,5 +11,7 @@ namespace EmulationCoordination.Fullscreen.Gui.WindowStates
         void Render();
 
         void Update();
+
+        void Initialize();
     }
 }

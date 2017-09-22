@@ -11,9 +11,9 @@ namespace EmulationCoordination.Fullscreen.Gui
     {
         private IWindowState activeWindowState;
 
-        public WindowManager()
+        public WindowManager(TextRenderer textRenderer)
         {
-            activeWindowState = new EmulatorSelectionWindowState();
+            activeWindowState = new EmulatorSelectionWindowState(textRenderer);
         }
 
         public void Update()
@@ -24,6 +24,11 @@ namespace EmulationCoordination.Fullscreen.Gui
         public void Render()
         {
             activeWindowState.Render();
+        }
+
+        public void Initialize()
+        {
+            activeWindowState.Initialize();
         }
     }
 }

@@ -20,18 +20,21 @@ namespace EmulationCoordination.Fullscreen.Gui.WindowStates
         private EmulatorSelection selectedConsole;
         private int selectedConsoleIndex;
         private bool leftRequested = false, rightRequested = false;
+        private TextRenderer textRenderer;
+        private TextRenderingOptions opt = new TextRenderingOptions();
 
-        public EmulatorSelectionWindowState()
+        public EmulatorSelectionWindowState(TextRenderer textRenderer)
         {
             var inputMgr = InputManager.Instance;
             inputMgr.InputReceived += InputMgr_InputReceived;
 
-            var consolesWithRoms = RomManager.Instance.GetAllRoms().Keys.ToList();
+            var consolesWithRoms = RomManager.Instance.GetAllRoms();
             consoles = new List<EmulatorSelection>();
-            foreach(var console in consolesWithRoms)
+            foreach(var console in consolesWithRoms.Keys)
             {
                 EmulatorSelection selection = new EmulatorSelection();
                 selection.console = console;
+                selection.numRoms = consolesWithRoms[console].Count;
 
                 int consoleTexture = GL.GenTexture();
                 GL.BindTexture(TextureTarget.Texture2D, consoleTexture);
@@ -49,6 +52,8 @@ namespace EmulationCoordination.Fullscreen.Gui.WindowStates
 
             selectedConsole = consoles[0];
             selectedConsoleIndex = 0;
+
+            this.textRenderer = textRenderer;
         }
 
         private void InputMgr_InputReceived(InputType type)
@@ -93,22 +98,54 @@ namespace EmulationCoordination.Fullscreen.Gui.WindowStates
 
         public void Update()
         {
+            bool selectedConsoleUpdated = false;
             if(leftRequested && selectedConsoleIndex < consoles.Count-1)
             {
                 selectedConsoleIndex++;
                 leftRequested = false;
+                selectedConsoleUpdated = true;
             }
             if(rightRequested && selectedConsoleIndex > 0)
             {
                 selectedConsoleIndex--;
                 rightRequested = false;
+                selectedConsoleUpdated = true;
             }
             selectedConsole = consoles[selectedConsoleIndex];
+            if(selectedConsoleUpdated)
+            {
+                PrintEmulatorData();
+            }
+        }
+
+        public void Initialize()
+        {
+            PrintEmulatorData();
+        }
+
+        private void PrintEmulatorData()
+        {
+            textRenderer.Clear(Color.Blue);
+            opt.Alignment = new TextAlignment(AlignmentHorizontal.ALIGN_CENTER);
+            opt.Location = PointF.Empty;
+            textRenderer.DrawString(selectedConsole.console.FriendlyName, opt);
+            opt.Location = new PointF(0, 100);
+            String numRoms = String.Empty;
+            if (selectedConsole.numRoms > 1)
+            {
+                numRoms = String.Format("{0} Games", selectedConsole.numRoms);
+            }
+            else
+            {
+                numRoms = String.Format("1 Game");
+            }
+            textRenderer.DrawString(numRoms, opt);
         }
 
         private class EmulatorSelection
         {
             public EmulatorConsoles console;
+            public int numRoms;
             public int textureId;
         }
     }
