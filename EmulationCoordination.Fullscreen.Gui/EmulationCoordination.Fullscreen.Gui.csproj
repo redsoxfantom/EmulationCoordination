@@ -39,9 +39,6 @@
     <Reference Include="OpenTK, Version=3.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenTK.3.0.0-pre\lib\net20\OpenTK.dll</HintPath>
     </Reference>
-    <Reference Include="QuickFont.ES20, Version=4.4.6159.26433, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\QuickFont.ES20.4.4.6159.26433\lib\net45\QuickFont.ES20.dll</HintPath>
-    </Reference>
     <Reference Include="SharpFont, Version=4.0.1.200, Culture=neutral, PublicKeyToken=48add4c483071cdf, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpFont.4.0.1\lib\net45\SharpFont.dll</HintPath>
     </Reference>
@@ -61,6 +58,7 @@
     <Compile Include="MainWindow.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextRenderer.cs" />
     <Compile Include="WindowManager.cs" />
     <Compile Include="WindowStates\EmulatorSelectionWindowState.cs" />
     <Compile Include="WindowStates\IWindowState.cs" />

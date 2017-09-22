@@ -10,8 +10,6 @@ using System.Threading.Tasks;
 using OpenTK;
 using System.Drawing.Imaging;
 using System.Drawing;
-using QuickFont;
-using QuickFont.Configuration;
 using EmulationCoordination.Input;
 
 namespace EmulationCoordination.Fullscreen.Gui.WindowStates
@@ -21,17 +19,12 @@ namespace EmulationCoordination.Fullscreen.Gui.WindowStates
         private List<EmulatorSelection> consoles;
         private EmulatorSelection selectedConsole;
         private int selectedConsoleIndex;
-        private QFont font;
-        private QFontDrawing fontDrawing;
         private bool leftRequested = false, rightRequested = false;
 
         public EmulatorSelectionWindowState()
         {
             var inputMgr = InputManager.Instance;
             inputMgr.InputReceived += InputMgr_InputReceived;
-
-            font = new QFont("Fonts/times.ttf", 72, new QFontBuilderConfiguration());
-            fontDrawing = new QFontDrawing();
 
             var consolesWithRoms = RomManager.Instance.GetAllRoms().Keys.ToList();
             consoles = new List<EmulatorSelection>();
@@ -73,26 +66,14 @@ namespace EmulationCoordination.Fullscreen.Gui.WindowStates
 
         public void Render()
         {
-            //fontDrawing.DrawingPrimitives.Clear();
-            //fontDrawing.Print(font, "TEST", new Vector3(0.0f, 1.25f, 5.0f), QFontAlignment.Left);
-
             GL.PushMatrix();
             GL.Translate((-3 * selectedConsoleIndex), 0, 0);
             for(int x = 0; x < consoles.Count; x++)
             {
-                int z = 0;
                 var console = consoles[x];
-                if(console == selectedConsole)
-                {
-                    z = -4;
-                }
-                DrawConsole(x*3, z, console.textureId);
+                DrawConsole(x*3, 0, console.textureId);
             }
             GL.PopMatrix();
-            
-            //fontDrawing.RefreshBuffers();
-            //fontDrawing.ProjectionMatrix = Matrix4.CreatePerspectiveFieldOfView((float)Math.PI / 4, 800 / (float)600, 1.0f, 64.0f);
-            //fontDrawing.Draw();
         }
 
         private void DrawConsole(double x, double z, int textureId)

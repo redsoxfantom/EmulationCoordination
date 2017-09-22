@@ -15,14 +15,16 @@ namespace EmulationCoordination.Fullscreen.Gui
         private WindowManager winMgr;
         private InputManager inputManager;
         private bool exitRequested = false;
+        private TextRenderer textRenderer;
 
         public MainWindow()
-            :base(800,600,GraphicsMode.Default,"EmulationCoordination.Fullscreen.GUI",GameWindowFlags.Default,
-                 DisplayDevice.Default,4,0,GraphicsContextFlags.ForwardCompatible)
+            :base(800,600,GraphicsMode.Default,"EmulationCoordination.Fullscreen.GUI",GameWindowFlags.Default, DisplayDevice.Default,4,0,GraphicsContextFlags.ForwardCompatible)
         {
             inputManager = InputManager.Instance;
             inputManager.GameWindow = this;
             inputManager.InputReceived += InputManager_InputReceived;
+
+            textRenderer = new TextRenderer(800, 600);
         }
 
         private void InputManager_InputReceived(InputType type)
@@ -36,12 +38,13 @@ namespace EmulationCoordination.Fullscreen.Gui
         protected override void OnResize(EventArgs e)
         {
             GL.Viewport(0, 0, Width, Height);
-            Matrix4 projection = Matrix4.CreatePerspectiveFieldOfView((float)Math.PI / 4, Width / (float)Height, 1.0f, 64.0f);
             GL.MatrixMode(MatrixMode.Projection);
-            GL.LoadMatrix(ref projection);
+            GL.LoadIdentity();
+            GL.Ortho(-2.5, 2.5, -2.5, 2.5, 0.1, 100.0);
 
             Matrix4 modelview = Matrix4.LookAt(new Vector3(0,0,-9), new Vector3(0,0,0), Vector3.UnitY);
             GL.MatrixMode(MatrixMode.Modelview);
+            GL.LoadIdentity();
             GL.LoadMatrix(ref modelview);
         }
 
@@ -51,6 +54,9 @@ namespace EmulationCoordination.Fullscreen.Gui
             GL.ClearColor(Color4.Blue);
             GL.Enable(EnableCap.DepthTest);
             GL.Enable(EnableCap.Texture2D);
+
+            textRenderer.Clear(System.Drawing.Color.Blue);
+            textRenderer.DrawString("TEST");
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
@@ -68,6 +74,7 @@ namespace EmulationCoordination.Fullscreen.Gui
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
             winMgr.Render();
+            textRenderer.Render();
             
             SwapBuffers();
         }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmulationCoordination.Console", "EmulationCoordination.Console\EmulationCoordination.Console.csproj", "{6422F54F-174A-4DFF-8FE9-E543CB4CEB19}"
 EndProject
@@ -18,8 +18,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmulationCoordination.Fullscreen.Gui", "EmulationCoordination.Fullscreen.Gui\EmulationCoordination.Fullscreen.Gui.csproj", "{672A6455-F90E-4B65-9B5D-2BA50C0DD9B7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmulationCoordination.Input", "EmulationCoordination.Input\EmulationCoordination.Input.csproj", "{2B7E5AFE-1743-48BD-9696-C9F911CCC097}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project1", "Project1\Project1.csproj", "{95463BAB-0D93-42DE-8016-DF7CDFC47660}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,10 +57,6 @@ Global
 		{2B7E5AFE-1743-48BD-9696-C9F911CCC097}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B7E5AFE-1743-48BD-9696-C9F911CCC097}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B7E5AFE-1743-48BD-9696-C9F911CCC097}.Release|Any CPU.Build.0 = Release|Any CPU
-		{95463BAB-0D93-42DE-8016-DF7CDFC47660}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{95463BAB-0D93-42DE-8016-DF7CDFC47660}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{95463BAB-0D93-42DE-8016-DF7CDFC47660}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{95463BAB-0D93-42DE-8016-DF7CDFC47660}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
