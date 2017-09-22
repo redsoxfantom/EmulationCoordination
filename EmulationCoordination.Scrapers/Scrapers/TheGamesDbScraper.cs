@@ -87,7 +87,7 @@ namespace EmulationCoordination.Scrapers.Scrapers
             {
                 backgroundUrl = images.screenshot.First().original[0].Value;
             }
-            if (backgroundUrl != null)
+            if (!String.IsNullOrEmpty(backgroundUrl))
             {
                 backgroundUrl = String.Format("{0}{1}", baseImgUrl, backgroundUrl);
                 dataToFillOut.Background = MakeImageRequest(backgroundUrl);

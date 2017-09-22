@@ -115,7 +115,7 @@ namespace EmulationCoordination.Roms
 
             String relativePathToConfig = Path.Combine("Games", data.Console.FriendlyName,
                     String.Format("{0}.data.json", Path.GetFileNameWithoutExtension(data.Path)));
-            FileUtilities.WriteFile(data, relativePathToConfig, imageConverter);
+            FileUtilities.WriteFile(data, relativePathToConfig, imageConverter,consoleConverter);
         }
 
         private RomData RetrieveRomData(String file, EmulatorConsoles ConsoleToSearch)
