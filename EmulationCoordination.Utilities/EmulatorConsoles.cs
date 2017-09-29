@@ -17,7 +17,7 @@ namespace EmulationCoordination.Utilities
         public static readonly EmulatorConsoles GAME_BOY_ADVANCE = 
             new EmulatorConsoles("Game Boy Advance", ConsoleImages.GameBoyAdvance, new List<string>() { ".gba" });
         public static readonly EmulatorConsoles NINTENDO_64 = 
-            new EmulatorConsoles("Nintendo 64", ConsoleImages.N64, new List<string>() { ".n64" });
+            new EmulatorConsoles("Nintendo 64", ConsoleImages.N64, new List<string>() { ".n64", ".z64" });
         public static readonly EmulatorConsoles SNES = 
             new EmulatorConsoles("SNES", ConsoleImages.SNES, new List<string>() { ".sfc" });
         public static readonly EmulatorConsoles GAMECUBE = 
