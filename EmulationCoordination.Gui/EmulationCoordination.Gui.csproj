@@ -150,25 +150,25 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\EmulationCoordination.Emulators\EmulationCoordination.Emulators.csproj">
       <Project>{f3bb5a4f-8f79-4a10-8824-00d6dc032f3e}</Project>
       <Name>EmulationCoordination.Emulators</Name>
     </ProjectReference>
     <ProjectReference Include="..\EmulationCoordination.Roms\EmulationCoordination.Roms.csproj">
-      <Project>{DA924310-7A95-4414-84E3-552CAADD862C}</Project>
+      <Project>{da924310-7a95-4414-84e3-552caadd862c}</Project>
       <Name>EmulationCoordination.Roms</Name>
     </ProjectReference>
     <ProjectReference Include="..\EmulationCoordination.Scrapers\EmulationCoordination.Scrapers.csproj">
-      <Project>{5620CC9D-06A0-48FA-8E5E-2C1DDC3147B0}</Project>
+      <Project>{5620cc9d-06a0-48fa-8e5e-2c1ddc3147b0}</Project>
       <Name>EmulationCoordination.Scrapers</Name>
     </ProjectReference>
     <ProjectReference Include="..\EmulationCoordination.Utilities\EmulationCoordination.Utilities.csproj">
-      <Project>{AD8D15F0-4970-41F7-AA91-61DA61DB4368}</Project>
+      <Project>{ad8d15f0-4970-41f7-aa91-61da61db4368}</Project>
       <Name>EmulationCoordination.Utilities</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
