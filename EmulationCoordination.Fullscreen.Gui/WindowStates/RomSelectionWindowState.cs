@@ -1,4 +1,5 @@
-﻿using EmulationCoordination.Input;
+﻿using EmulationCoordination.Emulators;
+using EmulationCoordination.Input;
 using EmulationCoordination.Roms;
 using EmulationCoordination.Utilities;
 using System;
@@ -86,6 +87,7 @@ namespace EmulationCoordination.Fullscreen.Gui.WindowStates
             {
                 selectRequested = false;
                 RomData romData = (RomData)carousel.GetSelectedItem();
+                var emuMgr = EmulatorManager.Instance;
             }
             if(backRequested)
             {

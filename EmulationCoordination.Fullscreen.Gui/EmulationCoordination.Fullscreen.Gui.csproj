@@ -92,6 +92,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EmulationCoordination.Emulators\EmulationCoordination.Emulators.csproj">
+      <Project>{f3bb5a4f-8f79-4a10-8824-00d6dc032f3e}</Project>
+      <Name>EmulationCoordination.Emulators</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EmulationCoordination.Input\EmulationCoordination.Input.csproj">
       <Project>{2b7e5afe-1743-48bd-9696-c9f911ccc097}</Project>
       <Name>EmulationCoordination.Input</Name>
