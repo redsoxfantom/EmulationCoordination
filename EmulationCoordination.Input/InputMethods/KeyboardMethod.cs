@@ -30,6 +30,9 @@ namespace EmulationCoordination.Input.InputMethods
                 case Key.Escape:
                     InputReceived?.Invoke(InputType.EXIT);
                     break;
+                case Key.Enter:
+                    InputReceived?.Invoke(InputType.SELECT);
+                    break;
                 default:
                     break;
             }
