@@ -16,7 +16,7 @@ namespace EmulationCoordination.Fullscreen.Gui.WindowStates
 {
     public class EmulatorSelectionWindowState : IWindowState
     {
-        private bool leftRequested = false, rightRequested = false;
+        private bool leftRequested = false, rightRequested = false, selectRequested = false;
         private Carousel carousel;
         private TextRenderer textRenderer;
 
@@ -37,6 +37,9 @@ namespace EmulationCoordination.Fullscreen.Gui.WindowStates
                 case InputType.RIGHT:
                     rightRequested = true;
                     break;
+                case InputType.SELECT:
+                    selectRequested = true;
+                    break;
             }
         }
 
@@ -56,6 +59,11 @@ namespace EmulationCoordination.Fullscreen.Gui.WindowStates
             {
                 rightRequested = false;
                 carousel.ChangeSelectedItem(InputType.RIGHT);
+            }
+            if(selectRequested)
+            {
+                selectRequested = false;
+                EmulatorConsoles console = (EmulatorConsoles)carousel.GetSelectedItem();
             }
         }
 
