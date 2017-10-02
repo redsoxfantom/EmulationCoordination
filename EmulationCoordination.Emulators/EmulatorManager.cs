@@ -88,6 +88,13 @@ namespace EmulationCoordination.Emulators
             return availableEmulators.Keys.ToList();
         }
 
+        public List<IReadOnlyEmulator> GetAvailableEmulators(EmulatorConsoles console)
+        {
+            var allEmulators = GetAvailableEmulators();
+            var emulatorsForConsole = allEmulators.Where(f => f.ConsoleNames.Contains(console)).ToList();
+            return emulatorsForConsole;
+        }
+
         private void RemoveCustomEmulator(IReadOnlyEmulator emulator)
         {
             EmulatorManagerConfigKey key = new EmulatorManagerConfigKey()
@@ -165,6 +172,19 @@ namespace EmulationCoordination.Emulators
                 uninstallResult = true;
             }
             return uninstallResult;
+        }
+
+        public void RunEmulator(RomData rom)
+        {
+            var romConsole = rom.Console;
+            var emulatorsForConsole = GetAvailableEmulators(romConsole);
+            // First, prefer emulators that are installed over emulators that aren't
+            emulatorsForConsole.Sort((c1, c2) => { return c2.Installed.CompareTo(c1.Installed); });
+            // Next, prefer custom emulators over builtin
+            emulatorsForConsole.Sort((c1, c2) => { return c2.EmulatorType.CompareTo(c1.EmulatorType); });
+            // TODO: Sort on emulator version
+            var selectedEmulator = emulatorsForConsole.First();
+            RunEmulator(selectedEmulator, rom);
         }
 
         public void RunEmulator(IReadOnlyEmulator emulator, RomData rom)

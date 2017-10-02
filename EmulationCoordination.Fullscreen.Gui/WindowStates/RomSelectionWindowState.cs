@@ -88,6 +88,7 @@ namespace EmulationCoordination.Fullscreen.Gui.WindowStates
                 selectRequested = false;
                 RomData romData = (RomData)carousel.GetSelectedItem();
                 var emuMgr = EmulatorManager.Instance;
+                emuMgr.RunEmulator(romData);
             }
             if(backRequested)
             {
