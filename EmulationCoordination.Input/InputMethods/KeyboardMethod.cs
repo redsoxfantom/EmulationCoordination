@@ -33,6 +33,9 @@ namespace EmulationCoordination.Input.InputMethods
                 case Key.Enter:
                     InputReceived?.Invoke(InputType.SELECT);
                     break;
+                case Key.BackSpace:
+                    InputReceived?.Invoke(InputType.BACK);
+                    break;
                 default:
                     break;
             }
