@@ -18,7 +18,7 @@ namespace EmulationCoordination.Fullscreen.Gui
 
         public TextRenderingOptions()
         {
-            Font = new Font(FontFamily.GenericMonospace, 24);
+            Font = new Font(FontFamily.GenericMonospace, 20);
             Location = PointF.Empty;
             Color = Brushes.White;
             Alignment = new TextAlignment();
