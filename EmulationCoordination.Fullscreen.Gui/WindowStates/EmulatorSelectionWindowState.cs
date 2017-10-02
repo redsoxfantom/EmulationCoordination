@@ -20,6 +20,8 @@ namespace EmulationCoordination.Fullscreen.Gui.WindowStates
         private Carousel carousel;
         private TextRenderer textRenderer;
 
+        public event WindowStateChangedEvent WindowStateChanged;
+
         public EmulatorSelectionWindowState(TextRenderer textRenderer)
         {
             var inputMgr = InputManager.Instance;
@@ -64,6 +66,8 @@ namespace EmulationCoordination.Fullscreen.Gui.WindowStates
             {
                 selectRequested = false;
                 EmulatorConsoles console = (EmulatorConsoles)carousel.GetSelectedItem();
+                RomSelectionWindowState newWindow = new RomSelectionWindowState(textRenderer, console);
+                WindowStateChanged?.Invoke(new WindowStateChangedEventArgs() { NewWindowState = newWindow });
             }
         }
 

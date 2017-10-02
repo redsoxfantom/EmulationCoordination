@@ -13,5 +13,14 @@ namespace EmulationCoordination.Fullscreen.Gui.WindowStates
         void Update();
 
         void Initialize();
+
+        event WindowStateChangedEvent WindowStateChanged;
+    }
+
+    public delegate void WindowStateChangedEvent(WindowStateChangedEventArgs args);
+
+    public class WindowStateChangedEventArgs
+    {
+        public IWindowState NewWindowState { get; set; }
     }
 }

@@ -63,6 +63,7 @@
     <Compile Include="WindowStates\Carousel.cs" />
     <Compile Include="WindowStates\EmulatorSelectionWindowState.cs" />
     <Compile Include="WindowStates\IWindowState.cs" />
+    <Compile Include="WindowStates\RomSelectionWindowState.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
