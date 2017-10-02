@@ -19,7 +19,7 @@ namespace EmulationCoordination.Input
             {
                 mGameWindow = value;
                 keyboard = new KeyboardMethod(mGameWindow);
-                gamepad = new GamepadMethod();
+                gamepad = new GamepadMethod(mGameWindow);
                 keyboard.InputReceived += PeripheralInputReceived;
                 gamepad.InputReceived += PeripheralInputReceived;
             }
