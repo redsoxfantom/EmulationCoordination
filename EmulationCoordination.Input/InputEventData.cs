@@ -13,6 +13,8 @@ namespace EmulationCoordination.Input
     {
         LEFT,
         RIGHT,
-        EXIT
+        EXIT,
+        SELECT,
+        BACK
     }
 }
