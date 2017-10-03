@@ -226,7 +226,7 @@ namespace EmulationCoordination.Emulators
 
         private void UpdateConfiguration()
         {
-            FileUtilities.WriteFile(loadedConfig, "EmulatorManager.json");
+            FileUtilities.WriteFile(loadedConfig, "EmulatorManager.json",new ConsoleConverter());
         }
     }
 }
