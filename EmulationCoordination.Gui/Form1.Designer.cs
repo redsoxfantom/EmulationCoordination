@@ -50,6 +50,8 @@
             this.romDataView.Size = new System.Drawing.Size(814, 534);
             this.romDataView.TabIndex = 2;
             this.romDataView.Visible = false;
+            this.romDataView.ManualDataUpdateRequested += romDataView_ManualDataUpdateRequested;
+            this.romDataView.AutomatedDataUpdateRequested += romDataView_AutomatedDataUpdateRequested;
             // 
             // emulatorTreeView
             // 
@@ -147,6 +149,11 @@
 
             this.ResumeLayout(false);
 
+        }
+
+        private void RomDataView_AutomatedDataUpdateRequested(Roms.RomData data)
+        {
+            throw new System.NotImplementedException();
         }
 
         #endregion
