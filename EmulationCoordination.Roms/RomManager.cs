@@ -120,7 +120,7 @@ namespace EmulationCoordination.Roms
 
         private RomData RetrieveRomData(String file, EmulatorConsoles ConsoleToSearch)
         {
-            String possiblePathToConfig = Path.Combine(FileUtilities.GetRootDirectory(),
+            String pathToConfig = Path.Combine(FileUtilities.GetRootDirectory(),
                                                        "Games",
                                                        ConsoleToSearch.FriendlyName,
                                                        String.Format("{0}.data.json", Path.GetFileNameWithoutExtension(file)));
@@ -129,12 +129,9 @@ namespace EmulationCoordination.Roms
             {
                 return loadedRomData[file];
             }
-            else if(File.Exists(possiblePathToConfig))
+            else if(File.Exists(pathToConfig))
             {
-                String relativePathToConfig = Path.Combine("Games", ConsoleToSearch.FriendlyName, 
-                    String.Format("{0}.data.json", Path.GetFileNameWithoutExtension(file)));
-
-                RomData loadedData = FileUtilities.LoadFile<RomData>(relativePathToConfig, imageConverter,consoleConverter);
+                RomData loadedData = FileUtilities.LoadFile<RomData>(pathToConfig, imageConverter,consoleConverter);
                 loadedRomData.TryAdd(loadedData.Path, loadedData);
                 return loadedData;
             }
