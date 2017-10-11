@@ -18,7 +18,7 @@ namespace EmulationCoordination.Fullscreen.Gui
         private TextRenderer textRenderer;
 
         public MainWindow()
-            :base(800,600,GraphicsMode.Default,"EmulationCoordination.Fullscreen.GUI",GameWindowFlags.Default, DisplayDevice.Default,4,0,GraphicsContextFlags.ForwardCompatible)
+            :base(800,600,GraphicsMode.Default,"EmulationCoordination.Fullscreen.GUI",GameWindowFlags.Fullscreen, DisplayDevice.Default,4,0,GraphicsContextFlags.ForwardCompatible)
         {
             inputManager = InputManager.Instance;
             inputManager.GameWindow = this;
