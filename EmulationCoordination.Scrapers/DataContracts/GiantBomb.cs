@@ -92,6 +92,8 @@ namespace EmulationCoordination.Scrapers.DataContracts.GiantBomb
                     return EmulatorConsoles.MASTER_SYSTEM;
                 case "PS2":
                     return EmulatorConsoles.PLAYSTATION_2;
+                case "Wii":
+                    return EmulatorConsoles.NINTENDO_WII;
                 default:
                     return EmulatorConsoles.UNKNOWN;
             }
