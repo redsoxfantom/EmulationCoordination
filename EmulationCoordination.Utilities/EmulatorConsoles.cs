@@ -27,7 +27,7 @@ namespace EmulationCoordination.Utilities
         public static readonly EmulatorConsoles PLAYSTATION_2 = 
             new EmulatorConsoles("Playstation 2", ConsoleImages.PS2, new List<string>() { ".iso" });
         public static readonly EmulatorConsoles NINTENDO_WII =
-            new EmulatorConsoles("Nintendo Wii", ConsoleImages.UnknownConsole, new List<string>() { ".iso" });
+            new EmulatorConsoles("Nintendo Wii", ConsoleImages.Wii, new List<string>() { ".iso" });
         public static readonly EmulatorConsoles UNKNOWN = 
             new EmulatorConsoles("Unknown Console Type", ConsoleImages.UnknownConsole);
 
