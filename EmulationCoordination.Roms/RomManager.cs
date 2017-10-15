@@ -18,8 +18,6 @@ namespace EmulationCoordination.Roms
         private String rootDirectory;
         private ConcurrentDictionary<string,RomData> loadedRomData;
         private List<RomFileSystemWatcher> romWatchers;
-        private ImageConverter imageConverter;
-        private ConsoleConverter consoleConverter;
 
         public event NewRomHandler NewRomAdded;
 
@@ -39,8 +37,6 @@ namespace EmulationCoordination.Roms
         private RomManager()
         {
             rootDirectory = Path.Combine(FileUtilities.GetRootDirectory(), "Games");
-            imageConverter = new ImageConverter();
-            consoleConverter = new ConsoleConverter();
             romWatchers = new List<RomFileSystemWatcher>();
             
             foreach(var console in EmulatorConsoles.Values)
@@ -112,10 +108,6 @@ namespace EmulationCoordination.Roms
             {
                 loadedRomData.TryAdd(data.Path, data);
             }
-
-            String relativePathToConfig = Path.Combine("Games", data.Console.FriendlyName,
-                    String.Format("{0}.data.json", Path.GetFileNameWithoutExtension(data.Path)));
-            FileUtilities.WriteFile(data, relativePathToConfig, imageConverter,consoleConverter);
         }
 
         private RomData RetrieveRomData(String file, EmulatorConsoles ConsoleToSearch)
@@ -129,30 +121,11 @@ namespace EmulationCoordination.Roms
             {
                 return loadedRomData[file];
             }
-            else if(File.Exists(pathToConfig))
-            {
-                RomData loadedData = FileUtilities.LoadFile<RomData>(pathToConfig, imageConverter,consoleConverter);
-                loadedRomData.TryAdd(loadedData.Path, loadedData);
-                return loadedData;
-            }
             else
             {
-                return new RomData()
-                {
-                    Path = file,
-                    FriendlyName = Path.GetFileName(file),
-                    Console = ConsoleToSearch,
-                    IsUpToDate = false,
-                    NumPlayers = "Unknown",
-                    Description = "No Description",
-                    Developer = "Unknown",
-                    Publisher = "Unknown",
-                    Rating = 0.0f,
-                    BoxArt = Resource.DefaultBoxart,
-                    Logo = Resource.DefaultIcon,
-                    Banner = Resource.DefaultBanner,
-                    Background = Resource.DefaultBackground
-                };
+                var romdata = RomData.Create(file, ConsoleToSearch);
+                loadedRomData.TryAdd(romdata.Path, romdata);
+                return romdata;
             }
         }
     }

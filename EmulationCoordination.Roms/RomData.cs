@@ -10,6 +10,9 @@ namespace EmulationCoordination.Roms
 {
     public class RomData
     {
+        private DataContracts.ImageConverter imageConverter = new DataContracts.ImageConverter();
+        private ConsoleConverter consoleConverter = new ConsoleConverter();
+
         public Image Background { get; set; }
 
         public Image Banner { get; set; }
@@ -30,13 +33,13 @@ namespace EmulationCoordination.Roms
 
         public string Publisher { get; set; }
 
-        public float Rating { get; set; }
+        public float? Rating { get; set; }
 
         public DateTime ReleaseDate { get; set; }
 
         public TimeSpan TimePlayed { get; set; }
 
-        public bool IsUpToDate { get; set; }
+        public bool? IsUpToDate { get; set; }
 
         public EmulatorConsoles Console { get; set; }
 
@@ -105,6 +108,39 @@ namespace EmulationCoordination.Roms
         public string PrettyPrintRating()
         {
             return String.Format("{0}/10", (int)Rating);
+        }
+
+        private RomData()
+        {
+
+        }
+
+        public static RomData Create(string file, EmulatorConsoles consoleToSearch)
+        {
+            if (System.IO.File.Exists(file))
+            {
+                RomData loadedData = FileUtilities.LoadFile<RomData>(file, imageConverter, consoleConverter);
+                return loadedData;
+            }
+            else
+            {
+                return new RomData()
+                {
+                    Path = file,
+                    FriendlyName = System.IO.Path.GetFileName(file),
+                    Console = consoleToSearch,
+                    IsUpToDate = false,
+                    NumPlayers = "Unknown",
+                    Description = "No Description",
+                    Developer = "Unknown",
+                    Publisher = "Unknown",
+                    Rating = 0.0f,
+                    BoxArt = Resource.DefaultBoxart,
+                    Logo = Resource.DefaultIcon,
+                    Banner = Resource.DefaultBanner,
+                    Background = Resource.DefaultBackground
+                };
+            }
         }
     }
 }

@@ -38,5 +38,10 @@ namespace EmulationCoordination.Roms.DataContracts
 
             writer.WriteValue(base64Image);
         }
+
+        public static implicit operator ImageConverter(System.Drawing.ImageConverter v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
