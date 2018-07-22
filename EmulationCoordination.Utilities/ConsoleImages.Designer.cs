@@ -113,9 +113,29 @@ namespace EmulationCoordination.Utilities {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap NES {
+            get {
+                object obj = ResourceManager.GetObject("NES", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap PS2 {
             get {
                 object obj = ResourceManager.GetObject("PS2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PS3 {
+            get {
+                object obj = ResourceManager.GetObject("PS3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

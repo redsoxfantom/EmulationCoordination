@@ -94,5 +94,9 @@
   <ItemGroup>
     <None Include="Resources\Wii.bmp" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\NES.png" />
+    <Content Include="Resources\PS3.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
