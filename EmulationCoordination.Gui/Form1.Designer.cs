@@ -85,8 +85,8 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(610, 49);
             this.tableLayoutPanel3.TabIndex = 3;
             // 
@@ -128,6 +128,8 @@
             this.romDataView.Size = new System.Drawing.Size(611, 515);
             this.romDataView.TabIndex = 2;
             this.romDataView.Visible = false;
+            this.romDataView.ManualDataUpdateRequested += new EmulationCoordination.Gui.Controls.UpdateHandler(this.romDataView_ManualDataUpdateRequested);
+            this.romDataView.AutomatedDataUpdateRequested += new EmulationCoordination.Gui.Controls.UpdateHandler(this.romDataView_AutomatedDataUpdateRequested);
             // 
             // MainWindow
             // 
