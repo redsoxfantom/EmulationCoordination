@@ -115,6 +115,10 @@ namespace EmulationCoordination.Scrapers.DataContracts.GiantBomb
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             String date = (String)reader.Value;
+            if(String.IsNullOrEmpty(date))
+            {
+                return DateTime.Now;
+            }
             return DateTime.ParseExact(date, "yyyy-MM-dd HH:mm:ss", null);
         }
 
