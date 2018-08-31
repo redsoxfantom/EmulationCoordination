@@ -68,9 +68,8 @@
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 77.73585F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.26415F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90.90909F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(615, 572);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
@@ -81,14 +80,14 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel3.Controls.Add(this.PlayGameBtn, 1, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(2, 446);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(2, 521);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 3;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(610, 120);
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(610, 49);
             this.tableLayoutPanel3.TabIndex = 3;
             // 
             // PlayGameBtn
@@ -97,7 +96,7 @@
             this.PlayGameBtn.Location = new System.Drawing.Point(205, 2);
             this.PlayGameBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.PlayGameBtn.Name = "PlayGameBtn";
-            this.PlayGameBtn.Size = new System.Drawing.Size(199, 36);
+            this.PlayGameBtn.Size = new System.Drawing.Size(199, 45);
             this.PlayGameBtn.TabIndex = 0;
             this.PlayGameBtn.Text = "Play Game";
             this.PlayGameBtn.UseVisualStyleBackColor = true;
@@ -126,7 +125,7 @@
             this.romDataView.Location = new System.Drawing.Point(2, 2);
             this.romDataView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.romDataView.Name = "romDataView";
-            this.romDataView.Size = new System.Drawing.Size(611, 440);
+            this.romDataView.Size = new System.Drawing.Size(611, 515);
             this.romDataView.TabIndex = 2;
             this.romDataView.Visible = false;
             // 
