@@ -71,7 +71,7 @@ namespace EmulationCoordination.Scrapers.Scrapers
 
         protected String GenerateSearchableName(RomData data)
         {
-            String nameTerm = Path.GetFileNameWithoutExtension(data.Path);
+            String nameTerm = data.FriendlyName;
             nameTerm = nameTerm.Replace('_', ' '); // Seems to have more success without underscores
             nameTerm = Uri.EscapeDataString(nameTerm);
 
