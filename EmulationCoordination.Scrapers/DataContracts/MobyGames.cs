@@ -23,7 +23,7 @@ namespace EmulationCoordination.Scrapers.DataContracts
     {
         public string description { get; set; }
         public float moby_score { get; set; }
-        public MobyGamesPlatform[] platform { get; set; }
+        public MobyGamesPlatform[] platforms { get; set; }
         public MobyGamesImage sample_cover { get; set; }
         public MobyGamesImage[] sample_screenshots {get;set;}
         public string title { get; set; }
@@ -51,7 +51,7 @@ namespace EmulationCoordination.Scrapers.DataContracts
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            int consoleid = (int)reader.Value;
+            long consoleid = (long)reader.Value;
             switch(consoleid)
             {
                 case 14:

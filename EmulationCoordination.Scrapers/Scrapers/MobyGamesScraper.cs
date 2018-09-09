@@ -14,12 +14,32 @@ namespace EmulationCoordination.Scrapers.Scrapers
         public override string FriendlyName => "www.mobygames.com";
 
         private string apiKey = "jFoT7uaw5xGDbdqRBtT8Zg==";
-        private string rootUrl = "https://api.mobygames.com/v1/games?";
-        private string searchUrl = "api_key={0}&format=brief&title={1}&platform={2}";
+        private string rootUrl = "https://api.mobygames.com/v1/games";
+        private string searchUrl = "?api_key={0}&format=brief&title={1}&platform={2}";
+        private string getAllDataUrl = "/{0}?api_key={1}";
 
         protected override RomData ScraperSpecificGetAllData(RomData dataToFillOut)
         {
-            throw new NotImplementedException();
+            string gameid = dataToFillOut.ScraperUniqueKey;
+            string searchTerm = String.Format(getAllDataUrl, gameid, apiKey);
+            string finalUrl = String.Format("{0}{1}", rootUrl, searchTerm);
+
+            string results = MakeTextRequest(finalUrl);
+            if(!String.IsNullOrEmpty(results))
+            {
+                MobyGamesGetDataResult getDataResult = SerializationUtilities.DeserializeString<MobyGamesGetDataResult>(
+                    results, DataFormat.JSON,new MobyGamesReleaseDateConverter(), new MobyGamesConsoleConverter());
+                if(getDataResult != null)
+                {
+                    dataToFillOut.FriendlyName = getDataResult.title;
+                    dataToFillOut.Description = getDataResult.description;
+                    dataToFillOut.ReleaseDate = getDataResult.platforms.Where(f => f.platform_id.Equals(dataToFillOut.Console)).First().first_release_date;
+                    dataToFillOut.BoxArt = MakeImageRequest(getDataResult.sample_cover.image);
+                    dataToFillOut.Rating = getDataResult.moby_score;
+                }
+            }
+
+            return dataToFillOut;
         }
 
         protected override List<RomData> ScraperSpecificSearch(RomData dataToSearchFor)
@@ -90,7 +110,7 @@ namespace EmulationCoordination.Scrapers.Scrapers
             {
                 return 81;
             }
-            if (console.Equals(EmulatorConsoles.GAMECUBE))
+            if (console.Equals(EmulatorConsoles.SNES))
             {
                 return 15;
             }
