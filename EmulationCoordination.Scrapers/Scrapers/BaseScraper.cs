@@ -63,7 +63,7 @@ namespace EmulationCoordination.Scrapers.Scrapers
                 }
                 catch (Exception)
                 {
-
+                    return String.Empty;
                 }
             }
             return val;
