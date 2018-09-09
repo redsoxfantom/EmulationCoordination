@@ -28,6 +28,14 @@ namespace EmulationCoordination.Gui.Forms
 
             selectControl = new ScraperSelectScraper();
             selectRomControl = new ScraperSelectRom();
+            selectRomControl.OnSearchAgain += SelectRomControl_OnSearchAgain;
+        }
+
+        private void SelectRomControl_OnSearchAgain(string newSearchTerm)
+        {
+            selectedRom.FriendlyName = newSearchTerm;
+            SubControlPanel.Controls.Remove(selectRomControl);
+            AdvanceToSelectingRomData();
         }
 
         public void Initialize(RomData selectedRom)
@@ -49,6 +57,8 @@ namespace EmulationCoordination.Gui.Forms
                 selectedScraper = selectControl.GetSelectedScraper();
                 if (selectedScraper != null)
                 {
+                    SubControlPanel.Controls.Remove(selectControl);
+                    selectControl.Dispose();
                     AdvanceToSelectingRomData();
                 }
             }
@@ -57,6 +67,8 @@ namespace EmulationCoordination.Gui.Forms
                 RomData finalRom = selectRomControl.GetSelectedData();
                 if(finalRom != null)
                 {
+                    SubControlPanel.Controls.Remove(selectRomControl);
+                    selectRomControl.Dispose();
                     AdvanceToGettingFinalRomData(finalRom);
                 }
             }
@@ -64,8 +76,6 @@ namespace EmulationCoordination.Gui.Forms
 
         private void AdvanceToGettingFinalRomData(RomData finalRom)
         {
-            SubControlPanel.Controls.Remove(selectRomControl);
-            selectRomControl.Dispose();
             InstructionsLabel.Text = String.Format("Loading {0}'s data from {1}...",finalRom.FriendlyName,selectedScraper);
             AdvanceButton.Enabled = false;
 
@@ -84,8 +94,6 @@ namespace EmulationCoordination.Gui.Forms
 
         private void AdvanceToSelectingRomData()
         {
-            SubControlPanel.Controls.Remove(selectControl);
-            selectControl.Dispose();
             InstructionsLabel.Text = String.Format("Searching {0} for {1}...",selectedScraper,selectedRom.FriendlyName);
             AdvanceButton.Enabled = false;
 
