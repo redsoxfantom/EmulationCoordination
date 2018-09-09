@@ -117,7 +117,7 @@ namespace EmulationCoordination.Scrapers.DataContracts.GiantBomb
             String date = (String)reader.Value;
             if(String.IsNullOrEmpty(date))
             {
-                return DateTime.Now;
+                return DateTime.MinValue;
             }
             return DateTime.ParseExact(date, "yyyy-MM-dd HH:mm:ss", null);
         }
