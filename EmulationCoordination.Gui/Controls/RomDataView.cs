@@ -40,6 +40,10 @@ namespace EmulationCoordination.Gui.Controls
             RatingLabel.Text = data.PrettyPrintRating();
             TimePlayedLabel.Text = data.PrettyPrintPlayTime();
             ConsolePanel.BackgroundImage = data.Console.ConsoleImage;
+            if(data.ScrapedBy != null)
+            {
+                lblScraperSource.Text = String.Format("Data Source: {0}", data.ScrapedBy);
+            }
         }
 
         private void ScrapeLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
