@@ -36,18 +36,13 @@ namespace EmulationCoordination
         {
             if(arguments.OptionsDefined)
             {
-                RunWithArguments();
+                ConsoleUtilities.RunWithArguments(arguments);
             }
             else
             {
 
                 RunWithUserInput();
             }
-        }
-
-        private void RunWithArguments()
-        {
-
         }
 
         private void RunWithUserInput()
