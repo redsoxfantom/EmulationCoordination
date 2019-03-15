@@ -11,7 +11,7 @@ namespace EmulationCoordination
     {
         static void Main(string[] args)
         {
-            Processor proc = new Processor();
+            Processor proc = new Processor(args);
             proc.Run();
         }
     }
