@@ -10,13 +10,13 @@ namespace EmulationCoordination.Emulators.KnownEmulators.Windows
 {
     public class Dolphin_5_0 : BaseKnownEmulator
     {
-        public string Name => "Dolphin";
+        public override string Name => "Dolphin";
 
-        public string Arguments => "--exec=\"$FULL_ROM_PATH\" --batch";
+        public override string Arguments => "--exec=\"$FULL_ROM_PATH\" --batch";
 
-        public string Version => "5.0";
+        public override string Version => "5.0";
 
-        public List<EmulatorConsoles> SupportedConsoles => new List<EmulatorConsoles>() {
+        public override List<EmulatorConsoles> SupportedConsoles => new List<EmulatorConsoles>() {
             EmulatorConsoles.GAMECUBE,
             EmulatorConsoles.NINTENDO_WII
         };

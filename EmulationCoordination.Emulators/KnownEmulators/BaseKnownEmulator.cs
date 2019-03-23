@@ -14,7 +14,7 @@ namespace EmulationCoordination.Emulators.KnownEmulators
         public abstract string Arguments { get; }
         public abstract string Version { get; }
         public abstract List<EmulatorConsoles> SupportedConsoles { get; }
-        public string ToString()
+        public override string ToString()
         {
             return String.Format("{0} - {1}",Name,Version);
         }

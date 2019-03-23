@@ -121,9 +121,10 @@ namespace EmulationCoordination.Gui
 
         private void emulatorTreeView_CreateCustomRom(Utilities.EmulatorConsoles console)
         {
+            List<IKnownEmulator> knownEmulatorTypes = emuMgr.GetKnownEmulatorTypesForConsole(console);
             using (CustomEmulatorForm form = new CustomEmulatorForm())
             {
-                form.Initialize(console);
+                form.Initialize(console,knownEmulatorTypes);
                 if(form.ShowDialog(this) == DialogResult.OK)
                 {
                     var emulator = form.Emulator;

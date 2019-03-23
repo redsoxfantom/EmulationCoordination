@@ -1,4 +1,5 @@
 ﻿using EmulationCoordination.Emulators.Emulators;
+using EmulationCoordination.Emulators.Interfaces;
 using EmulationCoordination.Utilities;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,7 @@ namespace EmulationCoordination.Gui.Forms
             }
         }
 
-        public void Initialize(EmulatorConsoles console)
+        public void Initialize(EmulatorConsoles console, List<IKnownEmulator> knownEmulatorTypes)
         {
             DialogResult = DialogResult.Cancel;
             Console = console;
@@ -44,7 +45,28 @@ namespace EmulationCoordination.Gui.Forms
                     mConsolesTextBox.SetItemChecked(i, true);
                 }
             }
-            Text = String.Format("Add Custom Emulator");
+            if(knownEmulatorTypes.Count == 0)
+            {
+                emulatorTypeCbx.Visible = false;
+                emulatorTypeLabel.Visible = false;
+            }
+            else
+            {
+                foreach(var knownEmulator in knownEmulatorTypes)
+                {
+                    emulatorTypeCbx.Items.Add(knownEmulator);
+                }
+                emulatorTypeCbx.SelectedValueChanged += EmulatorTypeCbx_SelectedValueChanged;
+            }
+            Text = String.Format("Add Emulator");
+        }
+
+        private void EmulatorTypeCbx_SelectedValueChanged(object sender, EventArgs e)
+        {
+            IKnownEmulator emulatorType = (IKnownEmulator)emulatorTypeCbx.SelectedItem;
+            mEmulatorNameTextBox.Text = emulatorType.Name;
+            mEmulatorVersionTextBox.Text = emulatorType.Version;
+            mEmulatorArgs.Text = emulatorType.Arguments;
         }
 
         private void mBrowseButton_Click(object sender, EventArgs e)
