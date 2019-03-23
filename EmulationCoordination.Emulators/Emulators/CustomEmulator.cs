@@ -30,14 +30,6 @@ namespace EmulationCoordination.Emulators.Emulators
 
         public List<EmulatorConsoles> ConsoleNames { get; set; }
 
-        public EmulatorType EmulatorType
-        {
-            get
-            {
-                return EmulatorType.CUSTOM;
-            }
-        }
-
         public bool Delete()
         {
             throw new NotImplementedException();

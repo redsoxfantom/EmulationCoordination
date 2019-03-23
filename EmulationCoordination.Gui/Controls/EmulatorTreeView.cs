@@ -37,12 +37,8 @@ namespace EmulationCoordination.Gui.Controls
             var oldSelectedNode = treeView.SelectedNode;
 
             var availableConsoles = EmulatorConsoles.Values.ToList();
-            var installedEmulators = emulators.Where(f => f.Installed && f.EmulatorType == EmulatorType.BUILTIN).ToList();
-            var availableEmulators = emulators.Where(f => !f.Installed && f.EmulatorType == EmulatorType.BUILTIN).ToList();
-            var customEmulators = emulators.Where(f => f.Installed && f.EmulatorType == EmulatorType.CUSTOM).ToList();
-
-            PopulateTreeNodes(treeView.Nodes["AvailableEmulators"].Nodes, availableEmulators, availableConsoles, new List<RomData>());
-            PopulateTreeNodes(treeView.Nodes["InstalledEmulators"].Nodes, installedEmulators, availableConsoles, roms);
+            var customEmulators = emulators.ToList();
+            
             PopulateTreeNodes(treeView.Nodes["CustomEmulators"].Nodes, customEmulators, availableConsoles, roms);
 
             treeView.SelectedNode = oldSelectedNode;
@@ -126,21 +122,8 @@ namespace EmulationCoordination.Gui.Controls
 
             ToolStripMenuItem menuItem = new ToolStripMenuItem();
             menuItem.Tag = tag;
-            if(tag.Installed && tag.EmulatorType == EmulatorType.BUILTIN)
-            {
-                menuItem.Text = "Delete Emulator";
-                menuItem.Click += Delete_Selected;
-            }
-            else if(tag.EmulatorType == EmulatorType.CUSTOM)
-            {
-                menuItem.Text = "Remove Custom Emulator";
-                menuItem.Click += RemoveCustomEmulator_Selected;
-            }
-            else
-            {
-                menuItem.Text = "Install Emulator";
-                menuItem.Click += Install_Selected;
-            }
+            menuItem.Text = "Remove Custom Emulator";
+            menuItem.Click += RemoveCustomEmulator_Selected;
             ctxMenu.Items.Add(menuItem);
 
             treeView.ContextMenuStrip = ctxMenu;

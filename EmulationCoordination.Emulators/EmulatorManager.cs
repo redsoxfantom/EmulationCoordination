@@ -42,42 +42,17 @@ namespace EmulationCoordination.Emulators
 
         private void Initialize()
         {
-            if(currentOs.Platform == PlatformID.Win32NT)
-            {
-                availableEmulators = EmulatorRetriever.GetWindowsEmulators();
-            }
-            else
-            {
-                availableEmulators = new Dictionary<IReadOnlyEmulator, IEmulator>();
-            }
+            availableEmulators = new Dictionary<IReadOnlyEmulator, IEmulator>();
 
             EmulatorInstallDir = Path.Combine(FileUtilities.GetRootDirectory(),"Emulators");
 
             loadedConfig = FileUtilities.LoadFile<EmulatorManagerConfigDictionary>("EmulatorManager.json",new ConsoleConverter());
             foreach (var configuredEmulator in loadedConfig.Keys)
             {
-                if (configuredEmulator.EmulatorType == EmulatorType.BUILTIN)
-                {
-                    var matchingEmulator = availableEmulators.Values.Where(f =>
-                        f.EmulatorName == configuredEmulator.EmulatorName &&
-                        f.Version == configuredEmulator.EmulatorVersion
-                    ).First();
-                    matchingEmulator.Installed = loadedConfig[configuredEmulator].Installed;
-                }
-                if(configuredEmulator.EmulatorType == EmulatorType.CUSTOM)
-                {
-                    var emuCfg = loadedConfig[configuredEmulator].CustomConfig;
-                    CustomEmulator emu = new CustomEmulator(emuCfg.PathToExecutable, emuCfg.CommandLineArgs, 
-                        configuredEmulator.EmulatorVersion, configuredEmulator.EmulatorName, emuCfg.Consoles);
-                    availableEmulators.Add(emu,emu);
-                }
-            }
-            
-            foreach(var availableEmulator in availableEmulators.Values.Where(f=>f.EmulatorType == EmulatorType.BUILTIN))
-            {
-                String emulatorSpecificInstallDir = Path.Combine(EmulatorInstallDir, 
-                    availableEmulator.EmulatorName, availableEmulator.Version);
-                availableEmulator.InstallDirectory = emulatorSpecificInstallDir;
+                var emuCfg = loadedConfig[configuredEmulator].CustomConfig;
+                CustomEmulator emu = new CustomEmulator(emuCfg.PathToExecutable, emuCfg.CommandLineArgs, 
+                    configuredEmulator.EmulatorVersion, configuredEmulator.EmulatorName, emuCfg.Consoles);
+                availableEmulators.Add(emu,emu);
             }
 
             romMgr = RomManager.Instance;
@@ -100,8 +75,7 @@ namespace EmulationCoordination.Emulators
             EmulatorManagerConfigKey key = new EmulatorManagerConfigKey()
             {
                 EmulatorName = emulator.EmulatorName,
-                EmulatorVersion = emulator.Version,
-                EmulatorType = emulator.EmulatorType
+                EmulatorVersion = emulator.Version
             };
             if(loadedConfig.ContainsKey(key))
             {
@@ -119,8 +93,7 @@ namespace EmulationCoordination.Emulators
             EmulatorManagerConfigKey key = new EmulatorManagerConfigKey()
             {
                 EmulatorName = emulator.EmulatorName,
-                EmulatorVersion = emulator.Version,
-                EmulatorType = emulator.EmulatorType
+                EmulatorVersion = emulator.Version
             };
             EmulatorManagerConfig cfg;
             if(!loadedConfig.TryGetValue(key, out cfg))
@@ -160,29 +133,15 @@ namespace EmulationCoordination.Emulators
 
         public bool DeleteEmulator(IReadOnlyEmulator emulator)
         {
-            bool uninstallResult = false;
-            if (emulator.EmulatorType == EmulatorType.BUILTIN)
-            {
-                uninstallResult = availableEmulators[emulator].Delete();
-                UpdateConfigProperty(emulator, !uninstallResult);
-            }
-            else
-            {
-                RemoveCustomEmulator(emulator);
-                uninstallResult = true;
-            }
-            return uninstallResult;
+            RemoveCustomEmulator(emulator);
+            return true;
         }
 
         public void RunEmulator(RomData rom)
         {
             var romConsole = rom.Console;
             var emulatorsForConsole = GetAvailableEmulators(romConsole);
-            // First, prefer emulators that are installed over emulators that aren't
             emulatorsForConsole.Sort((c1, c2) => { return c2.Installed.CompareTo(c1.Installed); });
-            // Next, prefer custom emulators over builtin
-            emulatorsForConsole.Sort((c1, c2) => { return c2.EmulatorType.CompareTo(c1.EmulatorType); });
-            // TODO: Sort on emulator version
             var selectedEmulator = emulatorsForConsole.First();
             RunEmulator(selectedEmulator, rom);
         }
@@ -211,8 +170,7 @@ namespace EmulationCoordination.Emulators
             var key = new EmulatorManagerConfigKey()
             {
                 EmulatorName = emulator.EmulatorName,
-                EmulatorVersion = emulator.Version,
-                EmulatorType = emulator.EmulatorType
+                EmulatorVersion = emulator.Version
             };
             if (!loadedConfig.TryGetValue(key, out cfg))
             {

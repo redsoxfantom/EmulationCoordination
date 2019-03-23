@@ -14,9 +14,7 @@ namespace EmulationCoordination.Commands
         {
             commands = new List<ICommand>()
             {
-                new DeleteCommand(),
                 new PlayCommand(),
-                new DownloadCommand(),
                 new CustomCommand(),
                 new ExitCommand()
             };
