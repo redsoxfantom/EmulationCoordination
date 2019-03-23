@@ -107,7 +107,7 @@ namespace EmulationCoordination.Gui.Controls
         private void HandleRightClickCustomEmulator(EmulatorConsoles tag)
         {
             ContextMenuStrip ctxMenu = new ContextMenuStrip();
-            ToolStripMenuItem menuItem = new ToolStripMenuItem(String.Format("Add Custom {0} Emulator",tag.FriendlyName));
+            ToolStripMenuItem menuItem = new ToolStripMenuItem(String.Format("Add {0} Emulator",tag.FriendlyName));
             menuItem.Tag = tag;
             menuItem.Click += (sender,args) => CreateCustomRom?.Invoke(tag);
             ctxMenu.Items.Add(menuItem);
@@ -120,7 +120,7 @@ namespace EmulationCoordination.Gui.Controls
 
             ToolStripMenuItem menuItem = new ToolStripMenuItem();
             menuItem.Tag = tag;
-            menuItem.Text = "Remove Custom Emulator";
+            menuItem.Text = "Remove Emulator";
             menuItem.Click += RemoveCustomEmulator_Selected;
             ctxMenu.Items.Add(menuItem);
 
