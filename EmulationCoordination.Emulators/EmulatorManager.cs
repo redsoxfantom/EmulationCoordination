@@ -31,9 +31,9 @@ namespace EmulationCoordination.Emulators
 
         private static EmulatorManager mInstance = null;
         private static RomManager romMgr;
-        private OperatingSystem currentOs;
         private Dictionary<IReadOnlyEmulator, IEmulator> availableEmulators;
         private Dictionary<EmulatorManagerConfigKey, EmulatorManagerConfig> loadedConfig;
+        private List<IKnownEmulator> knownEmulatorTypes;
 
         private EmulatorManager()
         {
