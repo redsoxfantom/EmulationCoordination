@@ -55,6 +55,7 @@
     <Compile Include="Interfaces\IEmulator.cs" />
     <Compile Include="Interfaces\IKnownEmulator.cs" />
     <Compile Include="Interfaces\IReadOnlyEmulator.cs" />
+    <Compile Include="KnownEmulators\BaseKnownEmulator.cs" />
     <Compile Include="KnownEmulators\KnownEmulatorFactory.cs" />
     <Compile Include="KnownEmulators\Windows\Dolphin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EmulationCoordination.Emulators.KnownEmulators.Windows
 {
-    public class Dolphin_5_0 : IKnownEmulator
+    public class Dolphin_5_0 : BaseKnownEmulator
     {
         public string Name => "Dolphin";
 
