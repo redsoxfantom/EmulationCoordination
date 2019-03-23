@@ -15,30 +15,18 @@ namespace EmulationCoordination.Emulators.Emulators
     {
         public string CommandLineArguments { get; set; }
         public string PathToExecutable { get; set; }
-        public bool Installed { get; set; }
         public string InstallDirectory
         {
             get
             {
                 return Path.GetDirectoryName(PathToExecutable);
             }
-            set => throw new NotImplementedException();
         }
         public string Version { get; set; }
 
         public string EmulatorName { get; set; }
 
         public List<EmulatorConsoles> ConsoleNames { get; set; }
-
-        public bool Delete()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool DownloadAndInstall()
-        {
-            throw new NotImplementedException();
-        }
 
         public void ExecuteRom(RomData rom)
         {
@@ -59,7 +47,6 @@ namespace EmulationCoordination.Emulators.Emulators
         public CustomEmulator(String PathToExecutable, String CommandLineArguments, 
             String Version, String EmulatorName, List<EmulatorConsoles> EmulatorConsoles)
         {
-            Installed = true;
             this.PathToExecutable = PathToExecutable;
             this.CommandLineArguments = CommandLineArguments;
             this.Version = Version;

@@ -12,7 +12,6 @@ namespace EmulationCoordination.Emulators.Interfaces
         String Version { get; }
         String EmulatorName { get; }
         List<EmulatorConsoles> ConsoleNames { get; }
-        bool Installed { get; }
         String InstallDirectory { get; }
     }
 }

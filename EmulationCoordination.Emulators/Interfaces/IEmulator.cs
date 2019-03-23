@@ -9,10 +9,6 @@ namespace EmulationCoordination.Emulators.Interfaces
 {
     public interface IEmulator : IReadOnlyEmulator
     {
-        bool DownloadAndInstall();
-        bool Delete();
         void ExecuteRom(RomData rom);
-        new bool Installed { get; set; }
-        new String InstallDirectory { get; set; }
     }
 }

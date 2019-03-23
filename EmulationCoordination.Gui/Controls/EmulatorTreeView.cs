@@ -20,8 +20,6 @@ namespace EmulationCoordination.Gui.Controls
 
     public partial class EmulatorTreeView : UserControl
     {
-        public event EmulatorUpdateHandler DeletionRequested;
-        public event EmulatorUpdateHandler InstallationRequested;
         public event EmulatorUpdateHandler CustomRemovalRequested;
         public event CreateCustomEmulatorHandler CreateCustomRom;
         public event RomUpdateHandler RomSelected;
@@ -133,18 +131,6 @@ namespace EmulationCoordination.Gui.Controls
         {
             IReadOnlyEmulator emu = (IReadOnlyEmulator)((ToolStripMenuItem)sender).Tag;
             CustomRemovalRequested?.Invoke(emu);
-        }
-
-        private void Install_Selected(object sender, EventArgs e)
-        {
-            IReadOnlyEmulator emu = (IReadOnlyEmulator)((ToolStripMenuItem)sender).Tag;
-            InstallationRequested?.Invoke(emu);
-        }
-
-        private void Delete_Selected(object sender, EventArgs e)
-        {
-            IReadOnlyEmulator emu = (IReadOnlyEmulator)((ToolStripMenuItem)sender).Tag;
-            DeletionRequested?.Invoke(emu);
         }
 
         public IReadOnlyEmulator GetSelectedEmulator()

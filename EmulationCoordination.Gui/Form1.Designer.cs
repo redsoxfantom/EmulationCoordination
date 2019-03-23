@@ -66,8 +66,6 @@
             this.emulatorTreeView.Name = "emulatorTreeView";
             this.emulatorTreeView.Size = new System.Drawing.Size(239, 705);
             this.emulatorTreeView.TabIndex = 1;
-            this.emulatorTreeView.DeletionRequested += new EmulationCoordination.Gui.Controls.EmulatorUpdateHandler(this.emulatorTreeView_DeletionRequested);
-            this.emulatorTreeView.InstallationRequested += new EmulationCoordination.Gui.Controls.EmulatorUpdateHandler(this.emulatorTreeView_InstallationRequested);
             this.emulatorTreeView.CustomRemovalRequested += new EmulationCoordination.Gui.Controls.EmulatorUpdateHandler(this.EmulatorTreeView_CustomRemovalRequested);
             this.emulatorTreeView.CreateCustomRom += new EmulationCoordination.Gui.Controls.CreateCustomEmulatorHandler(this.emulatorTreeView_CreateCustomRom);
             this.emulatorTreeView.RomSelected += new EmulationCoordination.Gui.Controls.RomUpdateHandler(this.emulatorTreeView_RomSelected);

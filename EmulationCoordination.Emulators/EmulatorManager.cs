@@ -123,14 +123,6 @@ namespace EmulationCoordination.Emulators
             UpdateConfiguration();
         }
 
-        public bool DownloadAndInstallEmulator(IReadOnlyEmulator emulator)
-        {
-            bool installResult = availableEmulators[emulator].DownloadAndInstall();
-            UpdateConfigProperty(emulator, installResult);
-
-            return installResult;
-        }
-
         public bool DeleteEmulator(IReadOnlyEmulator emulator)
         {
             RemoveCustomEmulator(emulator);
@@ -141,15 +133,14 @@ namespace EmulationCoordination.Emulators
         {
             var romConsole = rom.Console;
             var emulatorsForConsole = GetAvailableEmulators(romConsole);
-            emulatorsForConsole.Sort((c1, c2) => { return c2.Installed.CompareTo(c1.Installed); });
             var selectedEmulator = emulatorsForConsole.First();
             RunEmulator(selectedEmulator, rom);
         }
 
         public void RunEmulator(IReadOnlyEmulator emulator, RomData rom)
         {
-            IEmulator emu = availableEmulators[emulator];
-            if (emu.Installed)
+            IEmulator emu;
+            if (availableEmulators.TryGetValue(emulator, out emu))
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
@@ -160,7 +151,7 @@ namespace EmulationCoordination.Emulators
             }
             else
             {
-                throw new EmulatorManagerException(String.Format("The selected emulator {0} has not been installed",emulator.EmulatorName));
+                throw new EmulatorManagerException(String.Format("The selected emulator {0} has not been installed", emulator.EmulatorName));
             }
         }
 

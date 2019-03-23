@@ -68,34 +68,6 @@ namespace EmulationCoordination.Gui
             backgroundWorker1.RunWorkerAsync(emulator);
         }
 
-        private void emulatorTreeView_DeletionRequested(IReadOnlyEmulator emulator)
-        {
-            backgroundWorker1.DoWork += (sender, e) => 
-            {
-                IReadOnlyEmulator emu = (IReadOnlyEmulator)e.Argument;
-                emuMgr.DeleteEmulator(emu);
-            };
-            backgroundWorker1.RunWorkerCompleted += (sender, e) =>
-            {
-                UpdateEmulatorList();
-            };
-            backgroundWorker1.RunWorkerAsync(emulator);
-        }
-
-        private void emulatorTreeView_InstallationRequested(IReadOnlyEmulator emulator)
-        {
-            backgroundWorker1.DoWork += (sender, e) =>
-            {
-                IReadOnlyEmulator emu = (IReadOnlyEmulator)e.Argument;
-                emuMgr.DownloadAndInstallEmulator(emulator);
-            };
-            backgroundWorker1.RunWorkerCompleted += (sender, e) =>
-            {
-                UpdateEmulatorList();
-            };
-            backgroundWorker1.RunWorkerAsync(emulator);
-        }
-
         private void emulatorTreeView_RomSelected(RomData rom)
         {
             selectedRom = rom;
