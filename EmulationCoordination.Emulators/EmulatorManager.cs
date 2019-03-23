@@ -1,5 +1,6 @@
 ﻿using EmulationCoordination.Emulators.Emulators;
 using EmulationCoordination.Emulators.Interfaces;
+using EmulationCoordination.Emulators.KnownEmulators;
 using EmulationCoordination.Roms;
 using EmulationCoordination.Utilities;
 using System;
@@ -37,7 +38,6 @@ namespace EmulationCoordination.Emulators
 
         private EmulatorManager()
         {
-            currentOs = Environment.OSVersion;
         }
 
         private void Initialize()
@@ -45,6 +45,8 @@ namespace EmulationCoordination.Emulators
             availableEmulators = new Dictionary<IReadOnlyEmulator, IEmulator>();
 
             EmulatorInstallDir = Path.Combine(FileUtilities.GetRootDirectory(),"Emulators");
+
+            knownEmulatorTypes = KnownEmulatorFactory.GetKnownEmulatorTypes();
 
             loadedConfig = FileUtilities.LoadFile<EmulatorManagerConfigDictionary>("EmulatorManager.json",new ConsoleConverter());
             foreach (var configuredEmulator in loadedConfig.Keys)
@@ -121,6 +123,11 @@ namespace EmulationCoordination.Emulators
             }
 
             UpdateConfiguration();
+        }
+
+        public List<IKnownEmulator> GetKnownEmulatorTypesForConsole(EmulatorConsoles console)
+        {
+            return knownEmulatorTypes.Where(f => f.SupportedConsoles.Contains(console)).ToList();
         }
 
         public bool DeleteEmulator(IReadOnlyEmulator emulator)
