@@ -35,6 +35,8 @@ namespace EmulationCoordination.Scrapers
             availableScrapers.Add(igdb.FriendlyName, igdb);
             GiantBombScraper gBomb = new GiantBombScraper();
             availableScrapers.Add(gBomb.FriendlyName, gBomb);
+            MobyGamesScraper mGames = new MobyGamesScraper();
+            availableScrapers.Add(mGames.FriendlyName, mGames);
         }
 
         public List<String> GetAllScrapers()

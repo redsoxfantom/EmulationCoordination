@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EmulationCoordination.Scrapers</RootNamespace>
     <AssemblyName>EmulationCoordination.Scrapers</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,12 +48,14 @@
     <Compile Include="DataContracts\GamesDb.cs" />
     <Compile Include="DataContracts\GiantBomb.cs" />
     <Compile Include="DataContracts\Igdb.cs" />
+    <Compile Include="DataContracts\MobyGames.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScraperManager.cs" />
     <Compile Include="Scrapers\BaseScraper.cs" />
     <Compile Include="Scrapers\GiantBombScraper.cs" />
     <Compile Include="Scrapers\IgdbScraper.cs" />
     <Compile Include="Scrapers\IScraper.cs" />
+    <Compile Include="Scrapers\MobyGamesScraper.cs" />
     <Compile Include="Scrapers\TheGamesDbScraper.cs" />
   </ItemGroup>
   <ItemGroup>

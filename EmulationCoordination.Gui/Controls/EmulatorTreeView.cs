@@ -20,8 +20,6 @@ namespace EmulationCoordination.Gui.Controls
 
     public partial class EmulatorTreeView : UserControl
     {
-        public event EmulatorUpdateHandler DeletionRequested;
-        public event EmulatorUpdateHandler InstallationRequested;
         public event EmulatorUpdateHandler CustomRemovalRequested;
         public event CreateCustomEmulatorHandler CreateCustomRom;
         public event RomUpdateHandler RomSelected;
@@ -37,12 +35,8 @@ namespace EmulationCoordination.Gui.Controls
             var oldSelectedNode = treeView.SelectedNode;
 
             var availableConsoles = EmulatorConsoles.Values.ToList();
-            var installedEmulators = emulators.Where(f => f.Installed && f.EmulatorType == EmulatorType.BUILTIN).ToList();
-            var availableEmulators = emulators.Where(f => !f.Installed && f.EmulatorType == EmulatorType.BUILTIN).ToList();
-            var customEmulators = emulators.Where(f => f.Installed && f.EmulatorType == EmulatorType.CUSTOM).ToList();
-
-            PopulateTreeNodes(treeView.Nodes["AvailableEmulators"].Nodes, availableEmulators, availableConsoles, new List<RomData>());
-            PopulateTreeNodes(treeView.Nodes["InstalledEmulators"].Nodes, installedEmulators, availableConsoles, roms);
+            var customEmulators = emulators.ToList();
+            
             PopulateTreeNodes(treeView.Nodes["CustomEmulators"].Nodes, customEmulators, availableConsoles, roms);
 
             treeView.SelectedNode = oldSelectedNode;
@@ -113,7 +107,7 @@ namespace EmulationCoordination.Gui.Controls
         private void HandleRightClickCustomEmulator(EmulatorConsoles tag)
         {
             ContextMenuStrip ctxMenu = new ContextMenuStrip();
-            ToolStripMenuItem menuItem = new ToolStripMenuItem(String.Format("Add Custom {0} Emulator",tag.FriendlyName));
+            ToolStripMenuItem menuItem = new ToolStripMenuItem(String.Format("Add {0} Emulator",tag.FriendlyName));
             menuItem.Tag = tag;
             menuItem.Click += (sender,args) => CreateCustomRom?.Invoke(tag);
             ctxMenu.Items.Add(menuItem);
@@ -126,21 +120,8 @@ namespace EmulationCoordination.Gui.Controls
 
             ToolStripMenuItem menuItem = new ToolStripMenuItem();
             menuItem.Tag = tag;
-            if(tag.Installed && tag.EmulatorType == EmulatorType.BUILTIN)
-            {
-                menuItem.Text = "Delete Emulator";
-                menuItem.Click += Delete_Selected;
-            }
-            else if(tag.EmulatorType == EmulatorType.CUSTOM)
-            {
-                menuItem.Text = "Remove Custom Emulator";
-                menuItem.Click += RemoveCustomEmulator_Selected;
-            }
-            else
-            {
-                menuItem.Text = "Install Emulator";
-                menuItem.Click += Install_Selected;
-            }
+            menuItem.Text = "Remove Emulator";
+            menuItem.Click += RemoveCustomEmulator_Selected;
             ctxMenu.Items.Add(menuItem);
 
             treeView.ContextMenuStrip = ctxMenu;
@@ -150,18 +131,6 @@ namespace EmulationCoordination.Gui.Controls
         {
             IReadOnlyEmulator emu = (IReadOnlyEmulator)((ToolStripMenuItem)sender).Tag;
             CustomRemovalRequested?.Invoke(emu);
-        }
-
-        private void Install_Selected(object sender, EventArgs e)
-        {
-            IReadOnlyEmulator emu = (IReadOnlyEmulator)((ToolStripMenuItem)sender).Tag;
-            InstallationRequested?.Invoke(emu);
-        }
-
-        private void Delete_Selected(object sender, EventArgs e)
-        {
-            IReadOnlyEmulator emu = (IReadOnlyEmulator)((ToolStripMenuItem)sender).Tag;
-            DeletionRequested?.Invoke(emu);
         }
 
         public IReadOnlyEmulator GetSelectedEmulator()

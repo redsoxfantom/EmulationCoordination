@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Available Emulators");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Installed Emulators");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Custom Emulators");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Emulators");
             this.treeView = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
@@ -39,16 +37,10 @@
             this.treeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView.Location = new System.Drawing.Point(0, 0);
             this.treeView.Name = "treeView";
-            treeNode1.Name = "AvailableEmulators";
-            treeNode1.Text = "Available Emulators";
-            treeNode2.Name = "InstalledEmulators";
-            treeNode2.Text = "Installed Emulators";
-            treeNode3.Name = "CustomEmulators";
-            treeNode3.Text = "Custom Emulators";
+            treeNode1.Name = "CustomEmulators";
+            treeNode1.Text = "Emulators";
             this.treeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3});
+            treeNode1});
             this.treeView.Size = new System.Drawing.Size(288, 739);
             this.treeView.TabIndex = 1;
             this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);

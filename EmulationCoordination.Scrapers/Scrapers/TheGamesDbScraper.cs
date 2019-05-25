@@ -170,6 +170,10 @@ namespace EmulationCoordination.Scrapers.Scrapers
             {
                 return "Sony%20Playstation%202";
             }
+            if (console.Equals(EmulatorConsoles.NINTENDO_WII))
+            {
+                return "Nintendo%20Wii";
+            }
             throw new Exception("Console not supported: " + console.FriendlyName);
         }
 
@@ -193,6 +197,8 @@ namespace EmulationCoordination.Scrapers.Scrapers
                     return EmulatorConsoles.MASTER_SYSTEM;
                 case "Sony Playstation 2":
                     return EmulatorConsoles.PLAYSTATION_2;
+                case "Nintendo Wii":
+                    return EmulatorConsoles.NINTENDO_WII;
                 default:
                     return EmulatorConsoles.UNKNOWN;
             }

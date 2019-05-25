@@ -116,6 +116,8 @@ namespace EmulationCoordination.Scrapers.DataContracts.Igdb
                     return EmulatorConsoles.MASTER_SYSTEM;
                 case 8:
                     return EmulatorConsoles.PLAYSTATION_2;
+                case 5:
+                    return EmulatorConsoles.NINTENDO_WII;
                 default:
                     return EmulatorConsoles.UNKNOWN;
             }

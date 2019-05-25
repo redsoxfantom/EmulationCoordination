@@ -26,6 +26,12 @@ namespace EmulationCoordination.Utilities
             new EmulatorConsoles("Sega Master System", ConsoleImages.SegaMasterSystem, new List<string>() { ".sms" });
         public static readonly EmulatorConsoles PLAYSTATION_2 = 
             new EmulatorConsoles("Playstation 2", ConsoleImages.PS2, new List<string>() { ".iso" });
+        public static readonly EmulatorConsoles PLAYSTATION_3 =
+            new EmulatorConsoles("Playstation 3", ConsoleImages.PS3, new List<string>() { ".iso" });
+        public static readonly EmulatorConsoles NINTENDO_WII =
+            new EmulatorConsoles("Nintendo Wii", ConsoleImages.Wii, new List<string>() { ".iso" });
+        public static readonly EmulatorConsoles NES = 
+            new EmulatorConsoles("NES", ConsoleImages.NES, new List<string>() { ".nes" });
         public static readonly EmulatorConsoles UNKNOWN = 
             new EmulatorConsoles("Unknown Console Type", ConsoleImages.UnknownConsole);
 
@@ -38,9 +44,12 @@ namespace EmulationCoordination.Utilities
                 yield return GAME_BOY_ADVANCE;
                 yield return NINTENDO_64;
                 yield return SNES;
+                yield return NES;
                 yield return GAMECUBE;
                 yield return MASTER_SYSTEM;
                 yield return PLAYSTATION_2;
+                yield return PLAYSTATION_3;
+                yield return NINTENDO_WII;
             }
         }
 

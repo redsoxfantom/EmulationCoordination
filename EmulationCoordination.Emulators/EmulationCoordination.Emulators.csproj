@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EmulationCoordination.Emulators</RootNamespace>
     <AssemblyName>EmulationCoordination.Emulators</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -49,17 +50,14 @@
     <Compile Include="EmulatorManager.cs" />
     <Compile Include="DataContracts\EmulatorManagerConfig.cs" />
     <Compile Include="EmulatorManagerException.cs" />
-    <Compile Include="Emulators\BaseBuiltinEmulator.cs" />
     <Compile Include="Emulators\Command.cs" />
     <Compile Include="Emulators\CustomEmulator.cs" />
-    <Compile Include="Emulators\EmulatorRetriever.cs" />
-    <Compile Include="Emulators\Windows\DolphinEmulator.cs" />
-    <Compile Include="Emulators\Windows\FusionEmulator.cs" />
-    <Compile Include="Emulators\Windows\Mupen64PlusEmulator.cs" />
-    <Compile Include="Emulators\Windows\Snes9xEmulator.cs" />
-    <Compile Include="Emulators\Windows\VisualBoyAdvanceEmulator.cs" />
     <Compile Include="Interfaces\IEmulator.cs" />
+    <Compile Include="Interfaces\IKnownEmulator.cs" />
     <Compile Include="Interfaces\IReadOnlyEmulator.cs" />
+    <Compile Include="KnownEmulators\BaseKnownEmulator.cs" />
+    <Compile Include="KnownEmulators\KnownEmulatorFactory.cs" />
+    <Compile Include="KnownEmulators\Windows\Dolphin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

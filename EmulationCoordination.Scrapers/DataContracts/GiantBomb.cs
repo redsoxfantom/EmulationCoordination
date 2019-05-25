@@ -92,6 +92,8 @@ namespace EmulationCoordination.Scrapers.DataContracts.GiantBomb
                     return EmulatorConsoles.MASTER_SYSTEM;
                 case "PS2":
                     return EmulatorConsoles.PLAYSTATION_2;
+                case "Wii":
+                    return EmulatorConsoles.NINTENDO_WII;
                 default:
                     return EmulatorConsoles.UNKNOWN;
             }
@@ -113,6 +115,10 @@ namespace EmulationCoordination.Scrapers.DataContracts.GiantBomb
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             String date = (String)reader.Value;
+            if(String.IsNullOrEmpty(date))
+            {
+                return DateTime.MinValue;
+            }
             return DateTime.ParseExact(date, "yyyy-MM-dd HH:mm:ss", null);
         }
 

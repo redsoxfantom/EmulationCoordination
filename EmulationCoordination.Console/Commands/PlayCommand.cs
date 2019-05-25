@@ -24,8 +24,7 @@ namespace EmulationCoordination.Commands
 
         public void Execute()
         {
-            var emulators = emuMgr.GetAvailableEmulators().Where(f => (f.Installed == true && f.EmulatorType == EmulatorType.BUILTIN) ||
-                f.EmulatorType == EmulatorType.CUSTOM).ToList();
+            var emulators = emuMgr.GetAvailableEmulators().ToList();
 
             var selectedEmulator = ConsoleUtilities.SelectEmulator(emulators);
             if (selectedEmulator != null)

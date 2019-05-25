@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace EmulationCoordination.Emulators.Interfaces
 {
-    public interface IReadOnlyEmulator
+    public interface IKnownEmulator
     {
+        String Name { get; }
+        String Arguments { get; }
         String Version { get; }
-        String EmulatorName { get; }
-        List<EmulatorConsoles> ConsoleNames { get; }
-        String InstallDirectory { get; }
+        List<EmulatorConsoles> SupportedConsoles { get; }
     }
 }

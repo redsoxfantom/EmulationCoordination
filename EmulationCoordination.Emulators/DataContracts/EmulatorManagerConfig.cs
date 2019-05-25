@@ -27,7 +27,6 @@ namespace EmulationCoordination.Emulators
     {
         public String EmulatorName { get; set; }
         public String EmulatorVersion { get; set; }
-        public EmulatorType EmulatorType { get; set; }
 
         public override bool Equals(object obj)
         {
@@ -35,8 +34,7 @@ namespace EmulationCoordination.Emulators
             if (other != null)
             {
                 return (other.EmulatorName == EmulatorName &&
-                        other.EmulatorVersion == EmulatorVersion &&
-                        other.EmulatorType == EmulatorType);
+                        other.EmulatorVersion == EmulatorVersion);
             }
             else
             {
@@ -46,14 +44,8 @@ namespace EmulationCoordination.Emulators
 
         public override int GetHashCode()
         {
-            return EmulatorName.GetHashCode() ^ EmulatorVersion.GetHashCode() ^ EmulatorType.GetHashCode();
+            return EmulatorName.GetHashCode() ^ EmulatorVersion.GetHashCode();
         }
-    }
-
-    public enum EmulatorType
-    {
-        BUILTIN,
-        CUSTOM
     }
 
     [JsonArray]
