@@ -3,14 +3,21 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace EmulationCoordination.Utilities
 {
-    public class FileUtilities
+    public static class FileUtilities
     {
+        public static string ExecutingDirectory {get;private set;}
+        
+        static FileUtilities()
+        {
+            ExecutingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        }
 
         public static String GetRootDirectory()
         {
